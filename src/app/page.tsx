@@ -1,11 +1,8 @@
-import Image from "next/image";
-import mydb from "../config/db"
 
-export default function Home() {
+export default function homePage() {
     return (
         <main>
-            haha
-            
+            Page.tsx pages
         </main>
     );
 }
