@@ -7,8 +7,9 @@ export default function DateTime() {
 
   return (
     <>
+    
       <p className=" text-[20px]">{date}</p>
-      <p className=" text-[20px]">{time}</p>
+      {/* <p className=" text-[20px]">{time}</p> */}
     </>
   );
 }

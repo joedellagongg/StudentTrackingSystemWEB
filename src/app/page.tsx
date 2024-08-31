@@ -8,7 +8,7 @@ export default function homePage() {
           </div>
           <div className=" flex flex-col justify-center items-center gap-y-6">
             <input
-              type="text"
+              type="number"
               placeholder="ID Number"
               className=" h-10 w-96 outline-0 pl-6 rounded-xl"
             />
