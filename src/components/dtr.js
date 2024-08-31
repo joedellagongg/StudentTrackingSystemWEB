@@ -59,7 +59,7 @@ export default function Records(){
             </div>
             ))}
             
-            <div className=" w-full h-full bg-[#FFFFFF] rounded-2xl p-10 overflow-y-auto ">
+            <div className=" w-full h-full bg-[#FFFFFF] rounded-2xl p-10 overflow-y-auto no-scrollbar">
                 <h1 className=" text-[26px]">Daily Time Records</h1>
                 {dtr.map((dtr) => (
                     <div className=" flex flex-row justify-around items-center p-4 w-full bg-[#E1E8FF] rounded-xl mt-4">

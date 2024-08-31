@@ -31,7 +31,7 @@ export default function Schedule() {
   return (
     <>
       {schedule.map((sched) => (
-        <p className="p-4 bg-[#E1E8FF] rounded-xl text-[14px] text-center">
+        <p className="p-4 bg-[#E1E8FF] rounded-xl text-[14px] text-center ">
           {sched.date}: {sched.in} - {sched.out}
         </p>
       ))}

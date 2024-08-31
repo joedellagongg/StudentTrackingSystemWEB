@@ -48,7 +48,7 @@ export default function DashboardLayout({children}){
         </div>
         <div className="w-full h-full bg-[#FFFFFF] rounded-2xl p-4">
           <p className=" text-[#002147] text-[22px] p-2">Schedule</p>
-          <div className=" w-full flex flex-col justify-center gap-y-2 overflow-y-scroll">
+          <div className=" w-full flex flex-col justify-center gap-y-2 no-scrollbar overflow-y-scroll">
             <Schedule />
           </div>
         </div>
