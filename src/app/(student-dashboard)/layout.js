@@ -1,19 +1,22 @@
-"use client"
+"use client";
 import React from "react";
+import { useState } from "react";
 import StudentProfile from "../../components/studProfile";
 import Schedule from "../../components/schedule";
 import DateTime from "../../components/time&date";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
-export default function DashboardLayout({children}){
+export default function DashboardLayout({ children }) {
+  const router = useRouter();
+  const [activeButton, setActiveButton] = useState("dashboard");
 
-    const router = useRouter()
+  const navigate = (path, button) => {
+    router.push(path);
+    setActiveButton(button);
+  };
 
-    const navigate = (path) => {
-        router.push(path)
-    }
-    return (
-        <main className=" bg-[#E1E8FF] h-screen w-screen p-4 flex flex-row">
+  return (
+    <main className=" bg-[#E1E8FF] h-screen w-screen p-4 flex flex-row">
       {/* side bar */}
       <div className=" w-[20%] h-full bg-[#FFFFFF] rounded-2xl">
         <div className=" p-4 w-full flex justify-center items-center border-b-2">
@@ -22,16 +25,29 @@ export default function DashboardLayout({children}){
 
         <StudentProfile />
 
-        <div className=" flex flex-col p-4">
-          <button onClick={() => navigate('../dashboard')} className=" flex flex-row items-center gap-x-4 hover:bg-[#E1E8FF] rounded-xl p-2">
+        <div className=" flex flex-col p-4 gap-y-2">
+          <button
+            onClick={() => navigate("../dashboard", "dashboard")}
+            className={`flex flex-row items-center gap-x-4 rounded-xl p-2 ${
+              activeButton === "dashboard" ? "bg-[#E1E8FF]" : "hover:bg-[#E1E8FF]"}`}
+          >
             <img src="./icons/dashboard-icon.svg" />
             <p className=" text-[#002147] text-[16px]">Dashboard</p>
           </button>
-          <button onClick={() => navigate('../profile')} className=" flex flex-row items-center gap-x-4 hover:bg-[#E1E8FF] rounded-xl p-2">
+          <button
+            onClick={() => navigate("../profile", "profile")}
+            className={`flex flex-row items-center gap-x-4 rounded-xl p-2 ${
+              activeButton === "profile" ? "bg-[#E1E8FF]" : "hover:bg-[#E1E8FF]"
+            }`}
+          >
             <img src="./icons/profile-icon.svg" />
             <p className=" text-[#002147] text-[16px]">Profile</p>
           </button>
-          <button className=" flex flex-row items-center gap-x-4 hover:bg-[#E1E8FF] rounded-xl p-2">
+          <button
+            onClick={() => navigate("../digital_id", "digital_id")}
+            className={`flex flex-row items-center gap-x-4 rounded-xl p-2 ${
+              activeButton === "digital_id" ? "bg-[#E1E8FF]": "hover:bg-[#E1E8FF]"}`}
+          >
             <img src="./icons/id-icon.svg" />
             <p className=" text-[#002147] text-[16px]">Digital ID</p>
           </button>
@@ -43,7 +59,7 @@ export default function DashboardLayout({children}){
 
       {/* schedules */}
       <div className="w-[20%] h-full flex flex-col gap-y-4">
-        <div className=" h-[30%] w-full bg-[#FFFFFF] rounded-2xl flex flex-col justify-center items-center gap-y-2">
+        <div className=" p-4 h-[30%] w-full bg-[#FFFFFF] rounded-2xl flex flex-col justify-center items-center gap-y-2">
           <DateTime />
         </div>
         <div className="w-full h-full bg-[#FFFFFF] rounded-2xl p-4">
@@ -54,8 +70,5 @@ export default function DashboardLayout({children}){
         </div>
       </div>
     </main>
-      );
-
+  );
 }
-    
-  
