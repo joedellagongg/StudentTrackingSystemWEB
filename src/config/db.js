@@ -17,6 +17,7 @@ mydb.connect((err) => {
         console.log("- Check if MySQL and APACHE is turned off.\n ");
     } else {
         console.log("\nConnected to MySQL Database");
+        
     }
 });
 
