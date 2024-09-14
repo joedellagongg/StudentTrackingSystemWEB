@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 export default function Digital_id() {
   return (
@@ -7,8 +8,16 @@ export default function Digital_id() {
         <div className=" ">
           <h1 className=" text-[45px]">My Digital ID</h1>
         </div>
-        <div className=" w-full h-full bg-[#FFFFFF] rounded-2xl p-10 overflow-y-auto no-scrollbar">
-          <div className=" w-full flex flex-col justify-center items-center ">
+
+        <div className=" flex flex-col gap-y-8 w-full h-full bg-[#FFFFFF] rounded-2xl p-10 overflow-y-auto no-scrollbar">
+          {/* ID-FRONT */}
+          <div className=" w-full flex flex-col justify-center items-center">
+            <h1 className=" text-[35px]">Front</h1>
+            <div className=" bg-[url('../../../../public/id_template/id_bg.svg')]"></div>
+          </div>
+          {/* ID-BACK */}
+
+          <div className=" w-full flex flex-col justify-center items-center">
             <h1 className=" text-[35px]">Back</h1>
             <img src="./id_template/ID-Back.svg" alt="" />
           </div>
