@@ -32,77 +32,77 @@ export default function ProfilePage() {
               <div className=" w-full flex flex-row justify-between gap-x-4">
                 <div className=" flex flex-col w-[33.3%] ">
                   <p className=" text-[12px]">Last Name</p>
-                  <p className=" bg-[#E1E8FF] p-2 rounded-lg">{info.lname}</p>
+                  <p className=" bg-[#E1E8FF] p-2 rounded-lg text-gray-400">{info.lname}</p>
                 </div>
                 <div className=" flex flex-col w-[33.3%] ">
                   <p className=" text-[12px]">First Name</p>
-                  <p className=" bg-[#E1E8FF] p-2 rounded-lg">{info.fname}</p>
+                  <p className=" bg-[#E1E8FF] p-2 rounded-lg text-gray-400">{info.fname}</p>
                 </div>
                 <div className=" flex flex-col w-[33.3%] ">
                   <p className=" text-[12px]">Middle Name</p>
-                  <p className=" bg-[#E1E8FF] p-2 rounded-lg">{info.mname}</p>
+                  <p className=" bg-[#E1E8FF] p-2 rounded-lg text-gray-400">{info.mname}</p>
                 </div>
               </div>
 
               <div className=" w-full flex flex-row justify-between gap-x-4">
                 <div className=" flex flex-col w-[15%] ">
                   <p className=" text-[12px]">Age</p>
-                  <p className=" bg-[#E1E8FF] p-2 rounded-lg">{info.age}</p>
+                  <p className=" bg-[#E1E8FF] p-2 rounded-lg text-gray-400">{info.age}</p>
                 </div>
                 <div className=" flex flex-col w-[55%] ">
                   <p className=" text-[12px]">Birthday</p>
-                  <p className=" bg-[#E1E8FF] p-2 rounded-lg">{info.bday}</p>
+                  <p className=" bg-[#E1E8FF] p-2 rounded-lg text-gray-400">{info.bday}</p>
                 </div>
                 <div className=" flex flex-col w-[30%] ">
                   <p className=" text-[12px]">Gender</p>
-                  <p className=" bg-[#E1E8FF] p-2 rounded-lg">{info.gender}</p>
+                  <p className=" bg-[#E1E8FF] p-2 rounded-lg text-gray-400">{info.gender}</p>
                 </div>
               </div>
 
               <div>
                 <div className=" flex flex-col w-full">
                   <p className=" text-[12px]">Address</p>
-                  <p className=" bg-[#E1E8FF] p-2 rounded-lg">{info.address}</p>
+                  <p className=" bg-[#E1E8FF] p-2 rounded-lg text-gray-400">{info.address}</p>
                 </div>
               </div>
 
               <div>
                 <div className=" flex flex-col w-[60%]">
                   <p className=" text-[12px]">Email Address</p>
-                  <p className=" bg-[#E1E8FF] p-2 rounded-lg">{info.email}</p>
+                  <p className=" bg-[#E1E8FF] p-2 rounded-lg text-gray-400">{info.email}</p>
                 </div>
               </div>
 
               <div className=" w-full flex flex-row justify-between gap-x-4">
                 <div className=" flex flex-col w-[50%] ">
                   <p className=" text-[12px]">Father</p>
-                  <p className=" bg-[#E1E8FF] p-2 rounded-lg">{info.father}</p>
+                  <p className=" bg-[#E1E8FF] p-2 rounded-lg text-gray-400">{info.father}</p>
                 </div>
                 <div className=" flex flex-col w-[50%] ">
                   <p className=" text-[12px]">Contact Number</p>
-                  <p className=" bg-[#E1E8FF] p-2 rounded-lg">{info.fatherNo}</p>
+                  <p className=" bg-[#E1E8FF] p-2 rounded-lg text-gray-400">{info.fatherNo}</p>
                 </div>
               </div>
 
               <div className=" w-full flex flex-row justify-between gap-x-4">
                 <div className=" flex flex-col w-[50%] ">
                   <p className=" text-[12px]">Mother</p>
-                  <p className=" bg-[#E1E8FF] p-2 rounded-lg">{info.mother}</p>
+                  <p className=" bg-[#E1E8FF] p-2 rounded-lg text-gray-400">{info.mother}</p>
                 </div>
                 <div className=" flex flex-col w-[50%] ">
                   <p className=" text-[12px]">Contact Number</p>
-                  <p className=" bg-[#E1E8FF] p-2 rounded-lg">{info.motherNo}</p>
+                  <p className=" bg-[#E1E8FF] p-2 rounded-lg text-gray-400">{info.motherNo}</p>
                 </div>
               </div>
 
               <div className=" w-full flex flex-row justify-between gap-x-4">
                 <div className=" flex flex-col w-[50%] ">
                   <p className=" text-[12px]">Guardian</p>
-                  <p className=" bg-[#E1E8FF] p-2 rounded-lg">{info.mother}</p>
+                  <p className=" bg-[#E1E8FF] p-2 rounded-lg text-gray-400">{info.mother}</p>
                 </div>
                 <div className=" flex flex-col w-[50%] ">
                   <p className=" text-[12px]">Contact Number</p>
-                  <p className=" bg-[#E1E8FF] p-2 rounded-lg">{info.motherNo}</p>
+                  <p className=" bg-[#E1E8FF] p-2 rounded-lg text-gray-400">{info.motherNo}</p>
                 </div>
               </div>
               
