@@ -7,6 +7,14 @@ const mydb = mysql.createConnection({
     database: "dbsts",
 });
 
+// const mydb = mysql.createConnection({
+//     host: "mysql.railway.internal",
+//     user: "root",
+//     password: "uIKokvsCjgQqqwVIGbpFtPTZFmoUDdVB",
+//     database: "railway",
+//     port: '3306',
+// });
+
 mydb.connect((err) => {
     if (err) {
         console.log("Error: Not connecting to MySQL Database: \n", err);
