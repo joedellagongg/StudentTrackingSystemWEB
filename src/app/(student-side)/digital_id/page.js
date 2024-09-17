@@ -14,6 +14,7 @@ export default function Digital_id() {
           <div className=" w-full flex flex-col justify-center items-center">
             <h1 className=" text-[35px]">Front</h1>
             <div className=" w-[455px] rounded-2xl h-[320px] bg-[url('/id_template/id_bg.svg')] bg-cover">
+            <h1>testing</h1>
             </div>
           </div>
           {/* ID-BACK */}
