@@ -30,8 +30,8 @@ export default function DashboardLayout({ children }) {
             onClick={() => navigate("../dashboard", "dashboard")}
             className={`flex flex-row items-center gap-x-4 rounded-xl p-2 ${
               activeButton === "dashboard"
-                ? "bg-[#E1E8FF]"
-                : "hover:bg-[#E1E8FF]"
+                ? "bg-[#E1E8FF] bg-opacity-80"
+                : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
             }`}
           >
             <img src="./icons/dashboard-icon.svg" />
@@ -40,7 +40,9 @@ export default function DashboardLayout({ children }) {
           <button
             onClick={() => navigate("../profile", "profile")}
             className={`flex flex-row items-center gap-x-4 rounded-xl p-2 ${
-              activeButton === "profile" ? "bg-[#E1E8FF]" : "hover:bg-[#E1E8FF]"
+              activeButton === "profile"
+                ? "bg-[#E1E8FF] bg-opacity-80"
+                : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
             }`}
           >
             <img src="./icons/profile-icon.svg" />
@@ -50,17 +52,17 @@ export default function DashboardLayout({ children }) {
             onClick={() => navigate("../digital_id", "digital_id")}
             className={`flex flex-row items-center gap-x-4 rounded-xl p-2 ${
               activeButton === "digital_id"
-                ? "bg-[#E1E8FF]"
-                : "hover:bg-[#E1E8FF]"
+                ? "bg-[#E1E8FF] bg-opacity-80"
+                : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
             }`}
           >
             <img src="./icons/id-icon.svg" />
             <p className=" text-[#002147] text-[16px]">Digital ID</p>
           </button>
 
-          <button className=" hover:bg-[#E1E8FF] w-full flex flex-row items-center gap-x-4 rounded-xl p-2">
+          <button className="  w-full flex flex-row items-center gap-x-4 rounded-xl p-2">
             <img src="./icons/logout-icon.svg" />
-            Log Out
+            <p className=" text-red-500">Log Out</p>
           </button>
         </div>
       </div>
