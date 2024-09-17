@@ -13,7 +13,8 @@ export default function Digital_id() {
           {/* ID-FRONT */}
           <div className=" w-full flex flex-col justify-center items-center">
             <h1 className=" text-[35px]">Front</h1>
-            <div className=" bg-[url('../../../../public/id_template/id_bg.svg')]"></div>
+            <div className=" w-[455px] rounded-2xl h-[320px] bg-[url('/id_template/id_bg.svg')] bg-cover">
+            </div>
           </div>
           {/* ID-BACK */}
 

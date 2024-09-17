@@ -18,7 +18,7 @@ export default function DashboardLayout({ children }) {
   return (
     <main className=" bg-[#E1E8FF] h-screen w-screen p-4 flex flex-row">
       {/* side bar */}
-      <div className=" w-[20%] h-full bg-[#FFFFFF] rounded-2xl">
+      <div className=" relative w-[20%] h-full bg-[#FFFFFF] rounded-2xl">
         <div className=" p-4 w-full flex justify-center items-center border-b-2">
           <img src="./logo/logo.svg" className=" h-20" />
         </div>
@@ -29,7 +29,10 @@ export default function DashboardLayout({ children }) {
           <button
             onClick={() => navigate("../dashboard", "dashboard")}
             className={`flex flex-row items-center gap-x-4 rounded-xl p-2 ${
-              activeButton === "dashboard" ? "bg-[#E1E8FF]" : "hover:bg-[#E1E8FF]"}`}
+              activeButton === "dashboard"
+                ? "bg-[#E1E8FF]"
+                : "hover:bg-[#E1E8FF]"
+            }`}
           >
             <img src="./icons/dashboard-icon.svg" />
             <p className=" text-[#002147] text-[16px]">Dashboard</p>
@@ -46,11 +49,21 @@ export default function DashboardLayout({ children }) {
           <button
             onClick={() => navigate("../digital_id", "digital_id")}
             className={`flex flex-row items-center gap-x-4 rounded-xl p-2 ${
-              activeButton === "digital_id" ? "bg-[#E1E8FF]": "hover:bg-[#E1E8FF]"}`}
+              activeButton === "digital_id"
+                ? "bg-[#E1E8FF]"
+                : "hover:bg-[#E1E8FF]"
+            }`}
           >
             <img src="./icons/id-icon.svg" />
             <p className=" text-[#002147] text-[16px]">Digital ID</p>
           </button>
+
+          <div className=" w-full pr-8 absolute bottom-4">
+            <button className=" hover:bg-[#E1E8FF] w-full flex flex-row items-center gap-x-4 rounded-xl p-2">
+              <img src="./icons/logout-icon.svg" />
+              Log Out
+            </button>
+          </div>
         </div>
       </div>
 
