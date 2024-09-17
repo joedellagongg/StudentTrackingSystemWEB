@@ -13,7 +13,12 @@ export default function Digital_id() {
           {/* ID-FRONT */}
           <div className=" w-full flex flex-col justify-center items-center">
             <h1 className=" text-[35px]">Front</h1>
+<<<<<<< HEAD:src/app/(student-dashboard)/digital_id/page.js
             <div className=""></div>
+=======
+            <div className=" w-[455px] rounded-2xl h-[320px] bg-[url('/id_template/id_bg.svg')] bg-cover">
+            </div>
+>>>>>>> 15ed984a660da6190dae503d1a898dbb9c493516:src/app/(student-side)/digital_id/page.js
           </div>
           {/* ID-BACK */}
 
