@@ -17,6 +17,7 @@ export default function Digital_id() {
             <div className=""></div>
 =======
             <div className=" w-[455px] rounded-2xl h-[320px] bg-[url('/id_template/id_bg.svg')] bg-cover">
+            <h1>testing</h1>
             </div>
 >>>>>>> 15ed984a660da6190dae503d1a898dbb9c493516:src/app/(student-side)/digital_id/page.js
           </div>
