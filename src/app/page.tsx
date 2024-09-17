@@ -1,11 +1,9 @@
-"use client";
-
+import { redirect } from "next/navigation";
+import { login } from '@/routes/login.route'
 import React from "react";
 
-export default function homePage() {
 
-    const 
-
+export default function Home() {
     return (
         <main className=" relative h-screen w-full bg-[url('../../public/bg/bg.svg')] bg-cover">
             <div className="absolute h-screen w-full bg-white bg-opacity-40 flex justify-center items-center">
@@ -19,7 +17,11 @@ export default function homePage() {
                         />
                     </div>
                     <div className="p-6">
-                        <form action="POST">
+                        <form action={async (formData) => {
+                            "use server"
+                            await login(formData);
+                            redirect("/dashboard")
+                        }} >
                             <div className="flex flex-col justify-center items-center gap-y-6">
                                 <input
                                     type="number"
@@ -29,6 +31,7 @@ export default function homePage() {
                                 />
                                 <input
                                     type="password"
+                                    name="pass"
                                     placeholder="Password"
                                     className=" h-10 w-96 outline-0 pl-6 rounded-xl"
                                 />
