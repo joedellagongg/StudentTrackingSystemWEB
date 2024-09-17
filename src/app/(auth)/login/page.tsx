@@ -1,10 +1,9 @@
-"use client";
+'use client'
 
-import React from "react";
+import React from "react"
 
 export default function homePage() {
 
-    const 
 
     return (
         <main className=" relative h-screen w-full bg-[url('../../public/bg/bg.svg')] bg-cover">
@@ -19,11 +18,10 @@ export default function homePage() {
                         />
                     </div>
                     <div className="p-6">
-                        <form action="POST">
+                        <form action="">
                             <div className="flex flex-col justify-center items-center gap-y-6">
                                 <input
                                     type="number"
-                                    name="user"
                                     placeholder="ID Number"
                                     className=" h-10 w-96 outline-0 pl-6 rounded-xl"
                                 />
@@ -32,7 +30,7 @@ export default function homePage() {
                                     placeholder="Password"
                                     className=" h-10 w-96 outline-0 pl-6 rounded-xl"
                                 />
-                                <button className=" bg-[#002147] h-10 w-20 rounded-xl">
+                                <button onClick={() => handleSubmit} className=" bg-[#002147] h-10 w-20 rounded-xl">
                                     <p className="text-white">Login</p>
                                 </button>
                             </div>
