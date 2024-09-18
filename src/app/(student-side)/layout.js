@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { useState } from "react";
-import StudentProfile from "../../components/studProfile";
-import Schedule from "../../components/schedule";
+import StudentProfile from "../../components/(student-dashboard)/studProfile";
+import Schedule from "../../components/(student-dashboard)/schedule";
 import DateTime from "../../components/time&date";
 import { useRouter } from "next/navigation";
 
