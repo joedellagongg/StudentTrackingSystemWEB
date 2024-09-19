@@ -1,7 +1,7 @@
+"use client";
 import { redirect } from "next/navigation";
-import { login } from '@/routes/login.route'
+import { login } from "../app/api/login/route";
 import React from "react";
-
 
 export default function Home() {
     return (
@@ -17,11 +17,7 @@ export default function Home() {
                         />
                     </div>
                     <div className="p-6">
-                        <form action={async (formData) => {
-                            "use server"
-                            await login(formData);
-                            redirect("/dashboard")
-                        }} >
+                        <form action={login}>
                             <div className="flex flex-col justify-center items-center gap-y-6">
                                 <input
                                     type="number"
