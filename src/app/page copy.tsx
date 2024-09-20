@@ -1,32 +1,10 @@
 "use client";
-
-import { login } from "@/controllers/auth.controller";
+import { redirect } from "next/navigation";
+// import { login } from "../app/api/login/route";
+import { loginHandler } from "@/routes/login.route";
 import React from "react";
-import { FormEvent } from "react";
-import axios from "axios";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 
-export default function Login() {
-    const [username, setUsername] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
-    const router = useRouter();
-
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        console.log({ username, password });
-        try {
-            const res = await axios.post("/login", { username, password });
-            // console.log(res);
-            alert(`Logged in! Token: ${res.data.token}`);
-            router.push("/dashboard");
-        } catch (err) {
-            console.error(err);
-            alert("Login failed. Please check your credentials.");
-        }
-    };
-
+export default function Home() {
     return (
         <main className=" relative h-screen w-full bg-[url('../../public/bg/bg.svg')] bg-cover">
             <div className="absolute h-screen w-full bg-white bg-opacity-40 flex justify-center items-center">
@@ -40,26 +18,18 @@ export default function Login() {
                         />
                     </div>
                     <div className="p-6">
-                        <form onSubmit={handleSubmit}>
+                        <form action={loginHandler}>
                             <div className="flex flex-col justify-center items-center gap-y-6">
                                 <input
                                     type="number"
+                                    name="user"
                                     placeholder="ID Number"
-                                    name="username"
-                                    value={username}
-                                    onChange={(e) =>
-                                        setUsername(e.target.value)
-                                    }
                                     className=" h-10 w-96 outline-0 pl-6 rounded-xl"
                                 />
                                 <input
                                     type="password"
+                                    name="pass"
                                     placeholder="Password"
-                                    name="password"
-                                    value={password}
-                                    onChange={(e) =>
-                                        setPassword(e.target.value)
-                                    }
                                     className=" h-10 w-96 outline-0 pl-6 rounded-xl"
                                 />
                                 <button className=" bg-[#002147] h-10 w-20 rounded-xl">
