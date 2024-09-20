@@ -30,7 +30,7 @@ export default function homePage() {
                                     placeholder="Password"
                                     className=" h-10 w-96 outline-0 pl-6 rounded-xl"
                                 />
-                                <button onClick={() => handleSubmit} className=" bg-[#002147] h-10 w-20 rounded-xl">
+                                <button className=" bg-[#002147] h-10 w-20 rounded-xl">
                                     <p className="text-white">Login</p>
                                 </button>
                             </div>

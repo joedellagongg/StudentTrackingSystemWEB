@@ -1,7 +1,6 @@
 const express = require("express");
 const next = require("next");
-const mydb = require("./src/config/db"); // MySQL connection
-
+const mydb = require("./src/config/db");
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -17,6 +16,6 @@ app.prepare().then(() => {
 
     server.listen(port, (err) => {
         if (err) throw err;
-        console.log(`✅ Server running on [ http://localhost:${port} ]`);
+        console.log(`✅ Server running on [ http://localhost:${port}/]`);
     });
 });

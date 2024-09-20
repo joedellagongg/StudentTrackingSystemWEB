@@ -31,6 +31,6 @@
         "src/app/(admin)/student/page.js",
         "src/app/(student-side)/digital_id/page.js",
         "src/routes/route.tsx"
-    ],
+, "src/routes/login.route.tsx"    ],
     "exclude": ["node_modules"]
 }

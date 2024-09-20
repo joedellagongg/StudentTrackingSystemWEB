@@ -9,15 +9,20 @@ const mydb = mysql.createConnection({
 
 mydb.connect((err) => {
     if (err) {
-        console.log("Error: Not connecting to MySQL Database: \n", err);
-        console.log("\nError: Not connecting to MySQL Database:");
-        console.log("\nNOTE: The System runs the Database in phpMyAdmin or XAMPP");
-
-        console.log("If it's not Connected ");
-        console.log("- Check if MySQL and APACHE is turned off.\n ");
+        console.log("\n🚧 Error: Not connected to MySQL Database:");
+        console.log("   | - If it's not Connected ");
+        console.log("   | - Check if MySQL and APACHE is turned off.\n ");
     } else {
-        console.log("\n✅ Connected to MySQL Database");
+        console.log("⚙️  Starting Application ...");
         
+        setTimeout(() => {
+            console.log("⚠️  Checking database connection ...");
+        }, 1000);
+        
+        setTimeout(() => {
+            console.log("✅ Database connected successfully! ");
+        }, 2000); 
+
     }
 });
 
