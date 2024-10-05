@@ -1,18 +1,10 @@
 "use client";
 import React from "react";
-import { useState } from "react";
 import DateTime from "../../components/time&date";
-import { useRouter } from "next/navigation";
 import SideNav from "../../components/(admin-side)/side_nav";
 
 export default function DashboardLayout({ children }) {
-  const router = useRouter();
-  const [activeButton, setActiveButton] = useState("admin");
-
-  const navigate = (path, button) => {
-    router.push(path);
-    setActiveButton(button);
-  };
+  
 
   return (
     <main className=" bg-[#E1E8FF] h-screen w-screen p-4 flex flex-row">
