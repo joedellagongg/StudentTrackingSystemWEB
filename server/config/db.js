@@ -13,7 +13,7 @@ mydb.connect((err) => {
         console.log("   | - If it's not Connected ");
         console.log("   | - Check if MySQL and APACHE is turned off.\n ");
     } else {
-        console.log("⚙️  Starting Application ...");
+        console.log(" ⚙️  Starting Application ...");
         
         setTimeout(() => {
             console.log("⚠️  Checking database connection ...");

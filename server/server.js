@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const db = require("./config/db");
 const app = express();
 const port = process.env.PORT || 8080;
 
@@ -14,5 +15,5 @@ app.get("/home", (req, res) => {
 
 app.listen(port, (err) => {
     if (err) throw err;
-    console.log(`✅ [ SERVER ] running on  http://localhost:${port}/`);
+    console.log(` ✅ [ SERVER ] is running!`);
 });
