@@ -15,5 +15,5 @@ app.get("/home", (req, res) => {
 
 app.listen(port, (err) => {
     if (err) throw err;
-    console.log(` ✅ [ SERVER ] is running!`);
+    console.log("\x1b[32m%s\x1b[0m", "  ▲", "[ SERVER ] is running!");
 });
