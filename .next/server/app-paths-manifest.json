@@ -1,0 +1,7 @@
+{
+  "/(student-side)/dashboard/page": "app/(student-side)/dashboard/page.js",
+  "/(student-side)/digital_id/page": "app/(student-side)/digital_id/page.js",
+  "/(student-side)/profile/page": "app/(student-side)/profile/page.js",
+  "/(admin-side)/student_records/page": "app/(admin-side)/student_records/page.js",
+  "/(admin-side)/announcement/page": "app/(admin-side)/announcement/page.js"
+}

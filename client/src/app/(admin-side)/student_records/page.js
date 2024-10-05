@@ -1,9 +1,9 @@
 export default function Student_Records() {
   return (
-    <main className=" pl-4 pr-4 w-[60%] h-full">
-    <div className=" w-full h-full flex flex-col">
-      
-    </div>
-  </main>
-  )
+    <main className=" pl-4 pt-4  w-full h-full">
+      <div className=" w-full h-full rounded-2xl flex flex-col bg-[#ffffff]">
+        students records
+      </div>
+    </main>
+  );
 }
