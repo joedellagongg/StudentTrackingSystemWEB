@@ -1,16 +1,25 @@
 const express = require("express");
+const database = require("./config/db");
 const cors = require("cors");
-const db = require("./config/db");
 const app = express();
-const port = process.env.PORT || 8080;
+const port = 5500;
 
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000" }));
+app.use(express.json());
 
-app.get("/home", (req, res) => {
-    res.json({
-        message: "Like this video!",
-        people: ["Arpan", "Jack", "Barry"],
-    });
+const user = "123123";
+const pass = "123456";
+
+app.post("/login", (req, res) => {
+    const { username, password } = req.body;
+
+    console.log("Credentials", username, password);
+
+    if (user === username && pass === password) {
+        res.status(200).json({ authenticated: true });
+    } else {
+        res.status(401).json({ authenticated: false });
+    }
 });
 
 app.listen(port, (err) => {
