@@ -4,6 +4,7 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { error } from "console";
 
 export default function Login() {
     const [username, setUsername] = useState("");
@@ -13,13 +14,12 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log({ username, password });
+        // console.log({ username, password });
         try {
             const res = await axios.post("http://localhost:5500/login", {
                 username,
                 password,
             });
-            console.log("front", res);
             if (res.data.authenticated) {
                 router.push("/student_info");
                 console.clear();
@@ -28,6 +28,7 @@ export default function Login() {
             }
         } catch (err) {
             // console.error(err);
+            console.log("😒😒😒");
             alert("Login failed. Please check your credentials.");
         }
     };

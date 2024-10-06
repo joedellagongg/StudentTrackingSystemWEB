@@ -13,13 +13,60 @@ const pass = "123456";
 app.post("/login", (req, res) => {
     const { username, password } = req.body;
 
-    console.log("Credentials", username, password);
+    // console.log("Credentials", username, password);
 
     if (user === username && pass === password) {
         res.status(200).json({ authenticated: true });
     } else {
         res.status(401).json({ authenticated: false });
     }
+});
+
+app.post("/development", (req, res) => {
+    const {
+        lastName,
+        firstName,
+        middleName,
+        Age,
+        Birthday,
+        Gender,
+        Address,
+        emailAddress,
+        fatherName,
+        motherName,
+        guardianName,
+        studentContact,
+        fatherContact,
+        motherContact,
+        guardianContact,
+    } = req.body;
+
+    console.log(
+        "Destuctured ",
+        lastName,
+        firstName,
+        middleName,
+        Age,
+        Birthday,
+        Gender,
+        Address,
+        emailAddress,
+        fatherName,
+        motherName,
+        guardianName,
+        studentContact,
+        fatherContact,
+        motherContact,
+        guardianContact,
+    );
+
+    // console.log("Credentials", username, password);
+
+    // if (user === username && pass === password) {
+    //     res.status(200).json({ authenticated: true });
+    // } else {
+    //     res.status(401).json({ authenticated: false });
+    // }
 });
 
 app.listen(port, (err) => {
