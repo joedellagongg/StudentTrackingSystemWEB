@@ -21,7 +21,7 @@ export default function Sidenav() {
       <AdminProfile />
 
       <div className=" flex flex-col p-4 gap-y-2">
-        <button
+        {/* <button
           onClick={() => navigate("../student_info", "sudent_info")}
           className={`flex flex-row items-center gap-x-4 rounded-xl p-2 ${
             activeButton === "sudent_info"
@@ -57,7 +57,7 @@ export default function Sidenav() {
         >
           <img src="./icons/records-icon.svg" />
           <p className=" text-[#002147] text-[16px]">Student Transactions</p>
-        </button>
+        </button> */}
 
         <button className="  w-full flex flex-row items-center gap-x-4 rounded-xl p-2">
           <img src="./icons/logout-icon.svg" />
