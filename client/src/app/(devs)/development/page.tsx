@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function studentRegistration() {
+    const [NFCid, setNFCid] = useState("");
     const [lastName, setlastName] = useState("");
     const [firstName, setfirstName] = useState("");
     const [middleName, setmiddleName] = useState("");
@@ -21,6 +22,8 @@ export default function studentRegistration() {
     const [fatherContact, setfatherContact] = useState("");
     const [motherContact, setmotherContact] = useState("");
     const [guardianContact, setguardianContact] = useState("");
+
+    const timeLogger = {};
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -43,6 +46,7 @@ export default function studentRegistration() {
                 motherContact,
                 guardianContact,
             });
+
             // if (res.data.authenticated) {
             //     // router.push("/student_info");
             //     console.clear();
@@ -56,30 +60,19 @@ export default function studentRegistration() {
         }
     };
 
-    // const res = await axios.post("http://localhost:5500/development", {
-    //     lastName,
-    //     firstName,
-    //     middleName,
-    //     Age,
-    //     Birthday,
-    //     Gender,
-    //     Address,
-    //     emailAddress,
-    //     fatherName,
-    //     motherName,
-    //     guardianName,
-    //     studentContact,
-    //     fatherContact,
-    //     motherContact,
-    //     guardianContact,
-    // });
-    // console.log(res.data);
-
     return (
         <main className="w-full h-full flex justify-center items-center">
             {/* <div className="h-96 w-10 bg-red-500"></div> */}
             <div className="bg-slate-300 flex justify-center items-center w-[80%] p-1 m-20">
                 <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        placeholder="NFC ID Number"
+                        name="last_name"
+                        value={NFCid}
+                        onChange={(e) => setNFCid(e.target.value)}
+                        className=" h-10 w-96 m-2 bg-blue-100 pl-6 rounded-xl"
+                    />
                     <input
                         type="text"
                         placeholder="Last Name"
