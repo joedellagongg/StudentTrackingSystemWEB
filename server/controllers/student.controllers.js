@@ -7,7 +7,7 @@ exports.addStudent = async function (req, res) {
         res.json({
             message: "From: [ CONTROLLERS ], Data successfully added",
             data: result,
-            // data: req.query,
+            data: req.query,
         });
     } catch (error) {
         res.status(500).json({

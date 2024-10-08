@@ -30,6 +30,7 @@ export default function studentRegistration() {
 
         try {
             const res = await axios.post("http://localhost:5500/development", {
+                NFCid,
                 lastName,
                 firstName,
                 middleName,

@@ -11,7 +11,7 @@ const corsSetting = {
 
 const registeredRoute = (app) => {
     app.use(cors(corsSetting));
-    app.use("/development", studentRoute);
+    app.use("/add_student", studentRoute);
 };
 
 module.exports = registeredRoute;

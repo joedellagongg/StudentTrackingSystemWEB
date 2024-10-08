@@ -2,6 +2,7 @@ const database = require("../config/db");
 
 async function addStudent(data) {
     const {
+        NFCid,
         lastName,
         firstName,
         middleName,
@@ -19,10 +20,11 @@ async function addStudent(data) {
         guardianContact,
     } = data;
 
-    const query = `INSERT INTO studuser(lname, fname, mname, age, birthday, gender, address, email, father, mother, guardian, studcontact, fathercontact, mothercontact, guardiancontact) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+    const query = `INSERT INTO studuser(nfc_id, lname, fname, mname, age, birthday, gender, address, email, father, mother, guardian, studcontact, fathercontact, mothercontact, guardiancontact) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
 
     try {
         const result = await database.query(query, [
+            NFCid,
             lastName,
             firstName,
             middleName,
