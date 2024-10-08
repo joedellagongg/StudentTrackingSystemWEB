@@ -106,7 +106,7 @@ export default function studentRegistration() {
                         className=" h-10 w-96 m-2 bg-blue-100 pl-6 rounded-xl"
                     />
                     <input
-                        type="text"
+                        type="date"
                         placeholder="Birthday"
                         name="birthday"
                         value={Birthday}
