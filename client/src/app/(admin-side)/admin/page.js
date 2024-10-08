@@ -14,7 +14,7 @@ export default function Admin() {
         <Section />
         <button
           onClick={openModal}
-          className="absolute self-end bottom-8 right-8"
+          className="fixed self-end bottom-8 right-8"
         >
           <img src="./icons/add-icon.svg" className="h-[80px]" alt="Add" />
         </button>
@@ -26,11 +26,11 @@ export default function Admin() {
             <div className=" mt-4 flex items-end justify-end gap-2 w-[50%]">
               <button
                 onClick={closeModal}
-                className=" text-black bg-[#FFFFFF] drop-shadow-2xl border p-2 rounded-xl"
+                className=" text-sm text-black bg-[#FFFFFF] drop-shadow-2xl border  p-3 rounded-xl"
               >
                 Cancel
               </button>
-              <button className="p-2 rounded-xl bg-[#002147] text-white">
+              <button className=" text-sm p-3 rounded-xl bg-[#002147] text-white">
                 Submit
               </button>
             </div>
