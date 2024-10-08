@@ -2,6 +2,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import AddStudent from "@/app/(devs)/add_student/page";
 
 export default function Stud_list() {
   const router = useRouter();
@@ -100,6 +101,10 @@ export default function Stud_list() {
       lname: "Manuel",
     },
   ];
+
+  const [modal, setModal] = useState(false);
+  const openModal = () => setModal(true);
+
   return (
     <main className=" w-full h-full p-4 rounded-2xl bg-[#ffffff] overflow-y-scroll">
       <div className=" w-full h-full flex flex-col">
@@ -136,7 +141,7 @@ export default function Stud_list() {
                     {list.lname}, {list.fname} {list.mname}
                   </td>
                   <td className="p-4 text-end">
-                    <button className="bg-[#002147] text-white p-2 rounded-xl">
+                    <button className="bg-[#002147] text-white p-3 text-sm rounded-lg">
                       View Profile
                     </button>
                   </td>
@@ -146,9 +151,14 @@ export default function Stud_list() {
           </table>
         </div>
 
-        <button className=" absolute self-end bottom-8 right-8">
+        <button
+          onClick={openModal}
+          className=" absolute self-end bottom-8 right-8"
+        >
           <img src="./icons/add-icon.svg" className=" h-[80px]" />
         </button>
+
+        {modal && <AddStudent closeModal={() => setModal(false)} />}
       </div>
     </main>
   );
