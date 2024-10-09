@@ -141,7 +141,12 @@ export default function Stud_list() {
                     {list.lname}, {list.fname} {list.mname}
                   </td>
                   <td className="p-4 text-end">
-                    <button className="bg-[#002147] text-white p-3 text-sm rounded-lg">
+                    <button
+                      onClick={() =>
+                        navigate("../student_profile", "student_profile")
+                      }
+                      className="bg-[#002147] text-white p-3 text-sm rounded-lg"
+                    >
                       View Profile
                     </button>
                   </td>
