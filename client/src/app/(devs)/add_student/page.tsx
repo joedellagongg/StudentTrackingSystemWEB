@@ -61,7 +61,7 @@ export default function AddStudent({ closeModal }) {
   return (
     <div className="z-50 bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 flex items-center justify-center">
       {/* <div className="h-96 w-10 bg-red-500"></div> */}
-      <div className="bg-white flex justify-center items-center p-4 w-[80%] h-[80%] rounded-xl overflow-y-scroll">
+      <div className="bg-white flex justify-center items-center p-4 h-[80%] rounded-xl overflow-y-scroll">
         <form
           onSubmit={handleSubmit}
           className=" flex flex-col justify-center items-center"
