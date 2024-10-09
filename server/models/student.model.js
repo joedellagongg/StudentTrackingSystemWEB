@@ -1,4 +1,12 @@
 const database = require("../config/db");
+const crypto = require("crypto");
+
+function generateRandomString(length) {
+    return crypto.randomBytes(length).toString("hex").slice(0, length);
+}
+
+const uname = generateRandomString(8);
+const upass = generateRandomString(8);
 
 async function addStudent(data) {
     const {
@@ -20,11 +28,13 @@ async function addStudent(data) {
         guardianContact,
     } = data;
 
-    const query = `INSERT INTO studuser(nfc_id, lname, fname, mname, age, birthday, gender, address, email, father, mother, guardian, studcontact, fathercontact, mothercontact, guardiancontact) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+    const query = `INSERT INTO studuser(nfc_id, username, password, lname, fname, mname, age, birthday, gender, address, email, father, mother, guardian, studcontact, fathercontact, mothercontact, guardiancontact) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
 
     try {
         const result = await database.query(query, [
             NFCid,
+            uname,
+            upass,
             lastName,
             firstName,
             middleName,
