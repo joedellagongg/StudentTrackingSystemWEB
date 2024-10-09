@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function Sidenav() {
   const router = useRouter();
-  const [activeButton, setActiveButton] = useState("admin");
+  const [activeButton, setActiveButton] = useState("dashboard");
 
   const navigate = (path, button) => {
     router.push(path);
@@ -21,43 +21,29 @@ export default function Sidenav() {
       <AdminProfile />
 
       <div className=" flex flex-col p-4 gap-y-2">
-        {/* <button
-          onClick={() => navigate("../student_info", "sudent_info")}
+        <button
+          onClick={() => navigate("../admin", "admin")}
           className={`flex flex-row items-center gap-x-4 rounded-xl p-2 ${
-            activeButton === "sudent_info"
+            activeButton === "admin"
               ? "bg-[#E1E8FF] bg-opacity-80"
               : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
           }`}
         >
-          <img src="./icons/records-icon.svg" />
-          <p className=" text-[#002147] text-[16px]">Student Information</p>
+          <img src="./icons/dashboard-icon.svg" className=" h-10" />
+          <p className=" text-[#002147] text-[16px]">Dashboard</p>
         </button>
 
         <button
-          onClick={() => navigate("../student_records", "student_records")}
+          onClick={() => navigate("../top-up", "top-up")}
           className={`flex flex-row items-center gap-x-4 rounded-xl p-2 ${
-            activeButton === "student_records"
+            activeButton === "top-up"
               ? "bg-[#E1E8FF] bg-opacity-80"
               : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
           }`}
         >
-          <img src="./icons/records-icon.svg" />
-          <p className=" text-[#002147] text-[16px]">Student Records</p>
+          <img src="./icons/top-up-icon.svg" className=" h-10" />
+          <p className=" text-[#002147] text-[16px]">Top Up</p>
         </button>
-
-        <button
-          onClick={() =>
-            navigate("../student_transactions", "student_transactions")
-          }
-          className={`flex flex-row items-center gap-x-4 rounded-xl p-2 ${
-            activeButton === "student_transactions"
-              ? "bg-[#E1E8FF] bg-opacity-80"
-              : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
-          }`}
-        >
-          <img src="./icons/records-icon.svg" />
-          <p className=" text-[#002147] text-[16px]">Student Transactions</p>
-        </button> */}
 
         <button className="  w-full flex flex-row items-center gap-x-4 rounded-xl p-2">
           <img src="./icons/logout-icon.svg" />
