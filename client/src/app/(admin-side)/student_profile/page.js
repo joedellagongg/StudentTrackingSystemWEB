@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import student_info from "@/components/student_info";
+import StudInfo from "@/components/info_layout"
 export default function Student_Profile() {
   const router = useRouter();
   const navigate = (path) => {
@@ -16,15 +17,12 @@ export default function Student_Profile() {
           <button onClick={() => navigate("../student_list", "student_list")}>
             <img src="./icons/back-icon.svg" alt="" className=" h-[50px]" />
           </button>
-          <div
-            key={student.id}
-            className=" flex flex-row gap-6 items-center"
-          >
+          <div key={student.id} className=" flex flex-row gap-6 items-center">
             <div>
               <img src={student.pic} alt="" className=" h-20" />
             </div>
             <div>
-              <h1 className=" text-3xl font-semibold">
+              <h1 className=" text-xl font-semibold">
                 {student.lname}, {student.fname} {student.mname}
               </h1>
               <p className=" opacity-50">Student ID: {student.stud_id}</p>
@@ -37,7 +35,7 @@ export default function Student_Profile() {
           </div>
         </div>
         <div className="w-full h-[90%] overflow-y-scroll flex justify-center">
-          
+          <StudInfo/>
         </div>
       </div>
     </main>
