@@ -74,7 +74,6 @@ export default function AddStudent({ closeModal }) {
         }
     };
 
-
     return (
         <div className="z-50 bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 flex items-center justify-center">
             {/* <div className="h-96 w-10 bg-red-500"></div> */}
