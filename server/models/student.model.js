@@ -1,16 +1,22 @@
 const database = require("../config/db");
-const crypto = require("crypto");
 
-function generateRandomString(length) {
-    return crypto.randomBytes(length).toString("hex").slice(0, length);
+async function getStudents() {
+    const fetch = "SELECT * FROM studuser";
+    return new Promise((resolve, reject) => {
+        database.query(fetch, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
 }
-
-const uname = generateRandomString(8);
-const upass = generateRandomString(8);
 
 async function addStudent(data) {
     const {
         NFCid,
+        uname,
+        upass,
         lastName,
         firstName,
         middleName,
@@ -58,26 +64,9 @@ async function addStudent(data) {
         console.error("Error adding student:", error);
         throw error;
     }
-
-    //     "Model Output",
-    //     lastName,
-    //     firstName,
-    //     middleName,
-    //     Age,
-    //     Birthday,
-    //     Gender,
-    //     Address,
-    //     emailAddress,
-    //     fatherName,
-    //     motherName,
-    //     guardianName,
-    //     studentContact,
-    //     fatherContact,
-    //     motherContact,
-    //     guardianContact,
-    // );
 }
 
 module.exports = {
+    getStudents,
     addStudent,
 };

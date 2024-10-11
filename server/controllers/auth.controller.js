@@ -1,25 +1,40 @@
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
 const database = require("../config/db");
 
-exports.login = async (req, res) => {
+const authModel = require("../models/auth.model");
+const studentModel = require("../models/student.model");
+
+exports.authentication = async function (req, res) {
     const { username, password } = req.body;
+    // console.log(username, password);
+    const data = req.body;
 
-    const query = `SELECT * FROM users WHERE username = ?`;
-
-    database.query(query, [username], (err, results) => {
-        if (err) return res.status(500).send("Error.");
-        if (!results.length) return res.status(404).send("No user found.");
-
-        const user = results[0];
-
-        const passwordIsValid = bcrypt.compareSync(password, user.password);
-        if (!passwordIsValid)
-            return res.status(401).send({ auth: false, token: null });
-
-        const token = jwt.sign({ id: user.id }, "secret-key", {
-            expiresIn: 86400,
+    try {
+        const response = await authModel.authLogin(data);
+        res.status(200).json({
+            message:
+                "From: [ LOGIN == CONTROLLERS ], Login added to authentication",
+            authenticated: true,
         });
-        res.status(200).send({ auth: true, token });
-    });
+    } catch (err) {
+        res.status(500).json({
+            message: "From: [ LOGIN == CONTROLLERS ], Error login",
+        });
+    }
+
+    // const response = await authModel.authLogin();
+    // const res = await studentModel
 };
+
+// KEEP FOR JWT Authentication.
+// ADD COOKIES
+
+// let jwtSecretKey = "super-idol-basic-lang-ang-api-huhuhuhuhuhuhuhu";
+// let data = {
+//     time: Date(),
+//     userId: 12,
+// };
+
+// const token = jwt.sign(data, jwtSecretKey);
+
+// console.log(token);

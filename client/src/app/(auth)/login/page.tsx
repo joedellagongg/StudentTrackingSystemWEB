@@ -4,8 +4,6 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { error } from "console";
-
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -14,44 +12,24 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // console.log({ username, password });
         try {
             const res = await axios.post("http://localhost:5500/login", {
                 username,
                 password,
             });
             if (res.data.authenticated) {
-                router.push("/student_info");
+                router.push("/dashboard");
+                console.log("😊😊😊 HAHAHAHAHAHA");
                 console.clear();
             } else {
                 console.log("😒😒😒");
             }
         } catch (err) {
-            // console.error(err);
+            console.error(err);
             console.log("😒😒😒");
             alert("Login failed. Please check your credentials.");
         }
     };
-
-    // export default function Login() {
-    //     const [username, setUsername] = useState<string>("");
-    //     const [password, setPassword] = useState<string>("");
-    //     const router = useRouter();
-
-    //     const handleSubmit = async (e) => {
-    //         e.preventDefault();
-
-    //         console.log({ username, password });
-    //         try {
-    //             const res = await axios.post("http://localhost:8080/login");
-    //             console.log("front", res);
-    //             // alert(`Logged in! Token: ${res.data.token}`);
-    //             router.push("/student_info");
-    //         } catch (err) {
-    //             // console.error(err);
-    //             alert("Login failed. Please check your credentials.");
-    //         }
-    //     };
 
     return (
         <main className=" relative h-screen w-full bg-[url('../../public/bg/bg.svg')] bg-cover">

@@ -21,6 +21,21 @@ export default function AddStudent({ closeModal }) {
     const [fatherContact, setfatherContact] = useState("");
     const [motherContact, setmotherContact] = useState("");
     const [guardianContact, setguardianContact] = useState("");
+    const crypto = require("crypto");
+
+    function generateRandomNumberString(length) {
+        let result = "";
+        while (result.length < length) {
+            const randomDigit = crypto.randomBytes(1)[0] % 10;
+            result += randomDigit;
+        }
+        return result;
+    }
+
+    const currentYear = new Date().getFullYear().toString().slice(-2);
+
+    const uname = currentYear + generateRandomNumberString(4);
+    const upass = currentYear + generateRandomNumberString(4);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,6 +43,8 @@ export default function AddStudent({ closeModal }) {
         try {
             const res = await axios.post("http://localhost:5500/add_student", {
                 NFCid,
+                uname,
+                upass,
                 lastName,
                 firstName,
                 middleName,
@@ -45,18 +62,18 @@ export default function AddStudent({ closeModal }) {
                 guardianContact,
             });
 
-            // if (res.data.authenticated) {
-            //     // router.push("/student_info");
-            //     console.clear();
-            // } else {
-            //     console.log("😒😒😒");
-            // }
+            if (res.data.authenticated) {
+                closeModal();
+                console.log("[ add_student: SUCCESS ]");
+            } else {
+                console.log("[ add_student: ERROR ]");
+            }
         } catch (err) {
             console.error(err);
-            console.log("😒😒😒");
-            // alert("Login failed. Please check your credentials.");
+            console.log("[ add_student: ERROR ]");
         }
     };
+
 
     return (
         <div className="z-50 bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 flex items-center justify-center">
