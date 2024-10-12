@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const database = require("../config/db");
+const database = require("../db");
 
 const authModel = require("../models/auth.model");
 const studentModel = require("../models/student.model");

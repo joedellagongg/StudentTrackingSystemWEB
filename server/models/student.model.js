@@ -1,4 +1,4 @@
-const database = require("../config/db");
+const database = require("../db");
 
 async function getStudents() {
     const fetch = "SELECT * FROM studuser";

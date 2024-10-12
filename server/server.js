@@ -1,5 +1,5 @@
 const express = require("express");
-const database = require("./config/db");
+const database = require("./db");
 const routes = require("./routes/master");
 const cors = require("cors");
 const app = express();
@@ -7,8 +7,6 @@ const port = 5500;
 
 app.use(express.json());
 routes(app);
-
-const paymongo = require("paymongo-node")("your secret api key");
 
 // app.post("/login", (req, res) => {
 //     const { username, password } = req.body;

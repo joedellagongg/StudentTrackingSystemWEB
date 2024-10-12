@@ -25,7 +25,7 @@ export default function Admin() {
             </div>
             {modal && (
                 <div className="z-50 bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 flex items-center justify-center">
-                    <div className="bg-white rounded-lg p-6 relative w-[50%] h-[50%] flex flex-col justify-center items-center">
+                    <div className="bg-white rounded-lg p-6 relative w-[50%] flex flex-col justify-center items-center">
                         <Add_section />
                     </div>
                 </div>

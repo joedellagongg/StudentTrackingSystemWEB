@@ -4,7 +4,12 @@ async function authLogin(data) {
 
     console.log("[ MODELS ] ", username, password);
 
-    if (username == "admin" && password == "admin") {
+    const dummy = {
+        user: "admin",
+        pass: "pass",
+    };
+
+    if (username == dummy.user && password == dummy.pass) {
         let jwtSecretKey = "super-idol-basic-lang-ang-api-huhuhuhuhuhuhuhu";
         let datecommon = {
             time: Date(),
@@ -20,7 +25,7 @@ async function authLogin(data) {
             token: token,
         };
     } else {
-        console.log("err");
+        res.json({ message: "error" });
     }
 }
 
