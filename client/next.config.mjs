@@ -2,13 +2,13 @@
 const nextConfig = {
     async redirects() {
         return [
-          {
-            source: '/',
-            destination: '/login',
-            permanent: true,
-          },
-        ]
-      },
+            {
+                source: "/",
+                destination: "/admin",
+                permanent: true,
+            },
+        ];
+    },
 };
 
 export default nextConfig;

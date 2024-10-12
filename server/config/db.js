@@ -14,17 +14,6 @@ mydb.connect((err) => {
         console.log("   | - Check if MySQL and APACHE is turned off.\n ");
     } else {
         console.log("\x1b[32m%s\x1b[0m", "  ▲", "[ DATABASE ] Connected!");
-        // console.log(" ⚙︎  Starting Application ...");
-
-        // console.log(
-        //     "\x1b[33m%s\x1b[0m",
-        //     "  ▲",
-        //     "Checking Database Connection ...",
-        // );
-
-        // setTimeout(() => {
-        //     console.log("\x1b[32m%s\x1b[0m", " ✔", "Database connected");
-        // }, 2000);
     }
 });
 
