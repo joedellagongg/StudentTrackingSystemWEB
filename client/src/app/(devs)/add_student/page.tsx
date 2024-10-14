@@ -41,26 +41,29 @@ export default function AddStudent({ closeModal }) {
         e.preventDefault();
 
         try {
-            const res = await axios.post("http://localhost:5500/add_student", {
-                NFCid,
-                uname,
-                upass,
-                lastName,
-                firstName,
-                middleName,
-                Age,
-                Birthday,
-                Gender,
-                Address,
-                emailAddress,
-                fatherName,
-                motherName,
-                guardianName,
-                studentContact,
-                fatherContact,
-                motherContact,
-                guardianContact,
-            });
+            const res = await axios.post(
+                "https://attendance-backend-app.up.railway.app/add_student",
+                {
+                    NFCid,
+                    uname,
+                    upass,
+                    lastName,
+                    firstName,
+                    middleName,
+                    Age,
+                    Birthday,
+                    Gender,
+                    Address,
+                    emailAddress,
+                    fatherName,
+                    motherName,
+                    guardianName,
+                    studentContact,
+                    fatherContact,
+                    motherContact,
+                    guardianContact,
+                },
+            );
 
             if (res.data.authenticated) {
                 closeModal();

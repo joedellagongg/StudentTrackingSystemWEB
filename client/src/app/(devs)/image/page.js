@@ -1,16 +1,9 @@
 "use client";
 import React from "react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useEffect } from "react";
 import axios from "axios";
+import { useState, useEffect } from "react";
 
-export default function Section() {
-    const router = useRouter();
-    const navigate = (path) => {
-        router.push(path);
-    };
-
+export default function ImageComponent() {
     const [sections, setSections] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -50,7 +43,7 @@ export default function Section() {
                     key={item.id}
                     onClick={() => navigate("../student_list", "student_list")}
                     className="bg-[#002147] rounded-xl text-white text-center text-xl h-[150px] 
-          hover:bg-white drop-shadow-2xl border hover:text-black"
+      hover:bg-white drop-shadow-2xl border hover:text-black"
                 >
                     <p>
                         {item.strand} - {item.grade_level}

@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import axios from "axios";
 import { useState } from "react";
 
 export default function Add_section() {
@@ -7,8 +8,20 @@ export default function Add_section() {
     const [level, setLevel] = useState("");
     const [section, setSection] = useState("");
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        // e.preventDefault();
         console.log(strand, level, section);
+
+        try {
+            const response = await axios.post(
+                "http://localhost:5500/add_section",
+                { strand, level, section },
+            );
+            console.log("Response from server:", response.data);
+            return response.data;
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
