@@ -97,8 +97,7 @@ export default function Stud_list() {
                                         <button
                                             onClick={() =>
                                                 navigate(
-                                                    "../student_profile",
-                                                    "student_profile",
+                                                    `../student_profile?id=${list.student_id}`,
                                                 )
                                             }
                                             className="bg-[#002147] text-white p-3 text-sm rounded-lg"

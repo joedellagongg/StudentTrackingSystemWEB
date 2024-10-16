@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 export default function ImageComponent() {
-    const [sections, setSections] = useState([]);
+    const [students, setStudents] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -12,9 +12,9 @@ export default function ImageComponent() {
         const fetchStudents = async () => {
             try {
                 const response = await axios.get(
-                    "http://localhost:5500/get_section",
+                    "http://localhost:5500/student_list/22",
                 );
-                setSections(response.data);
+                setStudents(response.data);
                 console.log(response.data);
                 setLoading(false);
             } catch (err) {
@@ -37,20 +37,282 @@ export default function ImageComponent() {
     }
 
     return (
-        <main className="grid grid-cols-3 p-6 gap-3 h-full">
-            {sections.map((item) => (
-                <button
-                    key={item.id}
-                    onClick={() => navigate("../student_list", "student_list")}
-                    className="bg-[#002147] rounded-xl text-white text-center text-xl h-[150px] 
-      hover:bg-white drop-shadow-2xl border hover:text-black"
-                >
-                    <p>
-                        {item.strand} - {item.grade_level}
-                    </p>
-                    <p>{item.section_name}</p>
-                </button>
+        <main className=" w-full h-full p-4 rounded-2xl bg-[#ffffff] overflow-y-scroll">
+            {students.map((item) => (
+                <div className=" w-full h-full flex flex-col">
+                    <div className=" flex flex-row border-b pb-4 justify-between">
+                        <button
+                            onClick={() =>
+                                navigate("../student_list", "student_list")
+                            }
+                        >
+                            <img
+                                src="./icons/back-icon.svg"
+                                alt=""
+                                className=" h-[50px]"
+                            />
+                        </button>
+                        <div
+                            key={students.student_id}
+                            className=" flex flex-row gap-6 items-center"
+                        >
+                            <div>
+                                {/* <img src={student.pic} alt="" className=" h-20" /> */}
+                            </div>
+                            <div>
+                                <h1 className=" text-xl font-semibold">
+                                    {students.lname}, {students.fname}{" "}
+                                    {students.mname}
+                                </h1>
+                                <p className=" opacity-50">
+                                    Student ID: {students.student_id}
+                                </p>
+                            </div>
+                        </div>
+                        <div className=" flex justify-center items-center">
+                            <button className=" bg-[#002147] flex flex-row justify-center items-center p-2 pl-4 pr-4 rounded text-white">
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+                    <div className="w-full h-[90%] overflow-y-scroll flex justify-center">
+                        <div className="w-full h-[90%] overflow-y-scroll flex justify-center">
+                            <div
+                                key={item.student_id}
+                                className=" w-full mt-4 flex flex-col gap-y-4"
+                            >
+                                <div className=" grid grid-cols-3 justify-around w-full gap-6">
+                                    <div>
+                                        <p className=" text-sm">Last Name</p>
+                                        <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+                                            {item.lname}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className=" text-sm">First Name</p>
+                                        <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+                                            {item.fname}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className=" text-sm">Middle Name</p>
+                                        <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+                                            {item.mname}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className=" grid grid-cols-3 justify-around w-full gap-6">
+                                    <div>
+                                        <p className=" text-sm">Age</p>
+                                        <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+                                            {item.age}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className=" text-sm">Birthday</p>
+                                        <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+                                            {item.birthday}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className=" text-sm">Gender</p>
+                                        <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+                                            {item.gender}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className=" grid grid-cols-2 justify-around w-full gap-6">
+                                    <div>
+                                        <p className=" text-sm">
+                                            Email Address
+                                        </p>
+                                        <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+                                            {item.email}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className=" text-sm">
+                                            Contact Number
+                                        </p>
+                                        <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+                                            {item.studcontact}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className=" grid grid-cols-2 justify-around w-full gap-6">
+                                    <div>
+                                        <p className=" text-sm">Mother</p>
+                                        <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+                                            {item.mother}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className=" text-sm">
+                                            Contact Number
+                                        </p>
+                                        <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+                                            {item.mothercontact}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className=" grid grid-cols-2 justify-around w-full gap-6">
+                                    <div>
+                                        <p className=" text-sm">Father</p>
+                                        <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+                                            {item.father}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className=" text-sm">
+                                            Contact Number
+                                        </p>
+                                        <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+                                            {item.fathercontact}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className=" grid grid-cols-2 justify-around w-full gap-6">
+                                    <div>
+                                        <p className=" text-sm">Guardian</p>
+                                        <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+                                            {item.guardian}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className=" text-sm">
+                                            Contact Number
+                                        </p>
+                                        <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+                                            {item.guardiancontact}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className=" grid grid-cols-2 justify-around w-full gap-6">
+                                    <div>
+                                        <p className=" text-sm">Guardian</p>
+                                        <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+                                            {item.nfc_id}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             ))}
         </main>
+        // <div className="w-full h-[90%] overflow-y-scroll flex justify-center">
+        //     {students.map((item) => (
+        //         <div
+        //             key={item.student_id}
+        //             className=" w-full mt-4 flex flex-col gap-y-4"
+        //         >
+        //             <div className=" grid grid-cols-3 justify-around w-full gap-6">
+        //                 <div>
+        //                     <p className=" text-sm">Last Name</p>
+        //                     <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+        //                         {item.lname}
+        //                     </p>
+        //                 </div>
+        //                 <div>
+        //                     <p className=" text-sm">First Name</p>
+        //                     <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+        //                         {item.fname}
+        //                     </p>
+        //                 </div>
+        //                 <div>
+        //                     <p className=" text-sm">Middle Name</p>
+        //                     <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+        //                         {item.mname}
+        //                     </p>
+        //                 </div>
+        //             </div>
+        //             <div className=" grid grid-cols-3 justify-around w-full gap-6">
+        //                 <div>
+        //                     <p className=" text-sm">Age</p>
+        //                     <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+        //                         {item.age}
+        //                     </p>
+        //                 </div>
+        //                 <div>
+        //                     <p className=" text-sm">Birthday</p>
+        //                     <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+        //                         {item.birthday}
+        //                     </p>
+        //                 </div>
+        //                 <div>
+        //                     <p className=" text-sm">Gender</p>
+        //                     <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+        //                         {item.gender}
+        //                     </p>
+        //                 </div>
+        //             </div>
+        //             <div className=" grid grid-cols-2 justify-around w-full gap-6">
+        //                 <div>
+        //                     <p className=" text-sm">Email Address</p>
+        //                     <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+        //                         {item.email}
+        //                     </p>
+        //                 </div>
+        //                 <div>
+        //                     <p className=" text-sm">Contact Number</p>
+        //                     <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+        //                         {item.studcontact}
+        //                     </p>
+        //                 </div>
+        //             </div>
+        //             <div className=" grid grid-cols-2 justify-around w-full gap-6">
+        //                 <div>
+        //                     <p className=" text-sm">Mother</p>
+        //                     <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+        //                         {item.mother}
+        //                     </p>
+        //                 </div>
+        //                 <div>
+        //                     <p className=" text-sm">Contact Number</p>
+        //                     <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+        //                         {item.mothercontact}
+        //                     </p>
+        //                 </div>
+        //             </div>
+        //             <div className=" grid grid-cols-2 justify-around w-full gap-6">
+        //                 <div>
+        //                     <p className=" text-sm">Father</p>
+        //                     <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+        //                         {item.father}
+        //                     </p>
+        //                 </div>
+        //                 <div>
+        //                     <p className=" text-sm">Contact Number</p>
+        //                     <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+        //                         {item.fathercontact}
+        //                     </p>
+        //                 </div>
+        //             </div>
+        //             <div className=" grid grid-cols-2 justify-around w-full gap-6">
+        //                 <div>
+        //                     <p className=" text-sm">Guardian</p>
+        //                     <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+        //                         {item.guardian}
+        //                     </p>
+        //                 </div>
+        //                 <div>
+        //                     <p className=" text-sm">Contact Number</p>
+        //                     <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+        //                         {item.guardiancontact}
+        //                     </p>
+        //                 </div>
+        //             </div>
+        //             <div className=" grid grid-cols-2 justify-around w-full gap-6">
+        //                 <div>
+        //                     <p className=" text-sm">Guardian</p>
+        //                     <p className=" text-gray-400 bg-[#E5F1FF] rounded-xl p-3">
+        //                         {item.nfc_id}
+        //                     </p>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     ))}
+        // </div>
     );
 }

@@ -1,14 +1,14 @@
 const student_info = [
     {
         id: 1,
-        stud_id: "123-456",
+        stud_id: "123-456sss",
         nfc_id: "123-456-789",
         pic: "./images/profile.svg",
         fname: "Kenneth",
         mname: "C.",
         lname: "Manuel",
         grade: "11",
-        strand: "HUMSS",
+        strand: "HUMSSsss",
         section: "Mactan",
         age: "18",
         birthday: "12/19/2002",
@@ -22,7 +22,7 @@ const student_info = [
         mothersNo: "09123459876",
         guardian: "Guardian C. Manuel",
         guardianNo: "09987651234",
-    }
+    },
 ];
 
 export default student_info;
