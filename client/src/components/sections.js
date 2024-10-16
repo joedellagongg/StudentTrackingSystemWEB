@@ -19,7 +19,7 @@ export default function Section() {
         const fetchStudents = async () => {
             try {
                 const response = await axios.get(
-                    "http://localhost:5500/get_section",
+                    "https://attendance-backend-app.up.railway.app/get_section",
                 );
                 setSections(response.data);
                 console.log(response.data);
@@ -48,7 +48,9 @@ export default function Section() {
             {sections.map((item) => (
                 <button
                     key={item.id}
-                    onClick={() => navigate("../student_list", "student_list")}
+                    onClick={() =>
+                        navigate(`../student_list?section=${item.id}`)
+                    }
                     className="bg-[#002147] rounded-xl text-white text-center text-xl h-[150px] 
           hover:bg-white drop-shadow-2xl border hover:text-black"
                 >

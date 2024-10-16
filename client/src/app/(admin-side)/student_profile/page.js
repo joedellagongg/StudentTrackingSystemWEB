@@ -26,7 +26,7 @@ export default function Student_Profile() {
         const fetchStudents = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:5500/student_list/${urlID}`,
+                    `https://attendance-backend-app.up.railway.app/student_list/${urlID}`,
                 );
                 setStudents(response.data);
                 console.log(response.data);

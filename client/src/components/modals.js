@@ -9,12 +9,12 @@ export default function Add_section() {
     const [section, setSection] = useState("");
 
     const handleSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         console.log(strand, level, section);
 
         try {
             const response = await axios.post(
-                "http://localhost:5500/add_section",
+                "https://attendance-backend-app.up.railway.app/add_section",
                 { strand, level, section },
             );
             console.log("Response from server:", response.data);

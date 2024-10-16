@@ -84,7 +84,7 @@ export default function Stud_list() {
                                 <tr key={list.id} className="border-b">
                                     <td className="p-4">
                                         <img
-                                            src={`http://localhost:5500/${students.image_profile}/`}
+                                            src={``}
                                             alt="Student Picture"
                                             className="h-[60px] rounded-full"
                                         />
