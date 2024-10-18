@@ -99,7 +99,7 @@ export default function AddStudent({ closeModal }) {
             </div>
 
             <div className="m-2 flex flex-col">
-              <label htmlFor="fname">Last Name</label>
+              <label htmlFor="fname">First Name</label>
               <input
                 id="fname"
                 type="text"
@@ -111,7 +111,7 @@ export default function AddStudent({ closeModal }) {
               />
             </div>
             <div className="m-2 flex flex-col">
-              <label htmlFor="mname">Midlle Name</label>
+              <label htmlFor="mname">Middle Name</label>
               <input
                 id="mname"
                 type="text"
@@ -151,15 +151,17 @@ export default function AddStudent({ closeModal }) {
 
             <div className="m-2 flex flex-col">
               <label htmlFor="gender">Gender</label>
-              <input
+              <select
                 id="gender"
-                type="text"
-                placeholder="Gender"
                 name="gender"
                 value={Gender}
                 onChange={(e) => setGender(e.target.value)}
-                className=" h-10 w-96 outline-0 border pl-6 rounded-xl"
-              />
+                className="h-10 w-96 outline-0 border pl-6 rounded-xl"
+              >
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
             </div>
 
             <div className="m-2 flex flex-col">
@@ -174,7 +176,18 @@ export default function AddStudent({ closeModal }) {
                 className=" h-10 w-96 outline-0 border pl-6 rounded-xl"
               />
             </div>
-
+            <div className="m-2 flex flex-col">
+              <label htmlFor="num">Contact Number</label>
+              <input
+                id="num"
+                type="number"
+                placeholder="Contact Number"
+                name="contact_num"
+                value={studentContact}
+                onChange={(e) => setstudentContact(e.target.value)}
+                className=" h-10 w-96 outline-0 border pl-6 rounded-xl"
+              />
+            </div>
             <div className="m-2 flex flex-col">
               <label htmlFor="email">Email Address</label>
               <input
@@ -202,6 +215,19 @@ export default function AddStudent({ closeModal }) {
             </div>
 
             <div className="m-2 flex flex-col">
+              <label htmlFor="fathernum">Father's Contact</label>
+              <input
+                id="fathernum"
+                type="number"
+                placeholder="Father's Contact Number"
+                name="father_contact"
+                value={fatherContact}
+                onChange={(e) => setfatherContact(e.target.value)}
+                className=" h-10 w-96 outline-0 border pl-6 rounded-xl"
+              />
+            </div>
+
+            <div className="m-2 flex flex-col">
               <label htmlFor="mother">Mother</label>
               <input
                 id="mother"
@@ -215,14 +241,14 @@ export default function AddStudent({ closeModal }) {
             </div>
 
             <div className="m-2 flex flex-col">
-              <label htmlFor="num">Contact Number</label>
+              <label htmlFor="mothernum">Mother's Contact</label>
               <input
-                id="num"
+                id="mothernum"
                 type="number"
-                placeholder="Contact Number"
-                name="contact_num"
-                value={studentContact}
-                onChange={(e) => setstudentContact(e.target.value)}
+                placeholder="Mother's Contact Number"
+                name="mother_contact"
+                value={motherContact}
+                onChange={(e) => setmotherContact(e.target.value)}
                 className=" h-10 w-96 outline-0 border pl-6 rounded-xl"
               />
             </div>
@@ -249,32 +275,6 @@ export default function AddStudent({ closeModal }) {
                 name="guardian_contact"
                 value={guardianContact}
                 onChange={(e) => setguardianContact(e.target.value)}
-                className=" h-10 w-96 outline-0 border pl-6 rounded-xl"
-              />
-            </div>
-
-            <div className="m-2 flex flex-col">
-              <label htmlFor="mothernum">Mother's Contact</label>
-              <input
-                id="mothernum"
-                type="number"
-                placeholder="Mother's Contact Number"
-                name="mother_contact"
-                value={motherContact}
-                onChange={(e) => setmotherContact(e.target.value)}
-                className=" h-10 w-96 outline-0 border pl-6 rounded-xl"
-              />
-            </div>
-
-            <div className="m-2 flex flex-col">
-              <label htmlFor="fathernum">Father's Contact</label>
-              <input
-                id="fathernum"
-                type="number"
-                placeholder="Father's Contact Number"
-                name="father_contact"
-                value={fatherContact}
-                onChange={(e) => setfatherContact(e.target.value)}
                 className=" h-10 w-96 outline-0 border pl-6 rounded-xl"
               />
             </div>

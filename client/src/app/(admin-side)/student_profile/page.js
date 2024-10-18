@@ -43,6 +43,12 @@ export default function Student_Profile() {
     fetchStudents();
   }, []);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { month: 'short', day: 'numeric', year: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  };
+
   if (loading) {
     return <Loader />;
   }
@@ -71,7 +77,7 @@ export default function Student_Profile() {
                 />
               </div>
               <div>
-                <h1 className=" text-xl font-semibold">
+                <h1 className=" capitalize text-xl font-semibold">
                   {item.lname}, {item.fname} {item.mname}
                 </h1>
                 <p className=" opacity-50">Student ID: {item.username}</p>
@@ -91,19 +97,19 @@ export default function Student_Profile() {
               <div className=" grid grid-cols-3 justify-around w-full gap-6">
                 <div>
                   <p className=" text-sm">Last Name</p>
-                  <p className=" text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
+                  <p className=" capitalize text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
                     {item.lname}
                   </p>
                 </div>
                 <div>
                   <p className=" text-sm">First Name</p>
-                  <p className=" text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
+                  <p className=" capitalize text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
                     {item.fname}
                   </p>
                 </div>
                 <div>
                   <p className=" text-sm">Middle Name</p>
-                  <p className=" text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
+                  <p className=" capitalize text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
                     {item.mname}
                   </p>
                 </div>
@@ -118,7 +124,7 @@ export default function Student_Profile() {
                 <div>
                   <p className=" text-sm">Birthday</p>
                   <p className=" text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
-                    {item.birthday}
+                  {formatDate(item.birthday)}
                   </p>
                 </div>
                 <div>
@@ -145,7 +151,7 @@ export default function Student_Profile() {
               <div className=" grid grid-cols-2 justify-around w-full gap-6">
                 <div>
                   <p className=" text-sm">Mother</p>
-                  <p className=" text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
+                  <p className=" capitalize text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
                     {item.mother}
                   </p>
                 </div>
@@ -159,7 +165,7 @@ export default function Student_Profile() {
               <div className=" grid grid-cols-2 justify-around w-full gap-6">
                 <div>
                   <p className=" text-sm">Father</p>
-                  <p className=" text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
+                  <p className=" capitalize text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
                     {item.father}
                   </p>
                 </div>
@@ -173,7 +179,7 @@ export default function Student_Profile() {
               <div className=" grid grid-cols-2 justify-around w-full gap-6">
                 <div>
                   <p className=" text-sm">Guardian</p>
-                  <p className=" text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
+                  <p className=" capitalize text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
                     {item.guardian}
                   </p>
                 </div>
