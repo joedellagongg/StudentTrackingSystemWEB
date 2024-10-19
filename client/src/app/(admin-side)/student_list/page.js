@@ -37,14 +37,14 @@ export default function Stud_list() {
         const fetchStudents = async () => {
             try {
                 // const response = await axios.get(
-                //     `http://localhost:5500/student_list/${urlID}`,
+                //     `http://localhost:5500/students/section/${urlID}`,
                 // );
                 // const resSection = await axios.get(
                 //     `http://localhost:5500/get_section/${urlID}`,
                 // );
 
                 const response = await axios.get(
-                    `https://attendance-backend-app.up.railway.app/student_list/${urlID}`,
+                    `https://attendance-backend-app.up.railway.app/students/section/${urlID}`,
                 );
                 const resSection = await axios.get(
                     `https://attendance-backend-app.up.railway.app/get_section/${urlID}`,

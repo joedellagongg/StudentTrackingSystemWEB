@@ -7,11 +7,12 @@ import { useRouter } from "next/navigation";
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setLoading(true);
         try {
             const res = await axios.post(
                 "https://attendance-backend-app.up.railway.app/login",
@@ -29,6 +30,7 @@ export default function Login() {
             }
         } catch (err) {
             console.error(err);
+            setLoading(false);
             console.log("😒😒😒");
             alert("Login failed. Please check your credentials.");
         }
@@ -70,7 +72,11 @@ export default function Login() {
                                     className=" h-10 w-96 outline-0 pl-6 rounded-xl"
                                 />
                                 <button className=" bg-[#002147] h-10 w-20 rounded-xl">
-                                    <p className="text-white">Login</p>
+                                    {loading ? (
+                                        <p className="text-white">Loading...</p>
+                                    ) : (
+                                        <p className="text-white">Login</p>
+                                    )}
                                 </button>
                             </div>
                         </form>
