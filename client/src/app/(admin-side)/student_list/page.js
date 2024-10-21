@@ -31,14 +31,14 @@ export default function Stud_list() {
                 //     `http://localhost:5500/students/section/${urlID}`,
                 // );
                 // const resSection = await axios.get(
-                //     `http://localhost:5500/get_section/${urlID}`,
+                //     `http://localhost:5500/section/${urlID}`,
                 // );
 
                 const response = await axios.get(
                     `https://attendance-backend-app.up.railway.app/students/section/${urlID}`,
                 );
                 const resSection = await axios.get(
-                    `https://attendance-backend-app.up.railway.app/get_section/${urlID}`,
+                    `https://attendance-backend-app.up.railway.app/section/${urlID}`,
                 );
                 setStudents(response.data);
                 setSection(resSection.data);

@@ -20,10 +20,10 @@ export default function Section() {
         const fetchStudents = async () => {
             try {
                 // const response = await axios.get(
-                //     "http://localhost:5500/get_section",
+                //     "http://localhost:5500/section",
                 // );
                 const response = await axios.get(
-                    "https://attendance-backend-app.up.railway.app/get_section",
+                    "https://attendance-backend-app.up.railway.app/section",
                 );
                 setSections(response.data);
                 setLoading(false);

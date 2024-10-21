@@ -49,7 +49,7 @@ export default function AddStudent({ closeModal }) {
             //  LOCAL  "http://localhost:5500/add_student"
 
             const res = await axios.post(
-                "https://attendance-backend-app.up.railway.app/add_student",
+                "https://attendance-backend-app.up.railway.app/students",
                 {
                     NFCid,
                     uname,
@@ -81,7 +81,7 @@ export default function AddStudent({ closeModal }) {
             }
         } catch (err) {
             console.error(err);
-            console.log("[ add_student: ERROR ]");
+            console.log("[ add_student: ERROR  why]", err);
         }
     };
 

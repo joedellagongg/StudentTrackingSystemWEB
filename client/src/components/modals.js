@@ -39,7 +39,7 @@ export default function Add_section({ closeModal }) {
             //     { strand, level, section },
             // );
             const response = await axios.post(
-                "https://attendance-backend-app.up.railway.app/add_section",
+                "https://attendance-backend-app.up.railway.app/section",
                 { strand, level, section },
             );
 
