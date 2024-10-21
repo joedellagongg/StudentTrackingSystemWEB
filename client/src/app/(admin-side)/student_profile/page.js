@@ -17,7 +17,8 @@ export default function Student_Profile() {
 
     const searchParams = useSearchParams();
     let urlID = searchParams.get("id");
-    // console.log(urlID);
+    let section = searchParams.get("section");
+    // console.log mo lang ang params
 
     const [students, setStudents] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -67,7 +68,10 @@ export default function Student_Profile() {
                     <div className=" flex flex-row border-b pb-4 justify-between">
                         <button
                             onClick={() =>
-                                navigate("../student_list", "student_list")
+                                navigate(
+                                    `../student_list?section=${section}`,
+                                    "student_list",
+                                )
                             }
                         >
                             <img

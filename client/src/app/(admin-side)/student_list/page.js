@@ -13,15 +13,6 @@ export default function Stud_list() {
         router.push(path);
     };
 
-    // const section = [
-    //     {
-    //         id: 1,
-    //         strand: "HUMSS",
-    //         grade: "11",
-    //         section: "Mactan",
-    //     },
-    // ];
-
     const searchParams = useSearchParams();
     let urlID = searchParams.get("section");
     console.log(urlID);
@@ -168,7 +159,7 @@ export default function Stud_list() {
                                         <button
                                             onClick={() =>
                                                 navigate(
-                                                    `../student_profile?id=${list.student_id}`,
+                                                    `../student_profile?id=${list.student_id}&section=${urlID}`,
                                                 )
                                             }
                                             className="bg-[#002147] text-white p-3 text-sm rounded-lg"

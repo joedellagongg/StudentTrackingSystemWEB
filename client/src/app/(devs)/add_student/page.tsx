@@ -45,27 +45,33 @@ export default function AddStudent({ closeModal }) {
         e.preventDefault();
 
         try {
-            const res = await axios.post("http://localhost:5500/add_student", {
-                NFCid,
-                uname,
-                upass,
-                urlID,
-                lastName,
-                firstName,
-                middleName,
-                Age,
-                Birthday,
-                Gender,
-                Address,
-                emailAddress,
-                fatherName,
-                motherName,
-                guardianName,
-                studentContact,
-                fatherContact,
-                motherContact,
-                guardianContact,
-            });
+            //  ONLINE "https://attendance-backend-app.up.railway.app/add_student"
+            //  LOCAL  "http://localhost:5500/add_student"
+
+            const res = await axios.post(
+                "https://attendance-backend-app.up.railway.app/add_student",
+                {
+                    NFCid,
+                    uname,
+                    upass,
+                    urlID,
+                    lastName,
+                    firstName,
+                    middleName,
+                    Age,
+                    Birthday,
+                    Gender,
+                    Address,
+                    emailAddress,
+                    fatherName,
+                    motherName,
+                    guardianName,
+                    studentContact,
+                    fatherContact,
+                    motherContact,
+                    guardianContact,
+                },
+            );
 
             if (res.data.authenticated) {
                 closeModal();
