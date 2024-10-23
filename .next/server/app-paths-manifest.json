@@ -1,7 +1,6 @@
 {
-  "/(student-side)/dashboard/page": "app/(student-side)/dashboard/page.js",
-  "/(student-side)/digital_id/page": "app/(student-side)/digital_id/page.js",
-  "/(student-side)/profile/page": "app/(student-side)/profile/page.js",
-  "/(admin-side)/student_records/page": "app/(admin-side)/student_records/page.js",
-  "/(admin-side)/announcement/page": "app/(admin-side)/announcement/page.js"
+  "/(auth)/admin/page": "app/(auth)/admin/page.js",
+  "/(admin-side)/dashboard/page": "app/(admin-side)/dashboard/page.js",
+  "/(admin-side)/student_list/page": "app/(admin-side)/student_list/page.js",
+  "/(admin-side)/student_profile/page": "app/(admin-side)/student_profile/page.js"
 }

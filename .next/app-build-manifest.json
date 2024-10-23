@@ -1,9 +1,14 @@
 {
   "pages": {
-    "/page": [
+    "/(auth)/admin/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/(auth)/admin/page.js"
+    ],
+    "/(auth)/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(auth)/layout.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -11,40 +16,25 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/(student-side)/dashboard/page": [
+    "/(admin-side)/dashboard/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(student-side)/dashboard/page.js"
-    ],
-    "/(student-side)/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(student-side)/layout.js"
-    ],
-    "/(student-side)/digital_id/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(student-side)/digital_id/page.js"
-    ],
-    "/(student-side)/profile/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(student-side)/profile/page.js"
+      "static/chunks/app/(admin-side)/dashboard/page.js"
     ],
     "/(admin-side)/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(admin-side)/layout.js"
     ],
-    "/(admin-side)/student_records/page": [
+    "/(admin-side)/student_list/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(admin-side)/student_records/page.js"
+      "static/chunks/app/(admin-side)/student_list/page.js"
     ],
-    "/(admin-side)/announcement/page": [
+    "/(admin-side)/student_profile/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(admin-side)/announcement/page.js"
+      "static/chunks/app/(admin-side)/student_profile/page.js"
     ]
   }
 }

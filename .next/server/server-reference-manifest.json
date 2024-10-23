@@ -1,14 +1,5 @@
 {
-  "node": {
-    "dd45686694d3d9d954d3e5f6ddfef48ecc5b29c3": {
-      "workers": {
-        "app/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fkennethmanuel%2FStudentTrackingSystemWEB%2Fsrc%2Fapp%2Fpage.tsx%22%2C%5B%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
-      },
-      "layer": {
-        "app/page": "rsc"
-      }
-    }
-  },
+  "node": {},
   "edge": {},
-  "encryptionKey": "8eya9MxhNKougKKFa/DuRveImsgQhq0eKW+THy3LJa8="
+  "encryptionKey": "Vxs6HLVoCiihf7Kj/n49jJewiYQfSM7LtcV4yzG3z08="
 }
