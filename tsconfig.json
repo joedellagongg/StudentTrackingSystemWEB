@@ -1,37 +1,40 @@
 {
-    "compilerOptions": {
-        "lib": ["dom", "dom.iterable", "esnext"],
-        "noImplicitAny": false,
-        "allowJs": true,
-        "skipLibCheck": true,
-        "strict": true,
-        "noEmit": true,
-        "esModuleInterop": true,
-        "module": "esnext",
-        "moduleResolution": "bundler",
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "jsx": "preserve",
-        "incremental": true,
-        "plugins": [
-            {
-                "name": "next"
-            }
-        ],
-        "paths": {
-            "@/*": ["./src/*"]
-        }
-    },
-    "include": [
-        "next-env.d.ts",
-        "**/*.ts",
-        "**/*.tsx",
-        ".next/types/**/*.ts",
-        "src/app/home/home.js",
-        "src/app/api/admin/route.ts",
-        "src/app/(admin)/student/page.js",
-        "src/app/(student-side)/digital_id/page.js",
-        "src/routes/route.tsx"
-, "src/routes/login.route.tsx", "src/app/(devs)/image/page.js"    ],
-    "exclude": ["node_modules"]
+  "compilerOptions": {
+    "typeRoots": ["node_modules/yup"],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "noImplicitAny": false,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/home/home.js",
+    "src/app/api/admin/route.ts",
+    "src/app/(admin)/student/page.js",
+    "src/app/(student-side)/digital_id/page.js",
+    "src/routes/route.tsx",
+    "src/routes/login.route.tsx",
+    "src/app/(devs)/image/page.js"
+  ],
+  "exclude": ["node_modules"]
 }
