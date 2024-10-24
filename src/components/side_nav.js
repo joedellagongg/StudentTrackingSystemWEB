@@ -8,7 +8,7 @@ export default function Sidenav() {
   const router = useRouter();
   const [activeButton, setActiveButton] = useState("dashboard");
   const [isHovered, setIsHovered] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = (path, button) => {
     router.push(path);
