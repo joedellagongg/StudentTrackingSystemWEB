@@ -75,6 +75,7 @@ export default function Section() {
         return <p>{error}</p>;
     }
 
+<<<<<<< HEAD
     return (
         <main className="grid grid-cols-3 p-6 gap-3 h-full">
             {sections.map((item) => (
@@ -84,6 +85,23 @@ export default function Section() {
                         navigate(`../student_list?section=${item.id}`)
                     }
                     className="bg-[#002147] rounded-xl text-white text-center text-xl h-[150px]
+=======
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  return (
+    <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-6 gap-3 h-full">
+      {sections.map((item) => (
+        <button
+          key={item.id}
+          onClick={() => navigate(`../student_list?section=${item.id}`)}
+          className="bg-[#002147] rounded-xl text-white text-center text-xl h-[150px]
+>>>>>>> 56b8d80e0cce432b997aac787e120881f007a537
           hover:bg-white drop-shadow-2xl border hover:text-black relative"
                 >
                     <div className="w-full flex justify-end absolute top-2 right-2">
@@ -107,6 +125,7 @@ export default function Section() {
                 </button>
             ))}
 
+<<<<<<< HEAD
             {modal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
                     <div className="bg-white p-6 w-[30%] gap-y-6 rounded-xl flex flex-col justify-center items-center">
@@ -140,4 +159,35 @@ export default function Section() {
             )}
         </main>
     );
+=======
+      {modal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 w-[30%] gap-y-6 rounded-xl flex flex-col justify-center items-center">
+            <p>
+              Are you sure you want to delete <br />
+              <span className=" font-bold text-xl uppercase">
+                {selectedSection?.strand} {selectedSection?.grade_level} -{" "}
+                {selectedSection?.section_name} ?
+              </span>
+            </p>
+            <div className=" w-full flex flex-row justify-end">
+              <button onClick={closeModal} className="mt-4 px-4 py-2 rounded">
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  handleDelete(selectedSection.id);
+                }}
+                // onClick={handleDelete}
+                className="mt-4 ml-2 bg-red-500 text-white px-4 py-2 rounded-xl"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </main>
+  );
+>>>>>>> 56b8d80e0cce432b997aac787e120881f007a537
 }
