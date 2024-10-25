@@ -22,8 +22,8 @@ export default function Sidenav() {
 
   return (
     <div
-      className={`relative w-[5%] hover:w-[25%] ease-in-out duration-300 h-full bg-[#FFFFFF] rounded-2xl overflow-y-scroll no-scrollbar ${
-        isHovered ? "p-4" : "p-2"
+      className={`relative w-[5%] hover:w-[25%] ease-in-out duration-500 h-full bg-[#FFFFFF] rounded-2xl overflow-y-scroll no-scrollbar ${
+        isHovered ? "p-2" : "p-2"
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -48,7 +48,7 @@ export default function Sidenav() {
         >
           <img
             src="./icons/dashboard-icon.svg"
-            className={isHovered ? "h-12" : "h-16 w-16"}
+            className={isHovered ? "h-12" : "h-12"}
           />
           {isHovered && <p className="text-[#002147] text-[16px]">Dashboard</p>}
         </button>
@@ -63,7 +63,7 @@ export default function Sidenav() {
         >
           <img
             src="./icons/top-up-icon.svg"
-            className={isHovered ? "h-12" : "h-16 w-16"}
+            className={isHovered ? "h-12" : "h-12"}
           />
           {isHovered && <p className="text-[#002147] text-[16px]">Top Up</p>}
         </button>
@@ -77,7 +77,7 @@ export default function Sidenav() {
         >
           <img
             src="./icons/logout-icon.svg"
-            className={isHovered ? "h-12" : "h-16 w-16"}
+            className={isHovered ? "h-12" : "h-12"}
           />
           {isHovered && <p className="text-red-500">Log Out</p>}
         </button>
