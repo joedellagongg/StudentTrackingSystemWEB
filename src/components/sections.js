@@ -76,7 +76,7 @@ export default function Section() {
   }
 
   return (
-    <main className="grid grid-cols-3 p-6 gap-3 h-full">
+    <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-6 gap-3 h-full">
       {sections.map((item) => (
         <button
           key={item.id}
@@ -110,7 +110,7 @@ export default function Section() {
           <div className="bg-white p-6 w-[30%] gap-y-6 rounded-xl flex flex-col justify-center items-center">
             <p>
               Are you sure you want to delete <br />
-              <span className=" font-bold text-xl">
+              <span className=" font-bold text-xl uppercase">
                 {selectedSection?.strand} {selectedSection?.grade_level} -{" "}
                 {selectedSection?.section_name} ?
               </span>

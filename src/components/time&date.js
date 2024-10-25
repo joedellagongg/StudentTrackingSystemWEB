@@ -9,7 +9,7 @@ export default function DateTime() {
 
   return (
     <>
-      <h1 className=" ">{date}</h1>
+      <h1 className="">{date}</h1>
       <p className=" text-[20px]"><Clock format={"LT"} ticking={true} /></p>
       
     </>
