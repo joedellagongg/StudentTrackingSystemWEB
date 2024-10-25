@@ -1,5 +1,6 @@
 {
+  "/(auth)/admin/page": "app/(auth)/admin/page.js",
+  "/(admin-side)/student_profile/page": "app/(admin-side)/student_profile/page.js",
   "/(admin-side)/student_list/page": "app/(admin-side)/student_list/page.js",
-  "/(admin-side)/dashboard/page": "app/(admin-side)/dashboard/page.js",
-  "/(admin-side)/student_profile/page": "app/(admin-side)/student_profile/page.js"
+  "/(admin-side)/dashboard/page": "app/(admin-side)/dashboard/page.js"
 }

@@ -92,10 +92,10 @@ export default function AddStudent({ closeModal }) {
         if (Object.keys(newErrors).length > 0) return;
 
         try {
-            const res = await axios.post(
-                "https://localhost:5500/students",
-        //  const res = await axios.post(
-        //      "https://attendance-backend-app.up.railway.app/students",
+            // const res = await axios.post(
+            //     "https://localhost:5500/students",
+         const res = await axios.post(
+             "https://attendance-backend-app.up.railway.app/students",
                 {
                     NFCid,
                     uname,

@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }) {
       {/* side bar */}
       <SideNav />
 
-      <div className=" flex flex-col w-[75%]">
+      <div className=" flex flex-col w-full">
         {/* datetime */}
         <div className=" pl-4 w-full h-[15%] flex flex-row items-center justify-between gap-y-4 mb-4">
           <h1 className=" text-[45px]">Hello, Admin</h1>

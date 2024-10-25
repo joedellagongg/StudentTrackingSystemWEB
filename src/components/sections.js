@@ -19,12 +19,12 @@ export default function Section() {
     useEffect(() => {
         const fetchStudents = async () => {
             try {
-                const response = await axios.get(
-                    "http://localhost:5500/section",
-                );
                 // const response = await axios.get(
-                //   "https://attendance-backend-app.up.railway.app/section"
+                //     "http://localhost:5500/section",
                 // );
+                const response = await axios.get(
+                    "https://attendance-backend-app.up.railway.app/section",
+                );
                 setSections(response.data);
                 setLoading(false);
             } catch (err) {
@@ -58,6 +58,7 @@ export default function Section() {
         try {
             const res = await axios.delete(
                 `https://attendance-backend-app.up.railway.app/section/${id}`,
+                // `http://localhost:5500/section/${id}`,
             );
             setModal(false);
         } catch (error) {
