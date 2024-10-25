@@ -1,4 +1,4 @@
-// File: /Users/kennethmanuel/StudentTrackingSystemWEB/src/app/(admin-side)/layout.js
+// File: C:\Users\joede\OneDrive\Desktop\StudentTrackingSystemWEB\src\app\(admin-side)\layout.js
 import * as entry from '../../../../src/app/(admin-side)/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

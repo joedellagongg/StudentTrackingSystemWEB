@@ -1,14 +1,14 @@
 {
   "pages": {
-    "/(auth)/admin/page": [
+    "/(admin-side)/student_list/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(auth)/admin/page.js"
+      "static/chunks/app/(admin-side)/student_list/page.js"
     ],
-    "/(auth)/layout": [
+    "/(admin-side)/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(auth)/layout.js"
+      "static/chunks/app/(admin-side)/layout.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -20,16 +20,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(admin-side)/dashboard/page.js"
-    ],
-    "/(admin-side)/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(admin-side)/layout.js"
-    ],
-    "/(admin-side)/student_list/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(admin-side)/student_list/page.js"
     ],
     "/(admin-side)/student_profile/page": [
       "static/chunks/webpack.js",
