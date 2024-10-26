@@ -22,11 +22,7 @@ export default function Student_Profile() {
         const fetchStudents = async () => {
             try {
                 const response = await axios.get(
-<<<<<<< HEAD
-                    `https://attendance-backend-app.up.railway.app/students/${urlID}`,
-=======
                   `https://attendance-backend-app.up.railway.app/students/${urlID}`
->>>>>>> 220ae526e2f53eb43c4a3aaf38a15faea64a70f2
                 );
                 // const response = await axios.get(
                 //     `http://localhost:5500/students/${urlID}`,
