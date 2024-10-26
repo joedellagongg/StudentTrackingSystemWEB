@@ -137,7 +137,7 @@ const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
                         <div className=" flex flex-col justify-center">
                             <p className="text-sm">Contact Number</p>
                             <input
-                                type="tel"
+                                type="number"
                                 value={studentData.studcontact}
                                 onChange={(e) =>
                                     setStudentData({
@@ -167,7 +167,7 @@ const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
                         <div className=" flex flex-col justify-center">
                             <p className="text-sm">Mother's Contact</p>
                             <input
-                                type="tel"
+                                type="number"
                                 value={studentData.mothercontact}
                                 onChange={(e) =>
                                     setStudentData({
@@ -197,7 +197,7 @@ const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
                         <div className=" flex flex-col justify-center">
                             <p className="text-sm">Father's Contact</p>
                             <input
-                                type="tel"
+                                type="number"
                                 value={studentData.fathercontact}
                                 onChange={(e) =>
                                     setStudentData({
@@ -227,7 +227,7 @@ const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
                         <div className=" flex flex-col justify-center">
                             <p className="text-sm">Guardian's Contact</p>
                             <input
-                                type="tel"
+                                type="number"
                                 value={studentData.guardiancontact}
                                 onChange={(e) =>
                                     setStudentData({
