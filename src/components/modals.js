@@ -34,15 +34,15 @@ export default function Add_section({ closeModal }) {
         }
 
         try {
-            // const response = await axios.post("http://localhost:5500/section", {
-            //     strand,
-            //     level,
-            //     section,
-            // });
-            const response = await axios.post(
-                "https://attendance-backend-app.up.railway.app/section",
-                { strand, level, section },
-            );
+            const response = await axios.post("http://localhost:5500/section", {
+                strand,
+                level,
+                section,
+            });
+            // const response = await axios.post(
+            //     "https://attendance-backend-app.up.railway.app/section",
+            //     { strand, level, section },
+            // );
 
             console.log("Response from server:", response.data);
             closeModal();

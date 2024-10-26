@@ -14,13 +14,10 @@ export default function Login() {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await axios.post(
-                "https://attendance-backend-app.up.railway.app/login",
-                {
-                    username,
-                    password,
-                },
-            );
+            const res = await axios.post("http://localhost:5500/login", {
+                username,
+                password,
+            });
             if (res.data.authenticated) {
                 router.push("/dashboard");
                 console.log("😊😊😊 HAHAHAHAHAHA");
