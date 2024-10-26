@@ -36,10 +36,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(admin-side)/student_profile/page.js"
     ],
-    "/_not-found/page": [
+    "/(admin-side)/top-up/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/(admin-side)/top-up/page.js"
     ]
   }
 }
