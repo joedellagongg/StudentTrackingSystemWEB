@@ -21,12 +21,12 @@ export default function Student_Profile() {
     useEffect(() => {
         const fetchStudents = async () => {
             try {
-                // const response = await axios.get(
-                //   `https://attendance-backend-app.up.railway.app/students/${urlID}`
-                // );
                 const response = await axios.get(
-                    `http://localhost:5500/students/${urlID}`,
+                  `https://attendance-backend-app.up.railway.app/students/${urlID}`
                 );
+                // const response = await axios.get(
+                //     `http://localhost:5500/students/${urlID}`,
+                // );
                 setStudents(response.data);
                 setLoading(false);
             } catch (err) {
