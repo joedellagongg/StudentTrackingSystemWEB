@@ -31,7 +31,9 @@ export default function Section({ sections, fetchSections }) {
 
     setLoading(true);
     try {
-      await axios.delete(`https://attendance-backend-app.up.railway.app/section/${id}`);
+      await axios.delete(
+        `https://attendance-backend-app.up.railway.app/section/${id}`
+      );
       fetchSections();
       closeModal();
     } catch (error) {
@@ -42,7 +44,7 @@ export default function Section({ sections, fetchSections }) {
   };
 
   return (
-    <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-6 gap-3 h-full">
+    <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-6 gap-3 h-full justify-center">
       {loading ? (
         <Loader />
       ) : (
