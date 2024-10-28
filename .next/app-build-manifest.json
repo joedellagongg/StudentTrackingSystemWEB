@@ -31,15 +31,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(admin-side)/student_list/page.js"
     ],
-    "/(admin-side)/student_profile/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(admin-side)/student_profile/page.js"
-    ],
     "/(admin-side)/top-up/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(admin-side)/top-up/page.js"
+    ],
+    "/(admin-side)/student_profile/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(admin-side)/student_profile/page.js"
     ]
   }
 }

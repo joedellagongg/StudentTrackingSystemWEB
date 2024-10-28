@@ -12,8 +12,8 @@ const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
     const handleUpdate = async () => {
         try {
             const res = await axios.patch(
-                // `https://attendance-backend-app.up.railway.app/students/${urlID}`,
-                `http://localhost:5500/students/${urlID}`,
+                `https://attendance-backend-app.up.railway.app/students/${urlID}`,
+                // `http://localhost:5500/students/${urlID}`,
                 studentData,
             );
             onClose();
