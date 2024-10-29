@@ -26,7 +26,7 @@ export default function TopUp() {
 
   const handleButtonClick = (amount) => {
     setInputValue(amount);
-    openModal(); // Open modal when button is clicked
+    openModal();
   };
 
   return (
@@ -58,7 +58,7 @@ export default function TopUp() {
           </button>
         )}
       </div>
-      {modal && <TopUp_Form onClose={closeModal} />}
+      {modal && <TopUp_Form onClose={closeModal} amount={inputValue} />}
     </main>
   );
 }
