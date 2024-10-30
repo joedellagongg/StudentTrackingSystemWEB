@@ -13,15 +13,16 @@ const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
         try {
             const res = await axios.patch(
                 `https://attendance-backend-app.up.railway.app/students/${urlID}`,
-                // `http://localhost:5500/students/${urlID}`,
                 studentData,
             );
             onClose();
+            window.location.reload();
         } catch (error) {
             console.log(error);
         }
         console.log(studentData);
     };
+    
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-6">

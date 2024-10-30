@@ -79,6 +79,7 @@ export default function Stud_list() {
       await axios.delete(
         `https://attendance-backend-app.up.railway.app/students/${destructuredID}`
       );
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }

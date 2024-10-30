@@ -34,7 +34,7 @@ export default function Section({ sections, fetchSections }) {
       await axios.delete(
         `https://attendance-backend-app.up.railway.app/section/${id}`
       );
-      fetchSections();
+      window.location.reload();
       closeModal();
     } catch (error) {
       console.log(error);
@@ -45,10 +45,8 @@ export default function Section({ sections, fetchSections }) {
 
   return (
     <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-6 gap-3 h-full justify-center">
-      {loading ? (
-        <Loader />
-      ) : (
-        sections.map((item) => (
+      
+        {sections.map((item) => (
           <button
             key={item.id}
             onClick={() => navigate(`/student_list?section=${item.id}`)}
@@ -73,8 +71,7 @@ export default function Section({ sections, fetchSections }) {
             </p>
             <p className="capitalize">{item.section_name}</p>
           </button>
-        ))
-      )}
+        ))}
 
       {modal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
