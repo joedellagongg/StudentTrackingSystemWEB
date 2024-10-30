@@ -62,7 +62,7 @@ export default function AddStudent({ closeModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors: Errors = {};
-
+  
     if (!NFCid) newErrors.NFCid = "NFC ID Number is required.";
     if (!lastName) newErrors.lastName = "Last Name is required.";
     if (!firstName) newErrors.firstName = "First Name is required.";
@@ -75,22 +75,16 @@ export default function AddStudent({ closeModal }) {
     if (!fatherName) newErrors.fatherName = "Father's Name is required.";
     if (!motherName) newErrors.motherName = "Mother's Name is required.";
     if (!guardianName) newErrors.guardianName = "Guardian's Name is required.";
-    if (!studentContact)
-      newErrors.studentContact = "Contact Number is required.";
-    if (!fatherContact)
-      newErrors.fatherContact = "Father's Contact Number is required.";
-    if (!motherContact)
-      newErrors.motherContact = "Mother's Contact Number is required.";
-    if (!guardianContact)
-      newErrors.guardianContact = "Guardian's Contact Number is required.";
-
+    if (!studentContact) newErrors.studentContact = "Contact Number is required.";
+    if (!fatherContact) newErrors.fatherContact = "Father's Contact Number is required.";
+    if (!motherContact) newErrors.motherContact = "Mother's Contact Number is required.";
+    if (!guardianContact) newErrors.guardianContact = "Guardian's Contact Number is required.";
+  
     setErrors(newErrors);
-
+  
     if (Object.keys(newErrors).length > 0) return;
-
+  
     try {
-   //   const res = await axios.post(
-    //     //   "https://localhost:5500/students" ,
       const res = await axios.post(
         "https://attendance-backend-app.up.railway.app/students",
         {
@@ -115,10 +109,9 @@ export default function AddStudent({ closeModal }) {
           guardianContact,
         }
       );
-
+  
       if (res.data.authenticated) {
-        closeModal();
-        console.log("[ add_student: SUCCESS ]");
+        window.location.reload();
       } else {
         console.log("[ add_student: ERROR ]");
       }
@@ -127,6 +120,7 @@ export default function AddStudent({ closeModal }) {
       console.log("[ add_student: ERROR  why]", err);
     }
   };
+  
 
   return (
     <div className="z-50 bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 flex items-center justify-center">

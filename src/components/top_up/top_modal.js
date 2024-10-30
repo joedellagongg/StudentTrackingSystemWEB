@@ -33,7 +33,7 @@ export default function TopUp_Form({ onClose, amount }) {
     <main className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="h-[80%] w-[70%] bg-white p-4 rounded-xl">
         <div className=" flex flex-row justify-between items-center">
-          <h1 className="text-xl font-bold">Top Up Amount to:</h1>
+          <h1 className="text-xl font-bold">Top Up to:</h1>
           <button
             onClick={onClose}
             className=" font-bold text-2xl text-[#002147]"
@@ -74,9 +74,10 @@ export default function TopUp_Form({ onClose, amount }) {
                       <span className=" capitalize">{item.section}</span>{" "}
                     </span>
                   </p>
-                  <p className="">
+                  <p className=" text-3xl">
                     Total Amount: <span className=" font-bold">₱ {amount}</span>
                   </p>
+                  <br/>
                 </div>
               ))
             : inputNfcId && (
