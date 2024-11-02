@@ -31,6 +31,7 @@ export default function Sidenav() {
       <div className="w-full flex justify-center items-center border-b-2 pb-2">
         <img
           src="./logo/logo.svg"
+          alt="logo"
           className={isHovered ? "h-24" : "h-24 w-24"}
         />
       </div>
@@ -48,6 +49,7 @@ export default function Sidenav() {
         >
           <img
             src="./icons/dashboard-icon.svg"
+            alt="dashboard"
             className={isHovered ? "h-12" : "h-16 w-16"}
           />
           {isHovered && <p className="text-[#002147] text-[16px]">Dashboard</p>}
@@ -63,6 +65,7 @@ export default function Sidenav() {
         >
           <img
             src="./icons/top-up-icon.svg"
+            alt="top up"
             className={isHovered ? "h-12" : "h-16 w-16"}
           />
           {isHovered && <p className="text-[#002147] text-[16px]">Top Up</p>}
@@ -77,6 +80,7 @@ export default function Sidenav() {
         >
           <img
             src="./icons/logout-icon.svg"
+            alt="logout"
             className={isHovered ? "h-12" : "h-16 w-16"}
           />
           {isHovered && <p className="text-red-500">Log Out</p>}

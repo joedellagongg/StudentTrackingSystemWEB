@@ -113,7 +113,7 @@ export default function Stud_list() {
       <div className="w-full h-full flex flex-col">
         <div className="flex flex-row border-b pb-4 justify-between ">
           <button onClick={() => navigate("../dashboard", "admin")}>
-            <img src="./icons/back-icon.svg" alt="" className="h-[50px]" />
+            <img src="./icons/back-icon.svg" alt="back" className="h-[50px]" />
           </button>
 
           {section.map((items) => (
@@ -139,7 +139,7 @@ export default function Stud_list() {
                 onClick={openDeleteModal}
                 className="bg-red-500 p-2 rounded-lg text-white text-sm flex flex-row items-center gap-1"
               >
-                <img src="./icons/delete-white.svg" alt="" className="h-6" />
+                <img src="./icons/delete-white.svg" alt="delete" className="h-6" />
                 Delete
               </button>
               <ConfirmationModal
@@ -159,7 +159,7 @@ export default function Stud_list() {
                   <td className="flex flex-col gap-y-3 justify-center items-center pt-6">
                     <img
                       src="./images/pana.svg"
-                      alt=""
+                      alt="no students"
                       className="max-h-[200px]"
                     />
                     <p className="text-xl">No Students Listed</p>
@@ -212,7 +212,7 @@ export default function Stud_list() {
           onClick={() => setModal(true)}
           className="absolute self-end bottom-8 right-8"
         >
-          <img src="./icons/add-icon.svg" className="h-[80px]" />
+          <img src="./icons/add-icon.svg" className="h-[80px]" alt="add" />
         </button>
 
         {modal && <AddStudent closeModal={() => setModal(false)} />}
