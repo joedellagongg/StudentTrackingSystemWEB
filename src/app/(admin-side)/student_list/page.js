@@ -22,6 +22,8 @@ export default function Stud_list() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedStudents, setSelectedStudents] = useState(new Set());
+  const [sortOrder, setSortOrder] = useState("Recently Added"); // Default to "Recently Added"
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -32,11 +34,19 @@ export default function Stud_list() {
         const resSection = await axios.get(
           `https://attendance-backend-app.up.railway.app/section/${urlID}`
         );
-        
+
         const sortedStudents = response.data.sort((a, b) => {
           const lastNameA = a.lname.toLowerCase();
           const lastNameB = b.lname.toLowerCase();
-          return lastNameA.localeCompare(lastNameB);
+
+          if (sortOrder === "A-Z") {
+            return lastNameA.localeCompare(lastNameB);
+          } else if (sortOrder === "Z-A") {
+            return lastNameB.localeCompare(lastNameA);
+          } else if (sortOrder === "Recently Added") {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+          }
+          return 0;
         });
 
         setStudents(sortedStudents);
@@ -49,7 +59,7 @@ export default function Stud_list() {
     };
 
     fetchStudents();
-  }, []);
+  }, [sortOrder]);
 
   const handleSelectAll = (e) => {
     if (e.target.checked) {
@@ -100,6 +110,15 @@ export default function Stud_list() {
     setConfirmModalOpen(true);
   };
 
+  const handleSortChange = (order) => {
+    setSortOrder(order);
+    setDropdownOpen(false);
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen((prev) => !prev);
+  };
+
   if (loading) {
     return <Loader />;
   }
@@ -135,11 +154,48 @@ export default function Stud_list() {
                 Select All
               </label>
               <input id="all" type="checkbox" onChange={handleSelectAll} />
+
+              <div className="relative">
+                <button
+                  onClick={toggleDropdown}
+                  className="p-2 bg-[#002147] rounded-lg text-white text-sm flex flex-row items-center gap-1"
+                >
+                  <img src="./icons/filter.svg" alt="filter" className="h-6" />
+                  Filter
+                </button>
+                {isDropdownOpen && (
+                  <div className=" w-40 absolute right-0 bg-white border border-gray-300 rounded shadow-2xl mt-1 z-10">
+                    <button
+                      onClick={() => handleSortChange("A-Z")}
+                      className="block p-2 w-full text-center text-sm hover:bg-gray-100"
+                    >
+                      A-Z
+                    </button>
+                    <button
+                      onClick={() => handleSortChange("Z-A")}
+                      className="block p-2 w-full text-center text-sm hover:bg-gray-100"
+                    >
+                      Z-A
+                    </button>
+                    <button
+                      onClick={() => handleSortChange("Recently Added")}
+                      className="block p-2 w-full text-center text-sm hover:bg-gray-100"
+                    >
+                      Recently Added
+                    </button>
+                  </div>
+                )}
+              </div>
+
               <button
                 onClick={openDeleteModal}
                 className="bg-red-500 p-2 rounded-lg text-white text-sm flex flex-row items-center gap-1"
               >
-                <img src="./icons/delete-white.svg" alt="delete" className="h-6" />
+                <img
+                  src="./icons/delete-white.svg"
+                  alt="delete"
+                  className="h-6"
+                />
                 Delete
               </button>
               <ConfirmationModal
