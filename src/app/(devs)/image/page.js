@@ -85,7 +85,7 @@ export default function Stud_list() {
                     <button onClick={() => navigate("../dashboard", "admin")}>
                         <img
                             src="./icons/back-icon.svg"
-                            alt=""
+                            alt="back"
                             className="h-[50px]"
                         />
                     </button>
@@ -112,7 +112,7 @@ export default function Stud_list() {
                         <button className=" bg-red-500 p-2 rounded-lg text-white text-sm flex flex-row items-center gap-1">
                             <img
                                 src="./icons/delete-white.svg"
-                                alt=""
+                                alt="delete"
                                 className=" h-6"
                             />
                             Delete
@@ -170,7 +170,7 @@ export default function Stud_list() {
                     onClick={() => setModal(true)}
                     className="absolute self-end bottom-8 right-8"
                 >
-                    <img src="./icons/add-icon.svg" className="h-[80px]" />
+                    <img src="./icons/add-icon.svg" alt="back" className="h-[80px]" />
                 </button>
 
                 {modal && <AddStudent closeModal={() => setModal(false)} />}

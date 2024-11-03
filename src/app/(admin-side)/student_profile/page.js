@@ -90,14 +90,12 @@ export default function Student_Profile() {
                         >
                             <img
                                 src="./icons/back-icon.svg"
-                                alt=""
+                                alt="back"
                                 className="h-[50px]"
                             />
                         </button>
                         <div className="capitalize flex flex-row gap-6 items-center">
-                            <div>
-                                <img alt="" className="h-20" />
-                            </div>
+                            
                             <div>
                                 <h1 className="capitalize text-xl font-semibold">
                                     {item.lname}, {item.fname} {item.mname}
