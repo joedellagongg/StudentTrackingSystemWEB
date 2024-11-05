@@ -72,6 +72,22 @@ export default function Sidenav() {
         </button>
 
         <button
+          onClick={() => navigate("../announcement", "announcement")}
+          className={`flex flex-row items-center gap-x-4 rounded-xl ${
+            activeButton === "announcement"
+              ? "bg-[#E1E8FF] bg-opacity-80"
+              : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
+          }`}
+        >
+          <img
+            src="./icons/announcement_icon.svg"
+            alt="top up"
+            className={isHovered ? "h-12" : "h-16 w-16"}
+          />
+          {isHovered && <p className="text-[#002147] text-[16px]">Announcements</p>}
+        </button>
+
+        <button
           onClick={(e) => {
             e.stopPropagation();
             setIsModalOpen(true);

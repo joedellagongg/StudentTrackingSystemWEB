@@ -74,7 +74,7 @@ export default function TopUp_Form({ onClose, amount }) {
                         <label htmlFor="nfc">NFC ID:</label>
                         <input
                             id="nfc"
-                            type="text"
+                            type="password"
                             value={studentID}
                             onChange={(e) => setstudentID(e.target.value)}
                             placeholder=" Tap NFC ID"
@@ -88,12 +88,6 @@ export default function TopUp_Form({ onClose, amount }) {
                                   key={item.id}
                                   className="w-[70%] mt-4 text-xl"
                               >
-                                  <p className="">
-                                      NFC ID:{" "}
-                                      <span className=" font-bold">
-                                          {item.nfc_id}
-                                      </span>
-                                  </p>
                                   <p className="">
                                       Student ID:{" "}
                                       <span className=" font-bold">
