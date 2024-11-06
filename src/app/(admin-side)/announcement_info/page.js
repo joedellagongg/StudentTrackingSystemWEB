@@ -8,6 +8,12 @@ export default function AnnouncementInfo() {
     router.push(path);
   };
 
+  // const formatDate = (dateString) => {
+  //   const date = new Date(dateString);
+  //   const options = { month: "short", day: "numeric", year: "numeric" };
+  //   return date.toLocaleDateString("en-US", options);
+  // };
+
   const announcement_info = [
     {
       id: 1,
@@ -29,6 +35,7 @@ export default function AnnouncementInfo() {
         <div key={item.id} className=" mt-6 p-6">
           <h1 className=" uppercase text-3xl font-bold">{item.title}</h1>
           <h1 className=" text-xl font-semibold">{item.date}</h1>
+          {/* <h1 className=" text-xl font-semibold"> {formatDate(item.date)}</h1> */}
           <div className=" mt-6">
             <p className="">{item.description}</p>
           </div>
