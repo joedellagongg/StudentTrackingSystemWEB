@@ -38,6 +38,18 @@ export default function Admin() {
       <div className="relative w-full h-full flex flex-col">
         {loading ? (
           <Loader />
+        ) : sections.length === 0 ? (
+          <div className="w-full h-full flex flex-col justify-center items-center gap-y-2">
+            <img
+              src="./images/rafiki.svg"
+              alt="empty section"
+              className="max-h-[400px]"
+            />
+            <p className="text-xl">Empty Section</p>
+            <p className="text-gray-400">
+              Click the “add” button to add sections
+            </p>
+          </div>
         ) : (
           <Section sections={sections} fetchSections={fetchSections} />
         )}
@@ -48,7 +60,10 @@ export default function Admin() {
       {modal && (
         <div className="z-50 bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 flex items-center justify-center">
           <div className="bg-white rounded-lg p-6 relative w-[40%] flex flex-col justify-center items-center">
-            <Add_section closeModal={closeModal} onSectionAdded={fetchSections} />
+            <Add_section
+              closeModal={closeModal}
+              onSectionAdded={fetchSections}
+            />
           </div>
         </div>
       )}
