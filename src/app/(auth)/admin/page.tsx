@@ -2,6 +2,7 @@
 
 import React from "react";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 export default function Login() {
@@ -18,10 +19,13 @@ export default function Login() {
                 username,
                 password,
             });
-            if (res.data.authenticated) {
+            console.log("BACKED", res.data.response.token);
+            const decodedToken = jwtDecode(res.data.response.token);
+            console.log(decodedToken);
+            if (res.data) {
                 router.push("/dashboard");
                 console.log("😊😊😊 HAHAHAHAHAHA");
-                console.clear();
+                // console.clear();
             } else {
                 console.log("😒😒😒");
             }
