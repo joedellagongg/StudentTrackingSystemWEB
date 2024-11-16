@@ -44,8 +44,11 @@ export default function Announcement() {
     const deleteEvent = async (id) => {
         try {
             const delResponse = await axios.delete(
-                `https://attendance-backend-app.up.railway.app/announcements/${id}`,
+                `http://localhost:5500/announcements/${id}`,
             );
+            // const delResponse = await axios.delete(
+            //     `https://attendance-backend-app.up.railway.app/announcements/${id}`,
+            // );
             window.location.reload();
         } catch (error) {}
     };
@@ -54,8 +57,11 @@ export default function Announcement() {
         setLoading(true);
         try {
             const response = await axios.get(
-                "https://attendance-backend-app.up.railway.app/announcements",
+                "http://localhost:5500/announcements",
             );
+            // const response = await axios.get(
+            //     "https://attendance-backend-app.up.railway.app/announcements",
+            // );
             setEvents(response.data);
         } catch (err) {
             console.error(err);
@@ -96,7 +102,7 @@ export default function Announcement() {
 
         try {
             const res = await axios.post(
-                "https://attendance-backend-app.up.railway.app/announcements",
+                "http://localhost:5500/announcements",
                 { title, date, description },
             );
             closeModal();
@@ -119,7 +125,11 @@ export default function Announcement() {
                         className="bg-[#002147] rounded-xl text-white text-center text-xl h-[150px] hover:bg-white drop-shadow-2xl border hover:text-black relative"
                     >
                         <button
-                            onClick={() => navigate("../announcement_info")}
+                            onClick={() =>
+                                navigate(
+                                    `../announcement_info?event=${item.event_id}`,
+                                )
+                            }
                             className="w-full h-full flex flex-col justify-center items-center"
                         >
                             <p className=" uppercase">{item.title}</p>
