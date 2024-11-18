@@ -29,10 +29,10 @@ export default function Stud_list() {
         const fetchStudents = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:5500/students/section/${urlID}`,
+                    `https://attendance-backend-app.up.railway.app/students/section/${urlID}`,
                 );
                 const resSection = await axios.get(
-                    `http://localhost:5500/section/${urlID}`,
+                    `https://attendance-backend-app.up.railway.app/section/${urlID}`,
                 );
 
                 const sortedStudents = response.data.sort((a, b) => {
@@ -251,7 +251,7 @@ export default function Stud_list() {
                                 </tr>
                             ) : (
                                 students.map((list) => (
-                                    <tr key={list.id} className="border-b">
+                                    <tr key={list.student_id} className="border-b">
                                         <td>
                                             <input
                                                 type="checkbox"

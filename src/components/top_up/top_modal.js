@@ -11,13 +11,13 @@ export default function TopUp_Form({ onClose, amount }) {
     const fetchStudents = async (id) => {
         try {
             setLoading(true);
-            const response = await axios.get(
-                `http://localhost:5500/students/nfc/${id}`,
-            );
             // const response = await axios.get(
-            //     `https://attendance-backend-app.up.railway.app/students/nfc/${id}`,
+            //     `http://localhost:5500/students/nfc/${id}`,
             // );
-            console.log(response.data);
+            const response = await axios.get(
+                `https://attendance-backend-app.up.railway.app/students/nfc/${id}`,
+            );
+            // console.log(response.data);
             setStudents(response.data);
             setError(null);
         } catch (err) {
@@ -43,14 +43,14 @@ export default function TopUp_Form({ onClose, amount }) {
         const admin_id = 11; // to follow, basta pag nag log ang user dapat naka aassign na sa admin to.
         const { student_id } = students[0];
         try {
-            const res = await axios.post(
-                `http://localhost:5500/paymentIntent`,
-                { student_id, admin_id, amount, description },
-            );
             // const res = await axios.post(
-            //     `https://attendance-backend-app.up.railway.app/paymentIntent`,
+            //     `http://localhost:5500/paymentIntent`,
             //     { student_id, admin_id, amount, description },
             // );
+            const res = await axios.post(
+                `https://attendance-backend-app.up.railway.app/paymentIntent`,
+                { student_id, admin_id, amount, description },
+            );
             onClose();
             console.log("ID", res.data.student_id);
         } catch (error) {
@@ -86,7 +86,7 @@ export default function TopUp_Form({ onClose, amount }) {
                     {studentID && students.length > 0
                         ? students.map((item) => (
                               <div
-                                  key={item.id}
+                                  key={item.student_id}
                                   className="w-[70%] mt-4 text-xl"
                               >
                                   <p className="">

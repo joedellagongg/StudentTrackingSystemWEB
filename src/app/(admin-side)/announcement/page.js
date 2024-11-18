@@ -43,12 +43,12 @@ export default function Announcement() {
 
     const deleteEvent = async (id) => {
         try {
-            const delResponse = await axios.delete(
-                `http://localhost:5500/announcements/${id}`,
-            );
             // const delResponse = await axios.delete(
-            //     `https://attendance-backend-app.up.railway.app/announcements/${id}`,
+            //     `http://localhost:5500/announcements/${id}`,
             // );
+            const delResponse = await axios.delete(
+                `https://attendance-backend-app.up.railway.app/announcements/${id}`,
+            );
             window.location.reload();
         } catch (error) {}
     };
@@ -56,12 +56,12 @@ export default function Announcement() {
     const fetchEvents = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(
-                "http://localhost:5500/announcements",
-            );
             // const response = await axios.get(
-            //     "https://attendance-backend-app.up.railway.app/announcements",
+            //     "http://localhost:5500/announcements",
             // );
+            const response = await axios.get(
+                "https://attendance-backend-app.up.railway.app/announcements",
+            );
             setEvents(response.data);
         } catch (err) {
             console.error(err);
@@ -102,7 +102,7 @@ export default function Announcement() {
 
         try {
             const res = await axios.post(
-                "http://localhost:5500/announcements",
+                "https://attendance-backend-app.up.railway.app/announcements",
                 { title, date, description },
             );
             closeModal();

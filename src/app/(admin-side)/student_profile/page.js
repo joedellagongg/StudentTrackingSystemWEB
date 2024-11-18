@@ -25,7 +25,7 @@ export default function Student_Profile() {
                 //   `https://attendance-backend-app.up.railway.app/students/${urlID}`
                 // );
                 const response = await axios.get(
-                    `http://localhost:5500/students/${urlID}`,
+                    `https://attendance-backend-app.up.railway.app/students/${urlID}`,
                 );
                 setStudents(response.data);
                 setLoading(false);
@@ -79,7 +79,7 @@ export default function Student_Profile() {
     return (
         <main className="w-full h-full p-4 rounded-2xl bg-[#ffffff] overflow-y-scroll">
             {students.map((item) => (
-                <div className="w-full h-full flex flex-col" key={item.id}>
+                <div className="w-full h-full flex flex-col" key={item.student_id}>
                     <div className="flex flex-row border-b pb-4 justify-between">
                         <button
                             onClick={() =>
