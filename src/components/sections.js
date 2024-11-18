@@ -50,7 +50,7 @@ export default function Section({ sections, fetchSections }) {
                     className="bg-[#002147] rounded-xl text-white text-center text-xl h-[150px] hover:bg-white drop-shadow-2xl border hover:text-black relative"
                 >
                     <div className="w-full flex justify-end absolute top-2 right-2">
-                        <button
+                        <div
                             onClick={(e) => {
                                 e.stopPropagation();
                                 openModal(item);
@@ -61,7 +61,7 @@ export default function Section({ sections, fetchSections }) {
                                 alt="Delete"
                                 className="bg-white p-1 rounded-full h-6 w-6 hover:bg-gray-400"
                             />
-                        </button>
+                        </div>
                     </div>
                     <p className="uppercase">
                         {item.strand} - {item.grade_level}

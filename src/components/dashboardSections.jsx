@@ -19,7 +19,7 @@ export default function DashboardSections() {
   const fetchSections = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5500/section");
+      const response = await axios.get("https://attendance-backend-app.up.railway.app/section");
       setSections(response.data);
     } catch (err) {
       console.error(err);
