@@ -6,6 +6,7 @@ import AddStudent from "@/app/(devs)/add_student/page";
 import { useSearchParams } from "next/navigation";
 import Loader from "@/components/loader";
 import ConfirmationModal from "@/components/ConfirmationModal";
+import axiosInstance from "@/library/axios";
 
 export default function Stud_list() {
     const router = useRouter();
@@ -22,18 +23,16 @@ export default function Stud_list() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [selectedStudents, setSelectedStudents] = useState(new Set());
-    const [sortOrder, setSortOrder] = useState("Recently Added"); // Default to "Recently Added"
+    const [sortOrder, setSortOrder] = useState("Recently Added");
     const [isDropdownOpen, setDropdownOpen] = useState(false);
 
     useEffect(() => {
         const fetchStudents = async () => {
             try {
-                const response = await axios.get(
-                    `https://attendance-backend-app.up.railway.app/students/section/${urlID}`,
+                const response = await axiosInstance.get(
+                    `/students/section/${urlID}`,
                 );
-                const resSection = await axios.get(
-                    `https://attendance-backend-app.up.railway.app/section/${urlID}`,
-                );
+                const resSection = await axiosInstance.get(`/section/${urlID}`);
 
                 const sortedStudents = response.data.sort((a, b) => {
                     const lastNameA = a.lname.toLowerCase();
@@ -251,7 +250,10 @@ export default function Stud_list() {
                                 </tr>
                             ) : (
                                 students.map((list) => (
-                                    <tr key={list.student_id} className="border-b">
+                                    <tr
+                                        key={list.student_id}
+                                        className="border-b"
+                                    >
                                         <td>
                                             <input
                                                 type="checkbox"

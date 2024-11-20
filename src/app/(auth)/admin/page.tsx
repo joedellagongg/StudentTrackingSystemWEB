@@ -5,6 +5,8 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import axiosInstance from "@/library/axios";
+
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -15,7 +17,7 @@ export default function Login() {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await axios.post("http://localhost:5500/login", {
+            const res = await axiosInstance.post("/login", {
                 username,
                 password,
             });
@@ -25,7 +27,7 @@ export default function Login() {
             if (res.data) {
                 router.push("/dashboard");
                 console.log("😊😊😊 HAHAHAHAHAHA");
-                // console.clear();
+                console.clear();
             } else {
                 console.log("😒😒😒");
             }

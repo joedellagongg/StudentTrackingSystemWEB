@@ -11,8 +11,8 @@ const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
 
     const handleUpdate = async () => {
         try {
-            const res = await axios.patch(
-                `http://localhost:5500/students/${urlID}`,
+            const res = await axiosInstance.patch(
+                `/students/${urlID}`,
                 studentData,
             );
             onClose();

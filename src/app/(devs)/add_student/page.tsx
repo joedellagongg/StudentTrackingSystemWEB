@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
+import axiosInstance from "@/library/axios";
 
 interface Errors {
     NFCid?: string;
@@ -92,7 +93,7 @@ export default function AddStudent({ closeModal }) {
         if (Object.keys(newErrors).length > 0) return;
 
         try {
-            const res = await axios.post("http://localhost:5500/students", {
+            const res = await axiosInstance.post("/students", {
                 NFCid,
                 uname,
                 upass,

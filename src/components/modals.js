@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
+import axiosInstance from "@/library/axios";
 
 export default function Add_section({ closeModal, onSectionAdded }) {
     const [strand, setStrand] = useState("");
@@ -34,7 +35,7 @@ export default function Add_section({ closeModal, onSectionAdded }) {
         }
 
         try {
-            await axios.post("http://localhost:5500/section", {
+            await axiosInstance.post("/section", {
                 strand,
                 level,
                 section,

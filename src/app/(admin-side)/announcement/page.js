@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import axios from "axios";
+// import axios from "axios";
 import Loader from "@/components/loader";
 import { Astloch } from "next/font/google";
+import axiosInstance from "@/library/axios";
 
 export default function Announcement() {
     const router = useRouter();
@@ -43,25 +44,19 @@ export default function Announcement() {
 
     const deleteEvent = async (id) => {
         try {
-            // const delResponse = await axios.delete(
-            //     `http://localhost:5500/announcements/${id}`,
-            // );
-            const delResponse = await axios.delete(
-                `https://attendance-backend-app.up.railway.app/announcements/${id}`,
+            const delResponse = await axiosInstance.delete(
+                `/announcements/${id}`,
             );
             window.location.reload();
-        } catch (error) {}
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const fetchEvents = async () => {
         setLoading(true);
         try {
-            // const response = await axios.get(
-            //     "http://localhost:5500/announcements",
-            // );
-            const response = await axios.get(
-                "https://attendance-backend-app.up.railway.app/announcements",
-            );
+            const response = await axiosInstance.get("/announcements");
             setEvents(response.data);
         } catch (err) {
             console.error(err);
@@ -101,10 +96,11 @@ export default function Announcement() {
         if (!valid) return;
 
         try {
-            const res = await axios.post(
-                "https://attendance-backend-app.up.railway.app/announcements",
-                { title, date, description },
-            );
+            const res = await axiosInstance.post("/announcements", {
+                title,
+                date,
+                description,
+            });
             closeModal();
             window.location.reload();
         } catch (error) {
