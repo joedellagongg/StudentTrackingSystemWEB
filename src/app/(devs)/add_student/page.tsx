@@ -118,6 +118,7 @@ export default function AddStudent({ closeModal }) {
                 window.location.reload();
             } else {
                 console.log("[ add_student: ERROR ]");
+                console.log(res.data);
             }
         } catch (err) {
             console.error(err);

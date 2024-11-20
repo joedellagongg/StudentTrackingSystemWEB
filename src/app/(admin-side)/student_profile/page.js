@@ -44,24 +44,6 @@ export default function Student_Profile() {
         setIsEditing(true);
     };
 
-    // const handleSave = async () => {
-    //     try {
-    //         await axios.patch(
-    //             `https://attendance-backend-app.up.railway.app/students/${currentStudent.id}`,
-    //             currentStudent,
-    //         );
-    //         setStudents((prev) =>
-    //             prev.map((s) =>
-    //                 s.id === currentStudent.id ? currentStudent : s,
-    //             ),
-    //         );
-    //         setIsEditing(false);
-    //     } catch (error) {
-    //         console.error("Error saving student data:", error);
-    //         setError("Failed to save student data");
-    //     }
-    // };
-
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         const options = { month: "short", day: "numeric", year: "numeric" };
