@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Loader from "@/components/loader";
+import axiosInstance from "@/library/axios";
 
 export default function Section({ sections, fetchSections }) {
     const router = useRouter();
@@ -31,7 +32,7 @@ export default function Section({ sections, fetchSections }) {
 
         setLoading(true);
         try {
-            await axios.delete(`http://localhost:5500/section/${id}`);
+            await axiosInstance.delete(`/section/${id}`);
             window.location.reload();
             closeModal();
         } catch (error) {

@@ -4,7 +4,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Loader from "@/components/loader";
-import Modal from "@/components/edit"; // Import the Modal component
+import Modal from "@/components/edit";
+import axiosInstance from "@/library/axios";
 
 export default function Student_Profile() {
     const router = useRouter();
@@ -21,12 +22,7 @@ export default function Student_Profile() {
     useEffect(() => {
         const fetchStudents = async () => {
             try {
-                // const response = await axios.get(
-                //   `https://attendance-backend-app.up.railway.app/students/${urlID}`
-                // );
-                const response = await axios.get(
-                    `https://attendance-backend-app.up.railway.app/students/${urlID}`,
-                );
+                const response = await axiosInstance.get(`/students/${urlID}`);
                 setStudents(response.data);
                 setLoading(false);
             } catch (err) {
@@ -43,24 +39,6 @@ export default function Student_Profile() {
         setCurrentStudent(student);
         setIsEditing(true);
     };
-
-    // const handleSave = async () => {
-    //     try {
-    //         await axios.patch(
-    //             `https://attendance-backend-app.up.railway.app/students/${currentStudent.id}`,
-    //             currentStudent,
-    //         );
-    //         setStudents((prev) =>
-    //             prev.map((s) =>
-    //                 s.id === currentStudent.id ? currentStudent : s,
-    //             ),
-    //         );
-    //         setIsEditing(false);
-    //     } catch (error) {
-    //         console.error("Error saving student data:", error);
-    //         setError("Failed to save student data");
-    //     }
-    // };
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -79,7 +57,10 @@ export default function Student_Profile() {
     return (
         <main className="w-full h-full p-4 rounded-2xl bg-[#ffffff] overflow-y-scroll">
             {students.map((item) => (
-                <div className="w-full h-full flex flex-col" key={item.student_id}>
+                <div
+                    className="w-full h-full flex flex-col"
+                    key={item.student_id}
+                >
                     <div className="flex flex-row border-b pb-4 justify-between">
                         <button
                             onClick={() =>

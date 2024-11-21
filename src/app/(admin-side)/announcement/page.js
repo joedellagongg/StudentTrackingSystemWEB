@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import axios from "axios";
+// import axios from "axios";
 import Loader from "@/components/loader";
 import { Astloch } from "next/font/google";
+import axiosInstance from "@/library/axios";
 
 export default function Announcement() {
   const router = useRouter();
@@ -40,35 +41,29 @@ export default function Announcement() {
     const options = { month: "short", day: "numeric", year: "numeric" };
     return date.toLocaleDateString("en-US", options);
   };
+  
+    const deleteEvent = async (id) => {
+        try {
+            const delResponse = await axiosInstance.delete(
+                `/announcements/${id}`,
+            );
+            window.location.reload();
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-  const deleteEvent = async (id) => {
-    try {
-      // const delResponse = await axios.delete(
-      //     `http://localhost:5500/announcements/${id}`,
-      // );
-      const delResponse = await axios.delete(
-        `https://attendance-backend-app.up.railway.app/announcements/${id}`
-      );
-      window.location.reload();
-    } catch (error) {}
-  };
-
-  const fetchEvents = async () => {
-    setLoading(true);
-    try {
-      // const response = await axios.get(
-      //     "http://localhost:5500/announcements",
-      // );
-      const response = await axios.get(
-        "https://attendance-backend-app.up.railway.app/announcements"
-      );
-      setEvents(response.data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+    const fetchEvents = async () => {
+        setLoading(true);
+        try {
+            const response = await axiosInstance.get("/announcements");
+            setEvents(response.data);
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
   useEffect(() => {
     fetchEvents();
@@ -100,17 +95,19 @@ export default function Announcement() {
 
     if (!valid) return;
 
-    try {
-      const res = await axios.post(
-        "https://attendance-backend-app.up.railway.app/announcements",
-        { title, date, description }
-      );
-      closeModal();
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
+        try {
+            const res = await axiosInstance.post("/announcements", {
+                title,
+                date,
+                description,
+            });
+            closeModal();
+            window.location.reload();
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
   return (
     <main className="relative w-full h-full rounded-2xl overflow-x-scroll bg-white p-6 gap-3 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

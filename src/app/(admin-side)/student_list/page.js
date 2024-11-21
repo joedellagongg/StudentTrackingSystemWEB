@@ -6,6 +6,7 @@ import AddStudent from "@/app/(devs)/add_student/page";
 import { useSearchParams } from "next/navigation";
 import Loader from "@/components/loader";
 import ConfirmationModal from "@/components/ConfirmationModal";
+import axiosInstance from "@/library/axios";
 
 export default function Stud_list() {
   const router = useRouter();
@@ -13,17 +14,23 @@ export default function Stud_list() {
     router.push(path);
   };
 
-  const searchParams = useSearchParams();
-  let urlID = searchParams.get("section");
 
-  const [modal, setModal] = useState(false);
-  const [students, setStudents] = useState([]);
-  const [section, setSection] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [selectedStudents, setSelectedStudents] = useState(new Set());
-  const [sortOrder, setSortOrder] = useState("Recently Added"); // Default to "Recently Added"
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const [modal, setModal] = useState(false);
+    const [students, setStudents] = useState([]);
+    const [section, setSection] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [selectedStudents, setSelectedStudents] = useState(new Set());
+    const [sortOrder, setSortOrder] = useState("Recently Added");
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+    useEffect(() => {
+        const fetchStudents = async () => {
+            try {
+                const response = await axiosInstance.get(
+                    `/students/section/${urlID}`,
+                );
+                const resSection = await axiosInstance.get(`/section/${urlID}`);
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -121,10 +128,6 @@ export default function Stud_list() {
 
   if (loading) {
     return <Loader />;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
   }
 
   return (
