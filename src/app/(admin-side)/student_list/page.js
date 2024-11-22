@@ -24,13 +24,13 @@ export default function Stud_list() {
     const [sortOrder, setSortOrder] = useState("Recently Added");
     const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-    useEffect(() => {
-        const fetchStudents = async () => {
-            try {
-                const response = await axiosInstance.get(
-                    `/students/section/${urlID}`,
-                );
-                const resSection = await axiosInstance.get(`/section/${urlID}`);
+    // useEffect(() => {
+    //     const fetchStudents = async () => {
+    //         try {
+    //             const response = await axiosInstance.get(
+    //                 `/students/section/${urlID}`,
+    //             );
+    //             const resSection = await axiosInstance.get(`/section/${urlID}`);
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -102,20 +102,20 @@ export default function Stud_list() {
         setStudentNames([]);
         setConfirmModalOpen(false);
     };
-  const handleDelete = async () => {
-    const destructuredID = Array.from(selectedStudents);
-    try {
-      await axiosInstance.delete(
-        `/students/${destructuredID}`
-      );
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-    }
-    setSelectedStudents(new Set());
-    setStudentNames([]);
-    setConfirmModalOpen(false);
-  };
+  // const handleDelete = async () => {
+  //   const destructuredID = Array.from(selectedStudents);
+  //   try {
+  //     await axiosInstance.delete(
+  //       `/students/${destructuredID}`
+  //     );
+  //     window.location.reload();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   setSelectedStudents(new Set());
+  //   setStudentNames([]);
+  //   setConfirmModalOpen(false);
+  // };
 
   const openDeleteModal = () => {
     if (selectedStudents.size === 0) {
