@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import AddStudent from "@/app/(devs)/add_student/page";
 import Loader from "@/components/loader";
+import axiosInstance from "@/library/axios";
 
 export default function Stud_list() {
     const router = useRouter();
@@ -30,9 +31,7 @@ export default function Stud_list() {
     useEffect(() => {
         const fetchStudents = async () => {
             try {
-                const response = await axios.get(
-                    "https://attendance-backend-app.up.railway.app/student_list",
-                );
+                const response = await axiosInstance.get("/student_list");
                 setStudents(response.data);
                 // console.log(response.data);
                 setLoading(false);
@@ -170,7 +169,11 @@ export default function Stud_list() {
                     onClick={() => setModal(true)}
                     className="absolute self-end bottom-8 right-8"
                 >
-                    <img src="./icons/add-icon.svg" alt="back" className="h-[80px]" />
+                    <img
+                        src="./icons/add-icon.svg"
+                        alt="back"
+                        className="h-[80px]"
+                    />
                 </button>
 
                 {modal && <AddStudent closeModal={() => setModal(false)} />}
