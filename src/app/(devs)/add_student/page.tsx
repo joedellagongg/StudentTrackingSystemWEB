@@ -115,11 +115,12 @@ export default function AddStudent({ closeModal }) {
                 guardianContact,
             });
 
-            if (res.data.authenticated) {
+            if (res.data.result.authenticated == true) {
+                console.log(res.data);
                 window.location.reload();
             } else {
                 console.log("[ add_student: ERROR ]");
-                console.log(res.data);
+                console.log("DATAAAAAAAAA", res.data.result.authenticated);
             }
         } catch (err) {
             console.error(err);

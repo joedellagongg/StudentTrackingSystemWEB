@@ -85,9 +85,7 @@ export default function Stud_list() {
     const handleDelete = async () => {
         const destructuredID = Array.from(selectedStudents);
         try {
-            await axios.delete(
-                `https://attendance-backend-app.up.railway.app/students/${destructuredID}`,
-            );
+            await axiosInstance.delete(`/students/${destructuredID}`);
             window.location.reload();
         } catch (error) {
             console.log(error);

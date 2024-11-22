@@ -21,13 +21,13 @@ export default function Login() {
                 username,
                 password,
             });
-            console.log("BACKED", res.data.response.token);
+            console.log("THIS IS THE RESPONSE", res.data.message);
             const decodedToken = jwtDecode(res.data.response.token);
             console.log(decodedToken);
             if (res.data) {
                 router.push("/dashboard");
                 console.log("😊😊😊 HAHAHAHAHAHA");
-                console.clear();
+                // console.clear();
             } else {
                 console.log("😒😒😒");
             }
