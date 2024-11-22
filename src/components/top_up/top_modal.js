@@ -41,10 +41,12 @@ export default function TopUp_Form({ onClose, amount }) {
         const admin_id = 11; // to follow, basta pag nag log ang user dapat naka aassign na sa admin to.
         const { student_id } = students[0];
         try {
-            const res = await axios.post(
-                `http://localhost:5500/paymentIntent`,
-                { student_id, admin_id, amount, description },
-            );
+            const res = await axiosInstance.post(`/paymentIntent`, {
+                student_id,
+                admin_id,
+                amount,
+                description,
+            });
             // const res = await axios.post(
             //     `https://attendance-backend-app.up.railway.app/paymentIntent`,
             //     { student_id, admin_id, amount, description },
