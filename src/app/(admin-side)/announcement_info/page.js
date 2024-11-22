@@ -55,11 +55,11 @@ export default function AnnouncementInfo() {
                 </button>
             </div>
             {events.map((item) => (
-                <div key={item.event_id} className=" mt-6 p-6">
+                <div key={item.event_id} className="p-6">
                     <h1 className=" uppercase text-3xl font-bold">
                         {item.title}
                     </h1>
-                    <h1 className=" text-xl font-semibold">{item.date}</h1>
+                    <h1 className=" text-xl font-semibold">{formatDate(item.date)}</h1>
                     {/* <h1 className=" text-xl font-semibold"> {formatDate(item.date)}</h1> */}
                     <div className=" mt-6">
                         <p className="">{item.description}</p>

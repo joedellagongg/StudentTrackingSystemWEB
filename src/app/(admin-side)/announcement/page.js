@@ -41,29 +41,27 @@ export default function Announcement() {
     const options = { month: "short", day: "numeric", year: "numeric" };
     return date.toLocaleDateString("en-US", options);
   };
-  
-    const deleteEvent = async (id) => {
-        try {
-            const delResponse = await axiosInstance.delete(
-                `/announcements/${id}`,
-            );
-            window.location.reload();
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
-    const fetchEvents = async () => {
-        setLoading(true);
-        try {
-            const response = await axiosInstance.get("/announcements");
-            setEvents(response.data);
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setLoading(false);
-        }
-    };
+  const deleteEvent = async (id) => {
+    try {
+      const delResponse = await axiosInstance.delete(`/announcements/${id}`);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchEvents = async () => {
+    setLoading(true);
+    try {
+      const response = await axiosInstance.get("/announcements");
+      setEvents(response.data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     fetchEvents();
@@ -95,19 +93,18 @@ export default function Announcement() {
 
     if (!valid) return;
 
-
-        try {
-            const res = await axiosInstance.post("/announcements", {
-                title,
-                date,
-                description,
-            });
-            closeModal();
-            window.location.reload();
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    try {
+      const res = await axiosInstance.post("/announcements", {
+        title,
+        date,
+        description,
+      });
+      closeModal();
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <main className="relative w-full h-full rounded-2xl overflow-x-scroll bg-white p-6 gap-3 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -168,7 +165,7 @@ export default function Announcement() {
               </p>
               <p className="text-xl">
                 <strong className="font-bold uppercase">
-                  {selectedAnnouncement.event_id} {selectedAnnouncement.title}
+                  {selectedAnnouncement.title}
                 </strong>
                 <br />
                 <strong className="font-bold">
