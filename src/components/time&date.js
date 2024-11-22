@@ -1,17 +1,21 @@
 "use client";
-
 import React from "react";
-import moment from "moment";
+import dynamic from "next/dynamic";
+
+const Clock = dynamic(() => import("react-live-clock"), { ssr: false });
 
 export default function DateTime() {
-  const date = moment().utcOffset("+08:00").format("ddd, MMMM DD YYYY");
-  const time = moment().utcOffset("+08:00").format("LT");
-
+  const currentDate = new Date();
+  const date = currentDate.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 
   return (
     <>
-      <h1 className="">{date}</h1>
-      <p className=" text-[20px]">{time}</p>
+      <Clock format={"hh:mm:ss A"} style={{ fontSize: "2em" }} ticking={true} />
+      <div className=" text-[1em]">{date}</div>
     </>
   );
 }
