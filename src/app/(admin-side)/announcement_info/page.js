@@ -18,11 +18,12 @@ export default function AnnouncementInfo() {
         router.push(path);
     };
 
-    // const formatDate = (dateString) => {
-    //   const date = new Date(dateString);
-    //   const options = { month: "short", day: "numeric", year: "numeric" };
-    //   return date.toLocaleDateString("en-US", options);
-    // };
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { month: "short", day: "numeric", year: "numeric" };
+    return date.toLocaleDateString("en-US", options);
+  };
+
 
     const fetchEvents = async () => {
         setLoading(true);
