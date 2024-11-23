@@ -30,6 +30,7 @@ export default function Sidenav() {
     >
       <div className="w-full flex justify-center items-center border-b-2 pb-2">
         <img
+        onClick={() => navigate("../dashboard")}
           src="./logo/logo.svg"
           alt="logo"
           className={isHovered ? "h-24" : "h-24 w-24"}
