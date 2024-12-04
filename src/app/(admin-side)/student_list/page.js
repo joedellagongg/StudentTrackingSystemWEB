@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 import Loader from "@/components/loader";
 import ConfirmationModal from "@/components/ConfirmationModal";
 import axiosInstance from "@/library/axios";
-// import { url } from "inspector";
+import Image from "next/image";
 
 export default function Stud_list() {
     const router = useRouter();
@@ -29,8 +29,6 @@ export default function Stud_list() {
     const [selectedStudents, setSelectedStudents] = useState(new Set());
     const [sortOrder, setSortOrder] = useState("Recently Added");
     const [isDropdownOpen, setDropdownOpen] = useState(false);
-
-    
 
     useEffect(() => {
         const fetchStudents = async () => {
@@ -100,7 +98,6 @@ export default function Stud_list() {
         setStudentNames([]);
         setConfirmModalOpen(false);
     };
-    
 
     const openDeleteModal = () => {
         if (selectedStudents.size === 0) {
@@ -132,7 +129,9 @@ export default function Stud_list() {
             <div className="w-full h-full flex flex-col">
                 <div className="flex flex-row border-b pb-4 justify-between ">
                     <button onClick={() => navigate("../dashboard", "admin")}>
-                        <img
+                        <Image
+                            height={0}
+                            width={100}
                             src="./icons/back-icon.svg"
                             alt="back"
                             className="h-[50px]"
@@ -170,7 +169,9 @@ export default function Stud_list() {
                                     onClick={toggleDropdown}
                                     className="p-2 bg-[#002147] rounded-lg text-white text-sm flex flex-row items-center gap-1"
                                 >
-                                    <img
+                                    <Image
+                                        height={0}
+                                        width={100}
                                         src="./icons/filter.svg"
                                         alt="filter"
                                         className="h-6"
@@ -213,7 +214,9 @@ export default function Stud_list() {
                                 onClick={openDeleteModal}
                                 className="bg-red-500 p-2 rounded-lg text-white text-sm flex flex-row items-center gap-1"
                             >
-                                <img
+                                <Image
+                                    height={0}
+                                    width={100}
                                     src="./icons/delete-white.svg"
                                     alt="delete"
                                     className="h-6"
@@ -235,7 +238,9 @@ export default function Stud_list() {
                             {students.length === 0 ? (
                                 <tr>
                                     <td className="flex flex-col gap-y-3 justify-center items-center pt-6">
-                                        <img
+                                        <Image
+                                            height={0}
+                                            width={100}
                                             src="./images/pana.svg"
                                             alt="no students"
                                             className="max-h-[200px]"
@@ -269,7 +274,9 @@ export default function Stud_list() {
                                             />
                                         </td>
                                         <td className="p-4 flex justify-center">
-                                            <img
+                                            <Image
+                                                height={0}
+                                                width={100}
                                                 src="./images/profile.svg"
                                                 alt="Student Picture"
                                                 className="rounded-full h-[50px]"
@@ -303,7 +310,9 @@ export default function Stud_list() {
                     onClick={() => setModal(true)}
                     className="absolute self-end bottom-8 right-8"
                 >
-                    <img
+                    <Image
+                        height={0}
+                        width={100}
                         src="./icons/add-icon.svg"
                         className="h-[80px]"
                         alt="add"

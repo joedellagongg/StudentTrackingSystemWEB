@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import axios from "axios";
+import Image from "next/image";
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -44,11 +44,13 @@ export default function Login() {
             <div className="absolute h-screen w-full bg-white bg-opacity-40 flex justify-center items-center">
                 <div className="bg-blue-200 bg-opacity-60 rounded-2xl flex flex-col gap-y-6">
                     <div className=" flex justify-center items-center pt-6">
-                        <img
+                        <Image
                             src="./logo/logo.svg"
                             alt=""
+                            width={100}
+                            height={0}
                             className=" h-[100px]"
-                            fetchPriority="high"
+                            // fetchPriority="high"
                         />
                     </div>
                     <div className="p-6">

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Loader from "@/components/loader";
@@ -57,7 +58,9 @@ export default function Section({ sections, fetchSections }) {
                                 openModal(item);
                             }}
                         >
-                            <img
+                            <Image
+                                width={100}
+                                height={0}
                                 src="./icons/delete.svg"
                                 alt="Delete"
                                 className="bg-white p-1 rounded-full h-6 w-6 hover:bg-gray-400"

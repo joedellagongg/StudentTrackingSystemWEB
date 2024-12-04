@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import axios from "axios";
 import React from "react";
 import { useRouter } from "next/navigation";
@@ -82,7 +83,9 @@ export default function Stud_list() {
             <div className="w-full h-full flex flex-col">
                 <div className="flex flex-row border-b pb-4 justify-between ">
                     <button onClick={() => navigate("../dashboard", "admin")}>
-                        <img
+                        <Image
+                            height={0}
+                            width={100}
                             src="./icons/back-icon.svg"
                             alt="back"
                             className="h-[50px]"
@@ -109,7 +112,9 @@ export default function Stud_list() {
                             onChange={handleSelectAll}
                         />
                         <button className=" bg-red-500 p-2 rounded-lg text-white text-sm flex flex-row items-center gap-1">
-                            <img
+                            <Image
+                                height={0}
+                                width={100}
                                 src="./icons/delete-white.svg"
                                 alt="delete"
                                 className=" h-6"
@@ -136,7 +141,9 @@ export default function Stud_list() {
                                             }
                                         />
                                         <td className="p-4 flex justify-center">
-                                            <img
+                                            <Image
+                                                height={0}
+                                                width={100}
                                                 src="./images/profile.svg"
                                                 alt="Student Picture"
                                                 className="rounded-full h-[50px]"
@@ -169,7 +176,9 @@ export default function Stud_list() {
                     onClick={() => setModal(true)}
                     className="absolute self-end bottom-8 right-8"
                 >
-                    <img
+                    <Image
+                        height={0}
+                        width={100}
                         src="./icons/add-icon.svg"
                         alt="back"
                         className="h-[80px]"
