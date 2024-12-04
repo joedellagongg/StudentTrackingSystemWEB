@@ -23,7 +23,8 @@ interface Errors {
     guardianContact?: string;
 }
 
-export default function AddStudent({ closeModal }) {
+export default function AddStudent() {
+    // joedellagongg - removed the    ^^ { closeModal}
     const [NFCid, setNFCid] = useState("");
     const [lastName, setLastName] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -427,7 +428,7 @@ export default function AddStudent({ closeModal }) {
                         <button
                             type="button"
                             className="bg-white border h-10 w-20 rounded-xl"
-                            onClick={closeModal}
+                            // onClick={closeModal}
                         >
                             <p>Cancel</p>
                         </button>

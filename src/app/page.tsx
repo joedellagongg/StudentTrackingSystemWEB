@@ -1,7 +1,11 @@
-// "use client";
+"use client";
 
-// import Login from "@/app/(auth)/login/page";
+import Login from "../app/(auth)/admin/page";
 
-// export default function Home() {
-//   return <>{/* <Login /> */}</>;
-// }
+export default function Home() {
+    return (
+        <>
+            <Login />
+        </>
+    );
+}

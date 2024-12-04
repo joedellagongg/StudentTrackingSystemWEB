@@ -1,13 +1,14 @@
-"use client";
 import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
 const axios = require("axios");
 
 const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
-    if (!isOpen) return null;
-
     const searchParams = useSearchParams();
     const urlID = searchParams.get("id");
+    if (!isOpen) return null;
+
+    // const searchParams = useSearchParams();
+    // const urlID = searchParams.get("id");
 
     // const [patch, setPatch] useState()
 
