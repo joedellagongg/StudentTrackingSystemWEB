@@ -58,7 +58,7 @@ function AnnouncementInfo() {
                 </button>
             </div>
             {events.map((item) => (
-                <div key={item.eventIdentity} className="p-6">
+                <div key={item.event_id} className="p-6">
                     <h1 className=" uppercase text-3xl font-bold">
                         {item.title}
                     </h1>
