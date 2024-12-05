@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
+import Image from "next/image";
 import axios from "axios";
 import Section from "@/components/sections";
 import Loader from "@/components/loader";
@@ -41,7 +41,8 @@ export default function DashboardSections() {
                     <Loader />
                 ) : sections.length === 0 ? (
                     <div className="w-full h-full flex flex-col justify-center items-center gap-y-2">
-                        <img
+                        <Image
+                            width={100}
                             src="./images/rafiki.svg"
                             alt="empty section"
                             className="max-h-[400px]"
@@ -61,7 +62,9 @@ export default function DashboardSections() {
                     onClick={openModal}
                     className="fixed self-end bottom-8 right-8"
                 >
-                    <img
+                    <Image
+                        width={100}
+                        height={0}
                         src="./icons/add-icon.svg"
                         className="h-[80px]"
                         alt="Add"

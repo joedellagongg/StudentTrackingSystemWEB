@@ -35,6 +35,6 @@
     "src/routes/route.tsx",
     "src/routes/login.route.tsx",
     "src/app/(devs)/image/page.js"
-  ],
+, "src/app/(devs)/add_student/page.jsx"  ],
   "exclude": ["node_modules"]
 }

@@ -3,112 +3,131 @@ import React, { useState } from "react";
 import AdminProfile from "./admin_profile";
 import { useRouter } from "next/navigation";
 import Logout from "@/components/logout";
+import Image from "next/image";
 
 export default function Sidenav() {
-  const router = useRouter();
-  const [activeButton, setActiveButton] = useState("dashboard");
-  const [isHovered, setIsHovered] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+    const router = useRouter();
+    const [activeButton, setActiveButton] = useState("dashboard");
+    const [isHovered, setIsHovered] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const navigate = (path, button) => {
-    router.push(path);
-    setActiveButton(button);
-  };
+    const navigate = (path, button) => {
+        router.push(path);
+        setActiveButton(button);
+    };
 
-  const handleLogout = () => {
-    console.log("User logged out");
-    setIsModalOpen(false);
-  };
+    const handleLogout = () => {
+        console.log("User logged out");
+        setIsModalOpen(false);
+    };
 
-  return (
-    <div
-      className={`relative w-[5%] hover:w-[25%] ease-in-out duration-300 h-full bg-[#FFFFFF] rounded-2xl overflow-y-scroll no-scrollbar ${
-        isHovered ? "p-4" : "p-2"
-      }`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="w-full flex justify-center items-center border-b-2 pb-2">
-        <img
-        onClick={() => navigate("../dashboard")}
-          src="./logo/logo.svg"
-          alt="logo"
-          className={isHovered ? "h-24" : "h-24 w-24"}
-        />
-      </div>
-
-      <AdminProfile isHovered={isHovered} setIsHovered={setIsHovered} />
-
-      <div className="flex flex-col gap-y-2 mt-6">
-        <button
-          onClick={() => navigate("../dashboard", "admin")}
-          className={`flex flex-row items-center gap-x-4 rounded-xl ${
-            activeButton === "admin"
-              ? "bg-[#E1E8FF] bg-opacity-80"
-              : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
-          }`}
+    return (
+        <div
+            className={`relative w-[5%] hover:w-[25%] ease-in-out duration-300 h-full bg-[#FFFFFF] rounded-2xl overflow-y-scroll no-scrollbar ${
+                isHovered ? "p-4" : "p-2"
+            }`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
         >
-          <img
-            src="./icons/dashboard-icon.svg"
-            alt="dashboard"
-            className={isHovered ? "h-12" : "h-16 w-16"}
-          />
-          {isHovered && <p className="text-[#002147] text-[16px]">Dashboard</p>}
-        </button>
+            <div className="w-full flex justify-center items-center border-b-2 pb-2">
+                <Image
+                    width={100}
+                    height={0}
+                    onClick={() => navigate("../dashboard")}
+                    src="./logo/logo.svg"
+                    alt="logo"
+                    className={isHovered ? "h-24" : "h-24 w-24"}
+                />
+            </div>
 
-        <button
-          onClick={() => navigate("../top-up", "top-up")}
-          className={`flex flex-row items-center gap-x-4 rounded-xl ${
-            activeButton === "top-up"
-              ? "bg-[#E1E8FF] bg-opacity-80"
-              : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
-          }`}
-        >
-          <img
-            src="./icons/top-up-icon.svg"
-            alt="top up"
-            className={isHovered ? "h-12" : "h-16 w-16"}
-          />
-          {isHovered && <p className="text-[#002147] text-[16px]">Top Up</p>}
-        </button>
+            <AdminProfile isHovered={isHovered} setIsHovered={setIsHovered} />
 
-        <button
-          onClick={() => navigate("../announcement", "announcement")}
-          className={`flex flex-row items-center gap-x-4 rounded-xl ${
-            activeButton === "announcement"
-              ? "bg-[#E1E8FF] bg-opacity-80"
-              : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
-          }`}
-        >
-          <img
-            src="./icons/announcement_icon.svg"
-            alt="top up"
-            className={isHovered ? "h-12" : "h-16 w-16"}
-          />
-          {isHovered && <p className="text-[#002147] text-[16px]">Announcements</p>}
-        </button>
+            <div className="flex flex-col gap-y-2 mt-6">
+                <button
+                    onClick={() => navigate("../dashboard", "admin")}
+                    className={`flex flex-row items-center gap-x-4 rounded-xl ${
+                        activeButton === "admin"
+                            ? "bg-[#E1E8FF] bg-opacity-80"
+                            : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
+                    }`}
+                >
+                    <Image
+                        width={100}
+                        height={0}
+                        src="./icons/dashboard-icon.svg"
+                        alt="dashboard"
+                        className={isHovered ? "h-12" : "h-16 w-16"}
+                    />
+                    {isHovered && (
+                        <p className="text-[#002147] text-[16px]">Dashboard</p>
+                    )}
+                </button>
 
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsModalOpen(true);
-          }}
-          className={`w-full flex flex-row items-center gap-x-4 rounded-xl`}
-        >
-          <img
-            src="./icons/logout-icon.svg"
-            alt="logout"
-            className={isHovered ? "h-12" : "h-16 w-16"}
-          />
-          {isHovered && <p className="text-red-500">Log Out</p>}
-        </button>
-      </div>
+                <button
+                    onClick={() => navigate("../top-up", "top-up")}
+                    className={`flex flex-row items-center gap-x-4 rounded-xl ${
+                        activeButton === "top-up"
+                            ? "bg-[#E1E8FF] bg-opacity-80"
+                            : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
+                    }`}
+                >
+                    <Image
+                        width={100}
+                        height={0}
+                        src="./icons/top-up-icon.svg"
+                        alt="top up"
+                        className={isHovered ? "h-12" : "h-16 w-16"}
+                    />
+                    {isHovered && (
+                        <p className="text-[#002147] text-[16px]">Top Up</p>
+                    )}
+                </button>
 
-      <Logout
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onConfirm={handleLogout}
-      />
-    </div>
-  );
+                <button
+                    onClick={() => navigate("../announcement", "announcement")}
+                    className={`flex flex-row items-center gap-x-4 rounded-xl ${
+                        activeButton === "announcement"
+                            ? "bg-[#E1E8FF] bg-opacity-80"
+                            : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
+                    }`}
+                >
+                    <Image
+                        height={0}
+                        width={100}
+                        src="./icons/announcement_icon.svg"
+                        alt="top up"
+                        className={isHovered ? "h-12" : "h-16 w-16"}
+                    />
+                    {isHovered && (
+                        <p className="text-[#002147] text-[16px]">
+                            Announcements
+                        </p>
+                    )}
+                </button>
+
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setIsModalOpen(true);
+                    }}
+                    className={`w-full flex flex-row items-center gap-x-4 rounded-xl`}
+                >
+                    <Image
+                        width={100}
+                        height={0}
+                        src="./icons/logout-icon.svg"
+                        alt="logout"
+                        className={isHovered ? "h-12" : "h-16 w-16"}
+                    />
+                    {isHovered && <p className="text-red-500">Log Out</p>}
+                </button>
+            </div>
+
+            <Logout
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onConfirm={handleLogout}
+            />
+        </div>
+    );
 }

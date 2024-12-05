@@ -1,6 +1,5 @@
 "use client";
-import React, { useState } from "react";
-import axios from "axios";
+import React, { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import axiosInstance from "@/library/axios";
 
@@ -23,7 +22,8 @@ interface Errors {
     guardianContact?: string;
 }
 
-export default function AddStudent({ closeModal }) {
+export default function AddStudent() {
+    // joedellagongg - removed the    ^^ { closeModal}
     const [NFCid, setNFCid] = useState("");
     const [lastName, setLastName] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -57,8 +57,10 @@ export default function AddStudent({ closeModal }) {
     const currentYear = new Date().getFullYear().toString().slice(-2);
     const uname = currentYear + generateRandomNumberString(4);
     const upass = currentYear + generateRandomNumberString(4);
+
     const searchParams = useSearchParams();
     let urlID = searchParams.get("section");
+    console.log(urlID);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -427,7 +429,7 @@ export default function AddStudent({ closeModal }) {
                         <button
                             type="button"
                             className="bg-white border h-10 w-20 rounded-xl"
-                            onClick={closeModal}
+                            // onClick={closeModal}
                         >
                             <p>Cancel</p>
                         </button>
@@ -443,3 +445,13 @@ export default function AddStudent({ closeModal }) {
         </div>
     );
 }
+
+// export default function StudentIncrement() {
+//     const searchParams = useSearchParams();
+//     let urlID = searchParams.get("section");
+//     return (
+//         <Suspense>
+//             <AddStudent urlID={urlID} />
+//         </Suspense>
+//     );
+// }
