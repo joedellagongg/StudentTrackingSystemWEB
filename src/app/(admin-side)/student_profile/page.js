@@ -1,14 +1,14 @@
 "use client";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Loader from "@/components/loader";
 import Modal from "@/components/edit";
 import axiosInstance from "@/library/axios";
 import Image from "next/image";
 
-export default function Student_Profile() {
+function Student_Profile() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const urlID = searchParams.get("id");
@@ -216,5 +216,13 @@ export default function Student_Profile() {
                 setStudentData={setCurrentStudent}
             />
         </main>
+    );
+}
+
+export default function StudentInformation() {
+    return (
+        <Suspense>
+            <Student_Profile />
+        </Suspense>
     );
 }

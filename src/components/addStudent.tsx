@@ -1,6 +1,5 @@
 "use client";
-import React, { useState } from "react";
-import axios from "axios";
+import React, { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import axiosInstance from "@/library/axios";
 
@@ -58,8 +57,10 @@ export default function AddStudent() {
     const currentYear = new Date().getFullYear().toString().slice(-2);
     const uname = currentYear + generateRandomNumberString(4);
     const upass = currentYear + generateRandomNumberString(4);
+
     const searchParams = useSearchParams();
     let urlID = searchParams.get("section");
+    console.log(urlID);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -444,3 +445,13 @@ export default function AddStudent() {
         </div>
     );
 }
+
+// export default function StudentIncrement() {
+//     const searchParams = useSearchParams();
+//     let urlID = searchParams.get("section");
+//     return (
+//         <Suspense>
+//             <AddStudent urlID={urlID} />
+//         </Suspense>
+//     );
+// }

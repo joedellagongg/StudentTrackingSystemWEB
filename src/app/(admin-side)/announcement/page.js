@@ -57,6 +57,8 @@ export default function Announcement() {
         setLoading(true);
         try {
             const response = await axiosInstance.get("/announcements");
+            console.log(response);
+
             setEvents(response.data);
         } catch (err) {
             console.error(err);
@@ -65,9 +67,9 @@ export default function Announcement() {
         }
     };
 
-    // useEffect(() => {
-    //     fetchEvents();
-    // }, []);
+    useEffect(() => {
+        fetchEvents();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -154,7 +156,12 @@ export default function Announcement() {
                                 }}
                                 className="bg-white p-1 rounded-full h-6 w-6 hover:bg-gray-400"
                             >
-                                <Image src="./icons/delete.svg" alt="Delete" />
+                                <Image
+                                    width={100}
+                                    height={0}
+                                    src="./icons/delete.svg"
+                                    alt="Delete"
+                                />
                             </button>
                         </div>
                     </div>

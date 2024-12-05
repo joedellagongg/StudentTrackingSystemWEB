@@ -5,14 +5,16 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import axiosInstance from "@/library/axios";
+import { Suspense } from "react";
 
-export default function AnnouncementInfo() {
+function AnnouncementInfo() {
     const [loading, setLoading] = useState(false);
     const [events, setEvents] = useState([]);
 
     const searchParams = useSearchParams();
     const urlID = searchParams.get("event");
-    console.log(urlID);
+    console.log("Announcement ID:", urlID);
+
     const router = useRouter();
     const navigate = (path) => {
         router.push(path);
@@ -28,7 +30,7 @@ export default function AnnouncementInfo() {
         setLoading(true);
         try {
             const response = await axiosInstance.get(
-                `/announcements/fetch/${urlID}`,
+                `/announcements/fetch/${eventIdentity}`,
             );
             setEvents(response.data);
         } catch (err) {
@@ -56,7 +58,7 @@ export default function AnnouncementInfo() {
                 </button>
             </div>
             {events.map((item) => (
-                <div key={item.event_id} className="p-6">
+                <div key={item.eventIdentity} className="p-6">
                     <h1 className=" uppercase text-3xl font-bold">
                         {item.title}
                     </h1>
@@ -70,5 +72,13 @@ export default function AnnouncementInfo() {
                 </div>
             ))}
         </main>
+    );
+}
+
+export default function AnnouncementByID() {
+    return (
+        <Suspense fallback={<div>Loading announcement...</div>}>
+            <AnnouncementInfo />
+        </Suspense>
     );
 }
