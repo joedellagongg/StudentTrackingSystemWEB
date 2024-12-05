@@ -131,10 +131,10 @@ export default function Stud_list() {
                     <button onClick={() => navigate("../dashboard", "admin")}>
                         <Image
                             height={0}
-                            width={100}
+                            width={0}
                             src="./icons/back-icon.svg"
                             alt="back"
-                            className="h-[50px]"
+                            className="h-[50px] w-auto"
                         />
                     </button>
 
@@ -171,10 +171,10 @@ export default function Stud_list() {
                                 >
                                     <Image
                                         height={0}
-                                        width={100}
+                                        width={0}
                                         src="./icons/filter.svg"
                                         alt="filter"
-                                        className="h-6"
+                                        className="h-6 w-auto"
                                     />
                                     Filter
                                 </button>
@@ -215,11 +215,11 @@ export default function Stud_list() {
                                 className="bg-red-500 p-2 rounded-lg text-white text-sm flex flex-row items-center gap-1"
                             >
                                 <Image
-                                    width={100}
+                                    width={0}
                                     height={0}
                                     src="./icons/delete-white.svg"
                                     alt="delete"
-                                    className="h-6"
+                                    className="h-6 w-auto"
                                 />
                                 Delete
                             </button>
@@ -239,11 +239,11 @@ export default function Stud_list() {
                                 <tr>
                                     <td className="flex flex-col gap-y-3 justify-center items-center pt-6">
                                         <Image
-                                            width={100}
+                                            width={0}
                                             height={0}
                                             src="./images/pana.svg"
                                             alt="no students"
-                                            className="max-h-[200px]"
+                                            className=" max-h-[200px] w-auto"
                                         />
                                         <p className="text-xl">
                                             No Students Listed
@@ -275,11 +275,11 @@ export default function Stud_list() {
                                         </td>
                                         <td className="p-4 flex justify-center">
                                             <Image
-                                                width={100}
+                                                width={0}
                                                 height={0}
                                                 src="./images/profile.svg"
                                                 alt="Student Picture"
-                                                className="rounded-full h-[50px]"
+                                                className="rounded-full h-[50px] w-auto"
                                             />
                                         </td>
                                         <td className="p-4">{list.username}</td>
@@ -311,10 +311,10 @@ export default function Stud_list() {
                     className="absolute self-end bottom-8 right-8"
                 >
                     <Image
-                        width={100}
+                        width={0}
                         height={0}
                         src="./icons/add-icon.svg"
-                        className="h-[80px]"
+                        className="h-[80px] w-auto"
                         alt="add"
                     />
                 </button>
