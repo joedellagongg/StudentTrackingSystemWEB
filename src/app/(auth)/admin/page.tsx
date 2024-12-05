@@ -29,13 +29,13 @@ export default function Login() {
                 console.log("😊😊😊 HAHAHAHAHAHA");
                 // console.clear();
             } else {
-                console.log("😒😒😒");
+                console.log("Error on Try-Except Block!");
             }
         } catch (err) {
             console.error(err);
             setLoading(false);
             console.log("😒😒😒");
-            alert("Login failed. Please check your credentials.");
+            alert("Login failed. Please check your credentials.");  
         }
     };
 
