@@ -240,6 +240,7 @@ export default function Stud_list() {
                                     <td className="flex flex-col gap-y-3 justify-center items-center pt-6">
                                         <Image
                                             width={100}
+                                            height={0}
                                             src="./images/pana.svg"
                                             alt="no students"
                                             className="max-h-[200px]"

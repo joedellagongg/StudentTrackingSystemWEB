@@ -30,7 +30,7 @@ function AnnouncementInfo() {
         setLoading(true);
         try {
             const response = await axiosInstance.get(
-                `/announcements/fetch/${eventIdentity}`,
+                `/announcements/fetch/${urlID}`,
             );
             setEvents(response.data);
         } catch (err) {

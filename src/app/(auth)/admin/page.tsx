@@ -29,7 +29,7 @@ export default function Login() {
                 console.log("😊😊😊 HAHAHAHAHAHA");
                 // console.clear();
             } else {
-                console.log("Error on Try-Except Block!");
+                console.log("Error on Try-If-Else Block!");
             }
         } catch (err) {
             console.error(err);
