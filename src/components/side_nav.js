@@ -31,12 +31,12 @@ export default function Sidenav() {
         >
             <div className="w-full flex justify-center items-center border-b-2 pb-2">
                 <Image
-                    width={100}
+                    width={0}
                     height={0}
                     onClick={() => navigate("../dashboard")}
                     src="./logo/logo.svg"
                     alt="logo"
-                    className={isHovered ? "h-24" : "h-24 w-24"}
+                    className={isHovered ? "h-24 w-auto" : "h-24 w-auto"}
                 />
             </div>
 
@@ -52,11 +52,11 @@ export default function Sidenav() {
                     }`}
                 >
                     <Image
-                        width={100}
+                        width={0}
                         height={0}
                         src="./icons/dashboard-icon.svg"
                         alt="dashboard"
-                        className={isHovered ? "h-12" : "h-16 w-16"}
+                        className={isHovered ? "h-12 w-auto" : "h-16 w-auto"}
                     />
                     {isHovered && (
                         <p className="text-[#002147] text-[16px]">Dashboard</p>
@@ -72,11 +72,11 @@ export default function Sidenav() {
                     }`}
                 >
                     <Image
-                        width={100}
+                        width={0}
                         height={0}
                         src="./icons/top-up-icon.svg"
                         alt="top up"
-                        className={isHovered ? "h-12" : "h-16 w-16"}
+                        className={isHovered ? "h-12 w-auto" : "h-16 w-auto"}
                     />
                     {isHovered && (
                         <p className="text-[#002147] text-[16px]">Top Up</p>
@@ -93,10 +93,10 @@ export default function Sidenav() {
                 >
                     <Image
                         height={0}
-                        width={100}
+                        width={0}
                         src="./icons/announcement_icon.svg"
                         alt="top up"
-                        className={isHovered ? "h-12" : "h-16 w-16"}
+                        className={isHovered ? "h-12 w-auto" : "h-16 w-auto"}
                     />
                     {isHovered && (
                         <p className="text-[#002147] text-[16px]">
@@ -113,11 +113,11 @@ export default function Sidenav() {
                     className={`w-full flex flex-row items-center gap-x-4 rounded-xl`}
                 >
                     <Image
-                        width={100}
+                        width={0}
                         height={0}
                         src="./icons/logout-icon.svg"
                         alt="logout"
-                        className={isHovered ? "h-12" : "h-16 w-16"}
+                        className={isHovered ? "h-12 w-auto" : "h-16 w-auto"}
                     />
                     {isHovered && <p className="text-red-500">Log Out</p>}
                 </button>

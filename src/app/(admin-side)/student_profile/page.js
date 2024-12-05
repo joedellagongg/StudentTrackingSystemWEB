@@ -71,11 +71,11 @@ function Student_Profile() {
                             }
                         >
                             <Image
-                                width={100}
+                                width={0}
                                 height={0}
                                 src="./icons/back-icon.svg"
                                 alt="back"
-                                className="h-[50px]"
+                                className="h-[50px] w-auto"
                             />
                         </button>
                         <div className="capitalize flex flex-row gap-6 items-center">

@@ -63,10 +63,10 @@ export default function DashboardSections() {
                     className="fixed self-end bottom-8 right-8"
                 >
                     <Image
-                        width={100}
+                        width={0}
                         height={0}
                         src="./icons/add-icon.svg"
-                        className="h-[80px]"
+                        className="h-[80px] w-auto"
                         alt="Add"
                     />
                 </button>

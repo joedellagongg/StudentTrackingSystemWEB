@@ -22,10 +22,10 @@ export default function AdminProfile({ isHovered, setIsHovered }) {
                 >
                     <Image
                         height={0}
-                        width={100}
+                        width={0}
                         src={profile.profilePic}
                         alt="Profile"
-                        className={isHovered ? "h-16" : " h-16 w-16"}
+                        className={isHovered ? "h-16 w-auto" : " h-16 w-auto"}
                     />
                     {isHovered && (
                         <p className="text-[16px] font-bold">

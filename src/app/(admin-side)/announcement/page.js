@@ -119,11 +119,11 @@ export default function Announcement() {
             ) : events.length === 0 ? (
                 <div className="w-full h-full absolute flex flex-col gap-y-4 justify-center items-center">
                     <Image
-                        width={100}
+                        width={0}
                         height={0}
                         src="/images/announcement.svg"
                         alt="no announcement"
-                        className=" h-[50%]"
+                        className=" h-[50%] w-auto"
                     />
                     <h1>No Announcements</h1>
                     <h3 className=" text-gray-400">
@@ -157,10 +157,11 @@ export default function Announcement() {
                                 className="bg-white p-1 rounded-full h-6 w-6 hover:bg-gray-400"
                             >
                                 <Image
-                                    width={100}
+                                    width={0}
                                     height={0}
                                     src="./icons/delete.svg"
                                     alt="Delete"
+                                    className=" h-15 w-auto"
                                 />
                             </button>
                         </div>
@@ -319,10 +320,10 @@ export default function Announcement() {
                 className="fixed self-end bottom-8 right-8"
             >
                 <Image
-                    width={100}
+                    width={0}
                     height={0}
                     src="./icons/add-icon.svg"
-                    className="h-[80px]"
+                    className="h-[80px] w-auto"
                     alt="add"
                 />
             </button>
