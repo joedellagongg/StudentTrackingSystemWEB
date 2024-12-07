@@ -111,7 +111,9 @@ export default function Announcement() {
     };
 
     return (
-        <main className="relative w-full h-full rounded-2xl overflow-x-scroll bg-white p-6 gap-3 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <main className="relative w-full h-full rounded-2xl overflow-x-scroll bg-white p-6">
+        <div className=" gap-3 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+
             {loading ? (
                 <div className="w-full h-full absolute z-50">
                     <Loader />
@@ -327,6 +329,7 @@ export default function Announcement() {
                     alt="add"
                 />
             </button>
+        </div>
         </main>
     );
 }

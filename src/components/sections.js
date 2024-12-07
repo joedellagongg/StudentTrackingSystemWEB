@@ -44,7 +44,7 @@ export default function Section({ sections, fetchSections }) {
     };
 
     return (
-        <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-6 gap-3 h-full justify-center">
+        <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-6 gap-3">
             {sections.map((item) => (
                 <button
                     key={item.id}
