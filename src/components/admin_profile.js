@@ -25,7 +25,7 @@ export default function AdminProfile({ isHovered, setIsHovered }) {
                         width={0}
                         src={profile.profilePic}
                         alt="Profile"
-                        className={isHovered ? "h-16 w-auto" : " h-16 w-auto"}
+                        className={` h-16 w-auto ${isHovered ? "h-16 w-auto" : "mx-auto"}`}
                     />
                     {isHovered && (
                         <p className="text-[16px] font-bold">
