@@ -223,6 +223,7 @@ export default function Stud_list() {
                 <tr>
                   <td className="flex flex-col gap-y-3 justify-center items-center w-full h-full left-0 pt-6 absolute">
                     <Image
+                      priority={true}
                       width={0}
                       height={0}
                       src="./images/pana.svg"
