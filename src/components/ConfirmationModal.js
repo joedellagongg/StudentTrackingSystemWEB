@@ -9,7 +9,7 @@ const ConfirmationModal = ({ isOpen, onClose, onConfirm, studentNames }) => {
       : `Are you sure you want to delete all selected students?`;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white p-6 w-[30%] gap-y-6 rounded-xl flex flex-col justify-center items-center">
         <h2 className="text-xl mb-4">
           {studentNames.length === 1 ? (

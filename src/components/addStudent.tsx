@@ -100,17 +100,9 @@ export default function AddStudent({ closeModal }) {
         lastName,
         firstName,
         middleName,
-        Age,
-        Birthday,
-        Gender,
-        Address,
         emailAddress,
-        fatherName,
-        motherName,
         guardianName,
         studentContact,
-        fatherContact,
-        motherContact,
         guardianContact,
       });
 
@@ -129,12 +121,9 @@ export default function AddStudent({ closeModal }) {
 
   return (
     <div className="z-50 bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 flex items-center justify-center">
-      <div className="bg-white flex justify-center items-center h-[85%] p-4 rounded-xl">
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col justify-center items-center w-full h-full"
-        >
-          <div className="grid grid-cols-2 overflow-y-scroll">
+      <div className="bg-white flex justify-center items-center max-h-[80%] max-w-[80%] p-4 rounded-xl">
+        <form onSubmit={handleSubmit} className="flex flex-col w-full h-full">
+          <div className=" grid grid-cols-3">
             <div className="m-2 flex flex-col">
               <label htmlFor="lname">Last Name</label>
               <input
@@ -143,7 +132,7 @@ export default function AddStudent({ closeModal }) {
                 placeholder="Last Name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 rounded-xl capitalize"
+                className="h-10 w-full outline-0 border pl-6 rounded-xl capitalize"
               />
               {errors.lastName && (
                 <p className="text-red-500 text-sm">{errors.lastName}</p>
@@ -158,7 +147,7 @@ export default function AddStudent({ closeModal }) {
                 placeholder="First Name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 rounded-xl"
+                className="h-10 w-full outline-0 border pl-6 rounded-xl"
               />
               {errors.firstName && (
                 <p className="text-red-500 text-sm">{errors.firstName}</p>
@@ -173,74 +162,15 @@ export default function AddStudent({ closeModal }) {
                 placeholder="Middle Name"
                 value={middleName}
                 onChange={(e) => setMiddleName(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 rounded-xl"
+                className="h-10 w-full outline-0 border pl-6 rounded-xl"
               />
               {errors.middleName && (
                 <p className="text-red-500 text-sm">{errors.middleName}</p>
               )}
             </div>
-            <div className="m-2 flex flex-col">
-              <label htmlFor="age">Age</label>
-              <input
-                id="age"
-                type="number"
-                placeholder="Age"
-                value={Age}
-                onChange={(e) => setAge(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 rounded-xl"
-              />
-              {errors.Age && (
-                <p className="text-red-500 text-sm">{errors.Age}</p>
-              )}
-            </div>
+          </div>
 
-            <div className="m-2 flex flex-col">
-              <label htmlFor="bday">Birthday</label>
-              <input
-                id="bday"
-                type="date"
-                placeholder="Birthday"
-                value={Birthday}
-                onChange={(e) => setBirthday(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 pr-6 rounded-xl text-gray-400"
-              />
-              {errors.Birthday && (
-                <p className="text-red-500 text-sm">{errors.Birthday}</p>
-              )}
-            </div>
-
-            <div className="m-2 flex flex-col">
-              <label htmlFor="gender">Gender</label>
-              <select
-                id="gender"
-                value={Gender}
-                onChange={(e) => setGender(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 rounded-xl text-gray-400"
-              >
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-              {errors.Gender && (
-                <p className="text-red-500 text-sm">{errors.Gender}</p>
-              )}
-            </div>
-
-            <div className="m-2 flex flex-col">
-              <label htmlFor="add">Address</label>
-              <input
-                id="add"
-                type="text"
-                placeholder="Address"
-                value={Address}
-                onChange={(e) => setAddress(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 rounded-xl"
-              />
-              {errors.Address && (
-                <p className="text-red-500 text-sm">{errors.Address}</p>
-              )}
-            </div>
-
+          <div className=" grid grid-cols-2">
             <div className="m-2 flex flex-col">
               <label htmlFor="num">Contact Number</label>
               <input
@@ -249,7 +179,7 @@ export default function AddStudent({ closeModal }) {
                 placeholder="Contact Number"
                 value={studentContact}
                 onChange={(e) => setStudentContact(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 rounded-xl"
+                className="h-10 w-full outline-0 border pl-6 rounded-xl"
               />
               {errors.studentContact && (
                 <p className="text-red-500 text-sm">{errors.studentContact}</p>
@@ -264,117 +194,71 @@ export default function AddStudent({ closeModal }) {
                 placeholder="Email Address"
                 value={emailAddress}
                 onChange={(e) => setEmailAddress(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 rounded-xl"
+                className="h-10 w-full outline-0 border pl-6 rounded-xl"
               />
               {errors.emailAddress && (
                 <p className="text-red-500 text-sm">{errors.emailAddress}</p>
               )}
             </div>
+          </div>
+          <div className="m-2 flex flex-col">
+            <label htmlFor="guardian">Guardian Name</label>
+            <input
+              id="guardian"
+              type="text"
+              placeholder="Guardian Name"
+              value={guardianName}
+              onChange={(e) => setGuardianName(e.target.value)}
+              className="h-10 w-full outline-0 border pl-6 rounded-xl"
+            />
+            {errors.guardianName && (
+              <p className="text-red-500 text-sm">{errors.guardianName}</p>
+            )}
+          </div>
 
+          <div className=" grid grid-cols-2">
             <div className="m-2 flex flex-col">
-              <label htmlFor="father">Father</label>
-              <input
-                id="father"
-                type="text"
-                placeholder="Father Name"
-                value={fatherName}
-                onChange={(e) => setFatherName(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 rounded-xl"
-              />
-              {errors.fatherName && (
-                <p className="text-red-500 text-sm">{errors.fatherName}</p>
-              )}
-            </div>
-
-            <div className="m-2 flex flex-col">
-              <label htmlFor="fathernum">Father's Contact</label>
-              <input
-                id="fathernum"
-                type="number"
-                placeholder="Father's Contact Number"
-                value={fatherContact}
-                onChange={(e) => setFatherContact(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 rounded-xl"
-              />
-              {errors.fatherContact && (
-                <p className="text-red-500 text-sm">{errors.fatherContact}</p>
-              )}
-            </div>
-
-            <div className="m-2 flex flex-col">
-              <label htmlFor="mother">Mother</label>
-              <input
-                id="mother"
-                type="text"
-                placeholder="Mother Name"
-                value={motherName}
-                onChange={(e) => setMotherName(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 rounded-xl"
-              />
-              {errors.motherName && (
-                <p className="text-red-500 text-sm">{errors.motherName}</p>
-              )}
-            </div>
-
-            <div className="m-2 flex flex-col">
-              <label htmlFor="mothernum">Mother's Contact</label>
-              <input
-                id="mothernum"
-                type="number"
-                placeholder="Mother's Contact Number"
-                value={motherContact}
-                onChange={(e) => setMotherContact(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 rounded-xl"
-              />
-              {errors.motherContact && (
-                <p className="text-red-500 text-sm">{errors.motherContact}</p>
-              )}
-            </div>
-
-            <div className="m-2 flex flex-col">
-              <label htmlFor="guardian">Guardian</label>
-              <input
-                id="guardian"
-                type="text"
-                placeholder="Guardian"
-                value={guardianName}
-                onChange={(e) => setGuardianName(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 rounded-xl"
-              />
-              {errors.guardianName && (
-                <p className="text-red-500 text-sm">{errors.guardianName}</p>
-              )}
-            </div>
-
-            <div className="m-2 flex flex-col">
-              <label htmlFor="guardiannum">Guardian's Contact</label>
+              <label htmlFor="guardiannum">Guardian's Contact Number</label>
               <input
                 id="guardiannum"
                 type="number"
                 placeholder="Guardian's Contact Number"
                 value={guardianContact}
                 onChange={(e) => setGuardianContact(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 rounded-xl"
+                className="h-10 w-full outline-0 border pl-6 rounded-xl"
               />
               {errors.guardianContact && (
                 <p className="text-red-500 text-sm">{errors.guardianContact}</p>
               )}
             </div>
-
             <div className="m-2 flex flex-col">
-              <label htmlFor="nfc">NFC ID Number</label>
+              <label htmlFor="guardiannum">Guardian's Email</label>
               <input
-                id="nfc"
+                id="guardiannum"
                 type="number"
-                placeholder="NFC ID Number"
-                value={NFCid}
-                onChange={(e) => setNFCid(e.target.value)}
-                className="h-10 w-96 outline-0 border pl-6 rounded-xl"
+                placeholder="Guardian's Email"
+                value={guardianContact}
+                onChange={(e) => setGuardianContact(e.target.value)}
+                className="h-10 w-full outline-0 border pl-6 rounded-xl"
               />
-              {errors.NFCid && (
-                <p className="text-red-500 text-sm">{errors.NFCid}</p>
+              {errors.guardianContact && (
+                <p className="text-red-500 text-sm">{errors.guardianContact}</p>
               )}
             </div>
+          </div>
+          <div className="m-2 flex flex-col">
+            <label htmlFor="nfc">NFC ID Number</label>
+            <input
+              id="nfc"
+              type="number"
+              placeholder="NFC ID Number"
+              value={NFCid}
+              onChange={(e) => setNFCid(e.target.value)}
+              className="h-10 w-full outline-0 border pl-6 rounded-xl"
+            />
+            {errors.NFCid && (
+              <p className="text-red-500 text-sm">{errors.NFCid}</p>
+            )}
           </div>
           <div className="w-full flex justify-end gap-4">
             <button
