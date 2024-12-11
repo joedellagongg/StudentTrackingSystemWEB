@@ -11,12 +11,12 @@ export default function DashboardLayout({ children }) {
 
       <div className=" flex flex-col w-full">
         {/* datetime */}
-        <div className=" pl-4 w-full h-[15%] flex flex-row items-center justify-between gap-y-4 mb-4">
+        {/* <div className=" pl-4 w-full h-[15%] flex flex-row items-center justify-between gap-y-4 mb-4">
           <h1 className=" text-[45px]">Hello, Admin</h1>
           <div className=" p-4 w-[25%] h-full bg-[#FFFFFF] rounded-2xl flex flex-col justify-center items-center gap-y-2">
             <DateTime />
           </div>
-        </div>
+        </div> */}
 
         {/* landing page */}
         {children}
