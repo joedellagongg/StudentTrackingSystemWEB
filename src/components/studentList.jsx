@@ -147,16 +147,22 @@ export default function Stud_list() {
               </h1>
             </div>
           ))}
-          {students.length === 0 ? (
-            <div></div>
-          ) : (
-            <div className="h-full gap-2 flex flex-row justify-end items-center">
+
+          <button className=" bg-[#002147] text-white p-2 rounded-xl">Download Template</button>
+        </div>
+        {students.length === 0 ? (
+          <div></div>
+        ) : (
+          <div className=" w-full flex justify-center">
+            <div className=" w-[80%] py-2 flex flex-row items-center justify-between">
+              <div className="py-4 flex flex-row items-center justify-between gap-x-2">
+              <input id="all" type="checkbox" onChange={handleSelectAll} />
               <label htmlFor="all" className="text-sm">
                 Select All
               </label>
-              <input id="all" type="checkbox" onChange={handleSelectAll} />
+              </div>
 
-              <div className="relative">
+              <div className=" flex flex-row gap-x-2">
                 <button
                   onClick={toggleDropdown}
                   className="p-2 bg-[#002147] rounded-lg text-white text-sm flex flex-row items-center gap-1"
@@ -171,7 +177,7 @@ export default function Stud_list() {
                   Filter
                 </button>
                 {isDropdownOpen && (
-                  <div className=" w-40 absolute right-0 bg-white border border-gray-300 rounded shadow-2xl mt-1 z-10">
+                  <div className=" w-40 absolute bg-white border border-gray-300 rounded shadow-2xl mt-1 z-10">
                     <button
                       onClick={() => handleSortChange("A-Z")}
                       className="block p-2 w-full text-center text-sm hover:bg-gray-100"
@@ -192,30 +198,31 @@ export default function Stud_list() {
                     </button>
                   </div>
                 )}
-              </div>
 
-              <button
-                onClick={openDeleteModal}
-                className="bg-red-500 p-2 rounded-lg text-white text-sm flex flex-row items-center gap-1"
-              >
-                <Image
-                  width={0}
-                  height={0}
-                  src="./icons/delete-white.svg"
-                  alt="delete"
-                  className="h-6 w-auto"
+                <button
+                  onClick={openDeleteModal}
+                  className="bg-red-500 p-2 rounded-lg text-white text-sm flex flex-row items-center gap-1"
+                >
+                  <Image
+                    width={0}
+                    height={0}
+                    src="./icons/delete-white.svg"
+                    alt="delete"
+                    className="h-6 w-auto"
+                  />
+                  Delete
+                </button>
+                <ConfirmationModal
+                  isOpen={isConfirmModalOpen}
+                  onClose={() => setConfirmModalOpen(false)}
+                  onConfirm={handleDelete}
+                  studentNames={studentNames}
                 />
-                Delete
-              </button>
-              <ConfirmationModal
-                isOpen={isConfirmModalOpen}
-                onClose={() => setConfirmModalOpen(false)}
-                onConfirm={handleDelete}
-                studentNames={studentNames}
-              />
+              </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
+
         <div className="relative w-full h-[90%] overflow-y-scroll flex justify-center no-scrollbar">
           <table className="w-[80%] max-h-[20%] border-collapse no-scrollbar">
             <tbody>
