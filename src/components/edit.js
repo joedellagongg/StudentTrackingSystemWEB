@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
+import axiosInstance from "@/library/axios";
 const axios = require("axios");
 
 const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
@@ -9,9 +10,7 @@ const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
 
   // const searchParams = useSearchParams();
   // const urlID = searchParams.get("id");
-
   // const [patch, setPatch] useState()
-
   // console.log(urlID);
 
   const handleUpdate = async () => {
@@ -19,6 +18,7 @@ const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
       const res = await axiosInstance.patch(`/students/${urlID}`, studentData);
       onClose();
       window.location.reload();
+      return res;
     } catch (error) {
       console.log(error);
     }

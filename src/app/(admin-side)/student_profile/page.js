@@ -144,7 +144,7 @@ function Student_Profile() {
                 <div>
                   <p className=" text-sm">Guardian's Email</p>
                   <p className=" text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
-                    {item.guardiancontact}
+                    {item.guardianEmail}
                   </p>
                 </div>
               </div>
