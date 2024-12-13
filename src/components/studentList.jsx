@@ -29,6 +29,8 @@ export default function Stud_list() {
   const [selectedStudents, setSelectedStudents] = useState(new Set());
   const [sortOrder, setSortOrder] = useState("Recently Added");
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [addModal, setAddModal] = useState(false);
+  const [isRotated, setIsRotated] = useState(false);
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -69,6 +71,10 @@ export default function Stud_list() {
     } else {
       setSelectedStudents(new Set());
     }
+  };
+  const handleAddButtonClick = () => {
+    setIsRotated((prev) => !prev);
+    setAddModal((prev) => !prev);
   };
 
   const handleSelectStudent = (studentId) => {
@@ -147,8 +153,18 @@ export default function Stud_list() {
               </h1>
             </div>
           ))}
-
-          <button className=" bg-[#002147] text-white p-2 rounded-xl">Download Template</button>
+          <a href="/template/add_student.csv" download="Add_student.csv">
+            <button className=" bg-[#002147] text-sm text-white p-2 rounded-xl flex flex-row gap-x-2 justify-center items-center">
+              <Image
+                width={0}
+                height={0}
+                src="/icons/download.svg"
+                alt="download"
+                className=" h-6 w-auto"
+              />
+              Template
+            </button>
+          </a>
         </div>
         {students.length === 0 ? (
           <div></div>
@@ -156,10 +172,10 @@ export default function Stud_list() {
           <div className=" w-full flex justify-center">
             <div className=" w-[80%] py-2 flex flex-row items-center justify-between">
               <div className="py-4 flex flex-row items-center justify-between gap-x-2">
-              <input id="all" type="checkbox" onChange={handleSelectAll} />
-              <label htmlFor="all" className="text-sm">
-                Select All
-              </label>
+                <input id="all" type="checkbox" onChange={handleSelectAll} />
+                <label htmlFor="all" className="text-sm">
+                  Select All
+                </label>
               </div>
 
               <div className=" flex flex-row gap-x-2">
@@ -286,8 +302,10 @@ export default function Stud_list() {
         </div>
 
         <button
-          onClick={() => setModal(true)}
-          className="absolute self-end bottom-8 right-8"
+          onClick={handleAddButtonClick}
+          className={`absolute self-end bottom-8 right-8 transform transition-transform duration-300 z-50 ${
+            isRotated ? " rotate-45" : ""
+          }`}
         >
           <Image
             width={0}
@@ -297,6 +315,47 @@ export default function Stud_list() {
             alt="add"
           />
         </button>
+
+        {addModal && (
+          <div className="inset-0 fixed z-40">
+            <div className="absolute inset-0 bg-black opacity-50"></div>
+            <div className="absolute right-10 bottom-32 flex flex-col gap-2 z-50">
+              <button
+                onClick={() => setModal(true)}
+                className="bg-[#002147] p-4 h-16 w-16 text-white rounded-full flex flex-row justify-center items-center gap-2"
+              >
+                <Image
+                  width={0}
+                  height={0}
+                  src="/icons/add_student.svg"
+                  alt="add student"
+                  className="h-full w-full"
+                />
+              </button>
+
+              <div className="relative">
+                <label
+                  htmlFor="file-upload"
+                  className="bg-[#002147] h-16 w-16 p-4 text-white rounded-full flex justify-center items-center gap-2 cursor-pointer"
+                >
+                  <Image
+                    width={0}
+                    height={0}
+                    src="/icons/upload.svg"
+                    alt="upload file"
+                    className="h-full w-full"
+                  />
+                </label>
+                <input
+                  id="file-upload"
+                  type="file"
+                  accept=".csv"
+                  className="absolute opacity-0 w-full h-full"
+                />
+              </div>
+            </div>
+          </div>
+        )}
 
         {modal && <AddStudent closeModal={() => setModal(false)} />}
       </div>

@@ -13,7 +13,10 @@ export default function Sidenav() {
 
   useEffect(() => {
     const storedButton = localStorage.getItem("activeButton");
-    if (storedButton && ["dashboard", "admin", "top-up", "announcement"].includes(storedButton)) {
+    if (
+      storedButton &&
+      ["dashboard", "admin", "top-up", "announcement"].includes(storedButton)
+    ) {
       setActiveButton(storedButton);
     }
   }, []);
@@ -39,6 +42,7 @@ export default function Sidenav() {
     >
       <div className="w-full flex justify-center items-center border-b-2 pb-2">
         <Image
+          priority={true}
           width={0}
           height={0}
           onClick={() => navigate("../dashboard", "dashboard")}
