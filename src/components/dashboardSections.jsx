@@ -43,6 +43,7 @@ export default function DashboardSections() {
           <div className="w-full h-full flex flex-col justify-center items-center gap-y-2">
             <Image
               width={100}
+              height={0}
               src="./images/rafiki.svg"
               alt="empty section"
               className="max-h-[400px]"

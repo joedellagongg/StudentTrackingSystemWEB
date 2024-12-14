@@ -33,6 +33,7 @@ export default function AddStudent({ closeModal }) {
   const [Gender, setGender] = useState("");
   const [Address, setAddress] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
+  const [guardianEmailAddress, setGuardianEmailAddress] = useState("");
   const [fatherName, setFatherName] = useState("");
   const [motherName, setMotherName] = useState("");
   const [guardianName, setGuardianName] = useState("");
@@ -101,7 +102,7 @@ export default function AddStudent({ closeModal }) {
         firstName,
         middleName,
         emailAddress,
-        guardianName,
+        guardianEmailAddress,
         studentContact,
         guardianContact,
       });
@@ -235,10 +236,10 @@ export default function AddStudent({ closeModal }) {
               <label htmlFor="guardiannum">Guardian's Email</label>
               <input
                 id="guardiannum"
-                type="number"
+                type="text"
                 placeholder="Guardian's Email"
-                value={guardianContact}
-                onChange={(e) => setGuardianContact(e.target.value)}
+                value={guardianEmailAddress}
+                onChange={(e) => setGuardianEmailAddress(e.target.value)}
                 className="h-10 w-full outline-0 border pl-6 rounded-xl"
               />
               {errors.guardianContact && (
