@@ -28,18 +28,10 @@ export default function AddStudent({ closeModal }) {
   const [lastName, setLastName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
-  const [Age, setAge] = useState("");
-  const [Birthday, setBirthday] = useState("");
-  const [Gender, setGender] = useState("");
-  const [Address, setAddress] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [guardianEmailAddress, setGuardianEmailAddress] = useState("");
-  const [fatherName, setFatherName] = useState("");
-  const [motherName, setMotherName] = useState("");
   const [guardianName, setGuardianName] = useState("");
   const [studentContact, setStudentContact] = useState("");
-  const [fatherContact, setFatherContact] = useState("");
-  const [motherContact, setMotherContact] = useState("");
   const [guardianContact, setGuardianContact] = useState("");
 
   const [errors, setErrors] = useState<Errors>({});
@@ -61,7 +53,7 @@ export default function AddStudent({ closeModal }) {
 
   const searchParams = useSearchParams();
   let urlID = searchParams.get("section");
-  console.log(urlID);
+  // console.log(urlID);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,20 +63,12 @@ export default function AddStudent({ closeModal }) {
     if (!lastName) newErrors.lastName = "Last Name is required.";
     if (!firstName) newErrors.firstName = "First Name is required.";
     if (!middleName) newErrors.middleName = "Middle Name is required.";
-    if (!Age) newErrors.Age = "Age is required.";
-    if (!Birthday) newErrors.Birthday = "Birthday is required.";
-    if (!Gender) newErrors.Gender = "Gender is required.";
-    if (!Address) newErrors.Address = "Address is required.";
     if (!emailAddress) newErrors.emailAddress = "Email Address is required.";
-    if (!fatherName) newErrors.fatherName = "Father's Name is required.";
-    if (!motherName) newErrors.motherName = "Mother's Name is required.";
+    if (!guardianEmailAddress)
+      newErrors.emailAddress = "Guardian Email Address is required.";
     if (!guardianName) newErrors.guardianName = "Guardian's Name is required.";
     if (!studentContact)
       newErrors.studentContact = "Contact Number is required.";
-    if (!fatherContact)
-      newErrors.fatherContact = "Father's Contact Number is required.";
-    if (!motherContact)
-      newErrors.motherContact = "Mother's Contact Number is required.";
     if (!guardianContact)
       newErrors.guardianContact = "Guardian's Contact Number is required.";
 
@@ -102,10 +86,13 @@ export default function AddStudent({ closeModal }) {
         firstName,
         middleName,
         emailAddress,
+        guardianName,
         guardianEmailAddress,
         studentContact,
         guardianContact,
       });
+
+      
 
       if (res.data.result.authenticated == true) {
         console.log(res.data);
@@ -235,8 +222,8 @@ export default function AddStudent({ closeModal }) {
             <div className="m-2 flex flex-col">
               <label htmlFor="guardiannum">Guardian's Email</label>
               <input
-                id="guardiannum"
-                type="text"
+                id="guardianEmail"
+                type="email"
                 placeholder="Guardian's Email"
                 value={guardianEmailAddress}
                 onChange={(e) => setGuardianEmailAddress(e.target.value)}
