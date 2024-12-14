@@ -137,12 +137,12 @@ const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
             <div className=" flex flex-col justify-center">
               <p className="text-sm">Guardian's Email</p>
               <input
-                type="number"
-                value={studentData.guardiancontact}
+                type="test"
+                value={studentData.guardianEmail}
                 onChange={(e) =>
                   setStudentData({
                     ...studentData,
-                    guardiancontact: e.target.value,
+                    guardianEmail: e.target.value,
                   })
                 }
                 className="border rounded-xl h-10 p-3 bg-[#E5F1FF]"
