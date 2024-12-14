@@ -261,7 +261,7 @@ export default function Stud_list() {
                 </tr>
               ) : (
                 students.map((list) => (
-                  <tr key={list.student_id} className="border-b">
+                  <tr key={list.student_id} className="border-b ">
                     <td>
                       <input
                         type="checkbox"
@@ -269,7 +269,7 @@ export default function Stud_list() {
                         onChange={() => handleSelectStudent(list.student_id)}
                       />
                     </td>
-                    <td className="p-4 flex justify-center">
+                    <td className="p-4">
                       <Image
                         width={0}
                         height={0}

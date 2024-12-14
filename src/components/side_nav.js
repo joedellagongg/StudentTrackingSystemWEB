@@ -7,17 +7,27 @@ import Image from "next/image";
 
 export default function Sidenav() {
   const router = useRouter();
-  const [activeButton, setActiveButton] = useState("dashboard");
+  const [activeButton, setActiveButton] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const storedButton = localStorage.getItem("activeButton");
+
     if (
       storedButton &&
-      ["dashboard", "admin", "top-up", "announcement"].includes(storedButton)
+      [
+        "dashboard",
+        "admin",
+        "top-up",
+        "announcement",
+        "settings",
+        "canteen",
+      ].includes(storedButton)
     ) {
       setActiveButton(storedButton);
+    } else {
+      setActiveButton("dashboard");
     }
   }, []);
 
@@ -32,9 +42,11 @@ export default function Sidenav() {
     setIsModalOpen(false);
   };
 
+  if (activeButton === null) return null;
+
   return (
     <div
-      className={`relative w-[10%] hover:w-[30%] ease-in-out duration-300 h-full bg-[#FFFFFF] rounded-2xl overflow-y-scroll no-scrollbar ${
+      className={`relative w-[10%] hover:w-[30%] ease-in-out duration-100 h-full bg-[#FFFFFF] rounded-2xl overflow-y-scroll no-scrollbar ${
         isHovered ? "p-2" : "p-2"
       }`}
       onMouseEnter={() => setIsHovered(true)}
@@ -71,6 +83,23 @@ export default function Sidenav() {
             className={` h-14 w-auto ${isHovered ? "h-14 w-auto" : "mx-auto"}`}
           />
           {isHovered && <p className="text-[#002147] text-[16px]">Dashboard</p>}
+        </button>
+        <button
+          onClick={() => navigate("../canteen", "canteen")}
+          className={`flex flex-row items-center gap-x-2 rounded-xl ${
+            activeButton === "canteen"
+              ? "bg-[#E1E8FF] bg-opacity-80"
+              : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
+          }`}
+        >
+          <Image
+            width={0}
+            height={0}
+            src="./icons/canteen.svg"
+            alt="canteen"
+            className={` h-14 w-auto ${isHovered ? "h-14 w-auto" : "mx-auto"}`}
+          />
+          {isHovered && <p className="text-[#002147] text-[16px]">Canteen</p>}
         </button>
 
         <button
@@ -109,6 +138,24 @@ export default function Sidenav() {
           {isHovered && (
             <p className="text-[#002147] text-[16px]">Announcements</p>
           )}
+        </button>
+
+        <button
+          onClick={() => navigate("../settings", "settings")}
+          className={`flex flex-row items-center gap-x-2 rounded-xl ${
+            activeButton === "settings"
+              ? "bg-[#E1E8FF] bg-opacity-80"
+              : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
+          }`}
+        >
+          <Image
+            height={0}
+            width={0}
+            src="./icons/settings.svg"
+            alt="settings"
+            className={`h-14 w-auto ${isHovered ? "h-14 w-auto" : "mx-auto"}`}
+          />
+          {isHovered && <p className="text-[#002147] text-[16px]">Settings</p>}
         </button>
 
         <button

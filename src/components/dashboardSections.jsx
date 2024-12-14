@@ -58,6 +58,7 @@ export default function DashboardSections() {
         )}
         <button onClick={openModal} className="fixed self-end bottom-8 right-8">
           <Image
+            priority={true}
             width={0}
             height={0}
             src="./icons/add-icon.svg"

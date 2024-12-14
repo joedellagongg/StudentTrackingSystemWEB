@@ -20,6 +20,7 @@ interface Errors {
   fatherContact?: string;
   motherContact?: string;
   guardianContact?: string;
+  guardianEmail?: string;
 }
 
 export default function AddStudent({ closeModal }) {
@@ -65,7 +66,7 @@ export default function AddStudent({ closeModal }) {
     if (!middleName) newErrors.middleName = "Middle Name is required.";
     if (!emailAddress) newErrors.emailAddress = "Email Address is required.";
     if (!guardianEmailAddress)
-      newErrors.emailAddress = "Guardian Email Address is required.";
+      newErrors.guardianEmail = "Guardian Email Address is required.";
     if (!guardianName) newErrors.guardianName = "Guardian's Name is required.";
     if (!studentContact)
       newErrors.studentContact = "Contact Number is required.";
@@ -91,8 +92,6 @@ export default function AddStudent({ closeModal }) {
         studentContact,
         guardianContact,
       });
-
-      
 
       if (res.data.result.authenticated == true) {
         console.log(res.data);
@@ -178,7 +177,7 @@ export default function AddStudent({ closeModal }) {
               <label htmlFor="email">Email Address</label>
               <input
                 id="email"
-                type="text"
+                type="email"
                 placeholder="Email Address"
                 value={emailAddress}
                 onChange={(e) => setEmailAddress(e.target.value)}
@@ -230,7 +229,7 @@ export default function AddStudent({ closeModal }) {
                 className="h-10 w-full outline-0 border pl-6 rounded-xl"
               />
               {errors.guardianContact && (
-                <p className="text-red-500 text-sm">{errors.guardianContact}</p>
+                <p className="text-red-500 text-sm">{errors.guardianEmail}</p>
               )}
             </div>
           </div>
