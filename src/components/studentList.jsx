@@ -132,7 +132,7 @@ export default function Stud_list() {
     <main className="w-full h-full p-4 rounded-2xl bg-[#ffffff] overflow-y-scroll no-scrollbar">
       <div className="w-full h-full flex flex-col">
         <div className="flex flex-row border-b pb-4 justify-between ">
-          <button onClick={() => navigate("../dashboard", "admin")}>
+          <button onClick={() => navigate("../section", "admin")}>
             <Image
               height={0}
               width={0}

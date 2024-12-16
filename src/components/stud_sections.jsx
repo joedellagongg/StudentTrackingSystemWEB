@@ -8,7 +8,7 @@ import Loader from "@/components/loader";
 import Add_section from "@/components/modals";
 import axiosInstance from "@/library/axios";
 
-export default function DashboardSections() {
+export default function Sections() {
   const [modal, setModal] = useState(false);
   const [sections, setSections] = useState([]);
   const [loading, setLoading] = useState(true);
