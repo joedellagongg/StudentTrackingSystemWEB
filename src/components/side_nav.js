@@ -23,6 +23,7 @@ export default function Sidenav() {
         "announcement",
         "settings",
         "canteen",
+        "section",
       ].includes(storedButton)
     ) {
       setActiveButton(storedButton);
@@ -83,6 +84,23 @@ export default function Sidenav() {
             className={` h-14 w-auto ${isHovered ? "h-14 w-auto" : "mx-auto"}`}
           />
           {isHovered && <p className="text-[#002147] text-[16px]">Dashboard</p>}
+        </button>
+        <button
+          onClick={() => navigate("../section", "section")}
+          className={`flex flex-row items-center gap-x-2 pl-2 rounded-xl ${
+            activeButton === "section"
+              ? "bg-[#E1E8FF] bg-opacity-80"
+              : "hover:bg-[#E1E8FF] hover:bg-opacity-50"
+          }`}
+        >
+          <Image
+            width={0}
+            height={0}
+            src="./icons/section.svg"
+            alt="section"
+            className={` h-14 w-auto ${isHovered ? "h-14 w-auto" : "mx-auto"}`}
+          />
+          {isHovered && <p className="text-[#002147] text-[16px]">Sections</p>}
         </button>
         <button
           onClick={() => navigate("../canteen", "canteen")}
