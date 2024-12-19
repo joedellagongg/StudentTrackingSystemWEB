@@ -42,7 +42,7 @@ export default function Login() {
   return (
     <main className=" relative h-screen w-full bg-[url('../../public/bg/bg.svg')] bg-cover">
       <div className="absolute h-screen w-full bg-white bg-opacity-40 flex justify-center items-center">
-        <div className="bg-blue-200 bg-opacity-60 rounded-2xl flex flex-col gap-y-6">
+        <div className="bg-blue-200 bg-opacity-60 rounded-2xl flex flex-col gap-y-6 md:max-w-[50%] w-[80%]">
           <div className=" flex justify-center items-center pt-6">
             <Image
               priority={true}
@@ -63,7 +63,7 @@ export default function Login() {
                   name="username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className=" h-10 w-96 outline-0 pl-6 rounded-xl"
+                  className=" h-10 md:w-96 outline-0 pl-6 rounded-xl"
                 />
                 <input
                   type="password"
@@ -71,7 +71,7 @@ export default function Login() {
                   name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className=" h-10 w-96 outline-0 pl-6 rounded-xl"
+                  className=" h-10 md:w-96 outline-0 pl-6 rounded-xl"
                 />
                 <button className=" bg-[#002147] h-10 w-20 rounded-xl">
                   {loading ? (

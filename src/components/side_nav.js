@@ -10,7 +10,6 @@ export default function Sidenav() {
   const [activeButton, setActiveButton] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   useEffect(() => {
     const storedButton = localStorage.getItem("activeButton");
 
@@ -47,13 +46,13 @@ export default function Sidenav() {
 
   return (
     <div
-      className={`relative w-[10%] hover:w-[30%] ease-in-out duration-100 h-full bg-[#FFFFFF] rounded-2xl overflow-y-scroll no-scrollbar ${
+      className={`relative w-[10%] md:h-full md:hover:w-[30%] hidden md:flex flex-row md:flex-col justify-between items-center md:items-none md:justify-start ease-in-out duration-100  bg-[#FFFFFF] rounded-2xl ${
         isHovered ? "p-2" : "p-2"
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="w-full flex justify-center items-center border-b-2 pb-2">
+      <div className="w-full hidden md:flex justify-center items-center border-b-2 pb-2">
         <Image
           priority={true}
           width={0}
@@ -67,7 +66,7 @@ export default function Sidenav() {
 
       <AdminProfile isHovered={isHovered} setIsHovered={setIsHovered} />
 
-      <div className="flex flex-col gap-y-2 mt-6">
+      <div className="hidden w-full md:flex flex-col gap-y-2 mt-6 no-scrollbar overflow-y-scroll max-h-[calc(100vh-240px)]">
         <button
           onClick={() => navigate("../dashboard", "dashboard")}
           className={`flex flex-row items-center gap-x-2 rounded-xl ${

@@ -20,7 +20,8 @@ export default function Canteen() {
     { canteen: "Jorgy's Canteen" },
   ];
 
-  const handleDeleteClick = (canteenName) => {
+  const handleDeleteClick = (canteenName, event) => {
+    event.stopPropagation();
     setSelectedCanteen(canteenName);
     setDeleteModal(true);
   };
@@ -50,7 +51,7 @@ export default function Canteen() {
             <div className="w-full flex justify-end absolute top-2 right-2">
               <div>
                 <Image
-                  onClick={() => handleDeleteClick(item.canteen)}
+                  onClick={(event) => handleDeleteClick(item.canteen, event)}
                   width={100}
                   height={0}
                   src="./icons/delete.svg"
@@ -81,6 +82,7 @@ export default function Canteen() {
                   className="bg-red-500 text-white p-2 rounded-xl"
                   onClick={() => {
                     setDeleteModal(false);
+                    // Add your delete action here (e.g., removing from state)
                   }}
                 >
                   Delete
@@ -102,7 +104,7 @@ export default function Canteen() {
                 />
               </div>
               <div className=" w-full flex flex-row justify-end items-center gap-x-4 mt-4">
-                <button onClick={() => setAddModal()}>Cancel</button>
+                <button onClick={() => setAddModal(false)}>Cancel</button>
                 <button className=" rounded-xl bg-[#002147] p-4 text-white">
                   Save
                 </button>
