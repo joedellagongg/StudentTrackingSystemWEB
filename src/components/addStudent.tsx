@@ -107,147 +107,160 @@ export default function AddStudent({ closeModal }) {
   };
 
   return (
-    <div className="z-50 bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 flex items-center justify-center">
-      <div className="bg-white flex justify-center items-center max-h-[80%] max-w-[80%] p-4 rounded-xl">
-        <form onSubmit={handleSubmit} className="flex flex-col w-full h-full">
-          <div className=" grid grid-cols-3">
-            <div className="m-2 flex flex-col">
-              <label htmlFor="lname">Last Name</label>
+    <div className="z-50 bg-black bg-opacity-50 w-full h-full fixed inset-0 flex items-center justify-center">
+      <div className="bg-white flex justify-center items-center w-[90%] lg:w-[60%] p-4 rounded-xl text-sm max-h-[90vh] overflow-auto">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col w-full space-y-4"
+        >
+          <div className="">
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="flex flex-col">
+                <label htmlFor="lname">Last Name</label>
+                <input
+                  id="lname"
+                  type="text"
+                  placeholder="Last Name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl capitalize"
+                />
+                {errors.lastName && (
+                  <p className="text-red-500 text-sm">{errors.lastName}</p>
+                )}
+              </div>
+
+              <div className="flex flex-col">
+                <label htmlFor="fname">First Name</label>
+                <input
+                  id="fname"
+                  type="text"
+                  placeholder="First Name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
+                />
+                {errors.firstName && (
+                  <p className="text-red-500 text-sm">{errors.firstName}</p>
+                )}
+              </div>
+
+              <div className="flex flex-col">
+                <label htmlFor="mname">Middle Name</label>
+                <input
+                  id="mname"
+                  type="text"
+                  placeholder="Middle Name"
+                  value={middleName}
+                  onChange={(e) => setMiddleName(e.target.value)}
+                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
+                />
+                {errors.middleName && (
+                  <p className="text-red-500 text-sm">{errors.middleName}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="flex flex-col">
+                <label htmlFor="num">Contact Number</label>
+                <input
+                  id="num"
+                  type="number"
+                  placeholder="Contact Number"
+                  value={studentContact}
+                  onChange={(e) => setStudentContact(e.target.value)}
+                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
+                />
+                {errors.studentContact && (
+                  <p className="text-red-500 text-sm">
+                    {errors.studentContact}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex flex-col">
+                <label htmlFor="email">Email Address</label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="Email Address"
+                  value={emailAddress}
+                  onChange={(e) => setEmailAddress(e.target.value)}
+                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
+                />
+                {errors.emailAddress && (
+                  <p className="text-red-500 text-sm">{errors.emailAddress}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="flex flex-col">
+              <label htmlFor="guardian">Guardian Name</label>
               <input
-                id="lname"
+                id="guardian"
                 type="text"
-                placeholder="Last Name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                className="h-10 w-full outline-0 border pl-6 rounded-xl capitalize"
+                placeholder="Guardian Name"
+                value={guardianName}
+                onChange={(e) => setGuardianName(e.target.value)}
+                className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
               />
-              {errors.lastName && (
-                <p className="text-red-500 text-sm">{errors.lastName}</p>
+              {errors.guardianName && (
+                <p className="text-red-500 text-sm">{errors.guardianName}</p>
               )}
             </div>
 
-            <div className="m-2 flex flex-col">
-              <label htmlFor="fname">First Name</label>
-              <input
-                id="fname"
-                type="text"
-                placeholder="First Name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                className="h-10 w-full outline-0 border pl-6 rounded-xl"
-              />
-              {errors.firstName && (
-                <p className="text-red-500 text-sm">{errors.firstName}</p>
-              )}
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="flex flex-col">
+                <label htmlFor="guardiannum">Guardian's Contact Number</label>
+                <input
+                  id="guardiannum"
+                  type="number"
+                  placeholder="Guardian's Contact Number"
+                  value={guardianContact}
+                  onChange={(e) => setGuardianContact(e.target.value)}
+                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
+                />
+                {errors.guardianContact && (
+                  <p className="text-red-500 text-sm">
+                    {errors.guardianContact}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex flex-col">
+                <label htmlFor="guardianEmail">Guardian's Email</label>
+                <input
+                  id="guardianEmail"
+                  type="email"
+                  placeholder="Guardian's Email"
+                  value={guardianEmailAddress}
+                  onChange={(e) => setGuardianEmailAddress(e.target.value)}
+                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
+                />
+                {errors.guardianEmail && (
+                  <p className="text-red-500 text-sm">{errors.guardianEmail}</p>
+                )}
+              </div>
             </div>
 
-            <div className="m-2 flex flex-col">
-              <label htmlFor="mname">Middle Name</label>
+            <div className="flex flex-col">
+              <label htmlFor="nfc">NFC ID Number</label>
               <input
-                id="mname"
-                type="text"
-                placeholder="Middle Name"
-                value={middleName}
-                onChange={(e) => setMiddleName(e.target.value)}
-                className="h-10 w-full outline-0 border pl-6 rounded-xl"
-              />
-              {errors.middleName && (
-                <p className="text-red-500 text-sm">{errors.middleName}</p>
-              )}
-            </div>
-          </div>
-
-          <div className=" grid grid-cols-2">
-            <div className="m-2 flex flex-col">
-              <label htmlFor="num">Contact Number</label>
-              <input
-                id="num"
+                id="nfc"
                 type="number"
-                placeholder="Contact Number"
-                value={studentContact}
-                onChange={(e) => setStudentContact(e.target.value)}
-                className="h-10 w-full outline-0 border pl-6 rounded-xl"
+                placeholder="NFC ID Number"
+                value={NFCid}
+                onChange={(e) => setNFCid(e.target.value)}
+                className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
               />
-              {errors.studentContact && (
-                <p className="text-red-500 text-sm">{errors.studentContact}</p>
+              {errors.NFCid && (
+                <p className="text-red-500 text-sm">{errors.NFCid}</p>
               )}
             </div>
-
-            <div className="m-2 flex flex-col">
-              <label htmlFor="email">Email Address</label>
-              <input
-                id="email"
-                type="email"
-                placeholder="Email Address"
-                value={emailAddress}
-                onChange={(e) => setEmailAddress(e.target.value)}
-                className="h-10 w-full outline-0 border pl-6 rounded-xl"
-              />
-              {errors.emailAddress && (
-                <p className="text-red-500 text-sm">{errors.emailAddress}</p>
-              )}
-            </div>
-          </div>
-          <div className="m-2 flex flex-col">
-            <label htmlFor="guardian">Guardian Name</label>
-            <input
-              id="guardian"
-              type="text"
-              placeholder="Guardian Name"
-              value={guardianName}
-              onChange={(e) => setGuardianName(e.target.value)}
-              className="h-10 w-full outline-0 border pl-6 rounded-xl"
-            />
-            {errors.guardianName && (
-              <p className="text-red-500 text-sm">{errors.guardianName}</p>
-            )}
           </div>
 
-          <div className=" grid grid-cols-2">
-            <div className="m-2 flex flex-col">
-              <label htmlFor="guardiannum">Guardian's Contact Number</label>
-              <input
-                id="guardiannum"
-                type="number"
-                placeholder="Guardian's Contact Number"
-                value={guardianContact}
-                onChange={(e) => setGuardianContact(e.target.value)}
-                className="h-10 w-full outline-0 border pl-6 rounded-xl"
-              />
-              {errors.guardianContact && (
-                <p className="text-red-500 text-sm">{errors.guardianContact}</p>
-              )}
-            </div>
-            <div className="m-2 flex flex-col">
-              <label htmlFor="guardiannum">Guardian's Email</label>
-              <input
-                id="guardianEmail"
-                type="email"
-                placeholder="Guardian's Email"
-                value={guardianEmailAddress}
-                onChange={(e) => setGuardianEmailAddress(e.target.value)}
-                className="h-10 w-full outline-0 border pl-6 rounded-xl"
-              />
-              {errors.guardianContact && (
-                <p className="text-red-500 text-sm">{errors.guardianEmail}</p>
-              )}
-            </div>
-          </div>
-          <div className="m-2 flex flex-col">
-            <label htmlFor="nfc">NFC ID Number</label>
-            <input
-              id="nfc"
-              type="number"
-              placeholder="NFC ID Number"
-              value={NFCid}
-              onChange={(e) => setNFCid(e.target.value)}
-              className="h-10 w-full outline-0 border pl-6 rounded-xl"
-            />
-            {errors.NFCid && (
-              <p className="text-red-500 text-sm">{errors.NFCid}</p>
-            )}
-          </div>
-          <div className="w-full flex justify-end gap-4">
+          <div className="flex justify-end gap-4 py-2">
             <button
               onClick={closeModal}
               type="button"

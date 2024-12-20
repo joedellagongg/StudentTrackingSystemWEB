@@ -59,8 +59,8 @@ export default function TopUp_Form({ onClose, amount }) {
   };
 
   return (
-    <main className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="h-[80%] w-[70%] bg-white p-4 rounded-xl">
+    <main className="fixed inset-0 flex p-4 items-center justify-center bg-black bg-opacity-50">
+      <div className=" h-[60%] md:h-[70%] lg:h-[80%] w-full lg:w-[70%] bg-white p-4 rounded-xl">
         <div className=" flex flex-row justify-between items-center">
           <h1 className="text-xl font-bold">Top Up to:</h1>
           <button
@@ -71,7 +71,7 @@ export default function TopUp_Form({ onClose, amount }) {
           </button>
         </div>
         <div className="w-full h-[95%] flex flex-col justify-center items-center">
-          <div className="w-[70%] flex flex-col gap-2">
+          <div className=" w-full md:w-[80%] lg:w-[70%] flex flex-col gap-2">
             <label htmlFor="nfc">NFC ID:</label>
             <input
               id="nfc"
@@ -80,7 +80,7 @@ export default function TopUp_Form({ onClose, amount }) {
               value={studentID}
               onChange={(e) => setstudentID(e.target.value)}
               placeholder=" Tap NFC ID"
-              className=" text-center outline-none pl-4 pr-4 border border-[#002147] w-full h-28 rounded-lg"
+              className=" text-center outline-none pl-4 pr-4 border border-[#002147] w-full h-16 md:h-24 lg:h-28 rounded-lg"
             />
           </div>
 
@@ -113,7 +113,7 @@ export default function TopUp_Form({ onClose, amount }) {
                 </div>
               ))
             : studentID && (
-                <p className="w-[70%] text-center text-red-400 mt-2">
+                <p className="w-[70%] text-sm text-center text-red-400 mt-2">
                   No user found with this NFC ID.
                 </p>
               )}

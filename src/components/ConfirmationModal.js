@@ -10,7 +10,7 @@ const ConfirmationModal = ({ isOpen, onClose, onConfirm, studentNames }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white p-6 w-[30%] gap-y-6 rounded-xl flex flex-col justify-center items-center text-center">
+      <div className="bg-white p-6 lg:w-[30%] gap-y-6 rounded-xl flex flex-col justify-center items-center text-center">
         <h2 className="text-xl mb-4">
           {studentNames.length === 1 ? (
             <>

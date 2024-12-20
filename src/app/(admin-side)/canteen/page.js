@@ -30,7 +30,7 @@ export default function Canteen() {
     <main className="w-full h-full rounded-2xl overflow-x-scroll bg-[#ffffff]">
       <button
         onClick={() => setAddModal(true)}
-        className="fixed self-end bottom-8 right-8"
+        className="fixed self-end bottom-4 right-4 md:bottom-8 md:right-8 z-40"
       >
         <Image
           priority={true}
@@ -41,7 +41,7 @@ export default function Canteen() {
           alt="Add"
         />
       </button>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 p-6 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 p-6 gap-3 z-10">
         {canteen.map((item, index) => (
           <button
             onClick={() => navigate("../canteen_dashboard")}
@@ -64,8 +64,8 @@ export default function Canteen() {
           </button>
         ))}
         {deleteModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white p-6 w-[30%] rounded-xl flex flex-col text-center justify-center items-center">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+            <div className="bg-white p-6 w-[90%] md:w-[40%] lg:w-[30%] rounded-xl flex flex-col text-center justify-center items-center">
               <p className=" text-lg">
                 Are you sure you want to delete{" "}
                 <span className=" text-xl font-bold">{selectedCanteen}</span> ?
@@ -82,7 +82,6 @@ export default function Canteen() {
                   className="bg-red-500 text-white p-2 rounded-xl"
                   onClick={() => {
                     setDeleteModal(false);
-                    // Add your delete action here (e.g., removing from state)
                   }}
                 >
                   Delete
@@ -94,7 +93,7 @@ export default function Canteen() {
 
         {addModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white p-6 w-[40%] rounded-xl flex flex-col text-left justify-center items-center">
+            <div className="bg-white p-6 w-[90%] md:w-[60%] lg:w-[40%] rounded-xl flex flex-col text-left justify-center items-center">
               <div className="w-full">
                 <p className="font-bold">Canteen Name:</p>
                 <input
