@@ -86,7 +86,7 @@ export default function TopUp_Form({ onClose, amount }) {
 
           {studentID && students.length > 0
             ? students.map((item) => (
-                <div key={item.student_id} className="w-[70%] mt-4 text-xl">
+                <div key={item.student_id} className=" w-[80%] mt-4 text-sm md:text-xl">
                   <p className="">
                     Student ID:{" "}
                     <span className=" font-bold">{item.username}</span>
@@ -106,7 +106,7 @@ export default function TopUp_Form({ onClose, amount }) {
                       <span className=" capitalize">{item.section}</span>{" "}
                     </span>
                   </p>
-                  <p className=" text-3xl">
+                  <p className=" text-lg md:text-3xl">
                     Total Amount: <span className=" font-bold">₱ {amount}</span>
                   </p>
                   <br />
