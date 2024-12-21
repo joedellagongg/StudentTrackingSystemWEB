@@ -131,14 +131,14 @@ export default function Stud_list() {
   return (
     <main className="w-full h-full p-4 rounded-2xl bg-[#ffffff] overflow-y-scroll no-scrollbar">
       <div className="w-full h-full flex flex-col">
-        <div className="flex flex-row border-b pb-4 justify-between ">
+        <div className="flex flex-row border-b pb-4 justify-between items-center ">
           <button onClick={() => navigate("../section", "admin")}>
             <Image
               height={0}
               width={0}
               src="./icons/back-icon.svg"
               alt="back"
-              className="h-[50px] w-auto"
+              className=" h-[40px] md:h-[50px] w-auto"
             />
           </button>
 
@@ -147,20 +147,20 @@ export default function Stud_list() {
               key={items.id}
               className="uppercase flex items-center justify-center no-scrollbar"
             >
-              <h1 className="text-3xl">
+              <h1 className=" md:text-3xl font-bold">
                 {items.strand} {items.grade_level} -{" "}
                 <span className="capitalize">{items.section_name}</span>
               </h1>
             </div>
           ))}
           <a href="/template/add_student.csv" download="Add_student.csv">
-            <button className=" bg-[#002147] text-sm text-white p-2 rounded-xl flex flex-row gap-x-2 justify-center items-center">
+            <button className=" bg-[#002147] text-sm text-white p-2 rounded-xl flex flex-row gap-x-1 lg:gap-x-2 justify-center items-center">
               <Image
                 width={0}
                 height={0}
                 src="/icons/download.svg"
                 alt="download"
-                className=" h-6 w-auto"
+                className=" h-4 lg:h-6 w-auto"
               />
               Template
             </button>
@@ -170,7 +170,7 @@ export default function Stud_list() {
           <div></div>
         ) : (
           <div className=" w-full flex justify-center">
-            <div className=" w-[80%] py-2 flex flex-row items-center justify-between">
+            <div className=" w-full md:w-[80%] py-2 flex flex-row items-center justify-between">
               <div className="py-4 flex flex-row items-center justify-between gap-x-2">
                 <input id="all" type="checkbox" onChange={handleSelectAll} />
                 <label htmlFor="all" className="text-sm">
@@ -188,7 +188,7 @@ export default function Stud_list() {
                     width={0}
                     src="./icons/filter.svg"
                     alt="filter"
-                    className="h-6 w-auto"
+                    className=" h-4 md:h-6 w-auto"
                   />
                   Filter
                 </button>
@@ -224,7 +224,7 @@ export default function Stud_list() {
                     height={0}
                     src="./icons/delete-white.svg"
                     alt="delete"
-                    className="h-6 w-auto"
+                    className="h-4 md:h-6 w-auto"
                   />
                   Delete
                 </button>
@@ -240,7 +240,7 @@ export default function Stud_list() {
         )}
 
         <div className="relative w-full h-[90%] overflow-y-scroll flex justify-center no-scrollbar">
-          <table className="w-[80%] max-h-[20%] border-collapse no-scrollbar">
+          <table className=" w-full md:w-[80%] max-h-[20%] border-collapse no-scrollbar">
             <tbody>
               {students.length === 0 ? (
                 <tr>
@@ -269,17 +269,17 @@ export default function Stud_list() {
                         onChange={() => handleSelectStudent(list.student_id)}
                       />
                     </td>
-                    <td className="p-4">
+                    <td className="md:p-4 p-1">
                       <Image
                         width={0}
                         height={0}
                         src="./images/profile.svg"
                         alt="Student Picture"
-                        className="rounded-full h-[50px] w-auto"
+                        className="rounded-full h-[60px] md:h-[50px] w-auto"
                       />
                     </td>
-                    <td className="p-4">{list.username}</td>
-                    <td className="capitalize p-4 text-center">
+                    <td className="md:p-4 text-xs md:text-sm">{list.username}</td>
+                    <td className="capitalize text-xs md:text-sm md:p-4 text-center">
                       {list.lname}, {list.fname} {list.mname}
                     </td>
                     <td className="p-4 text-end">
@@ -289,7 +289,7 @@ export default function Stud_list() {
                             `../student_profile?id=${list.student_id}&section=${urlID}`
                           )
                         }
-                        className="bg-[#002147] text-white p-3 text-sm rounded-lg"
+                        className="bg-[#002147] text-white p-1 md:p-3 text-xs md:text-sm rounded-lg"
                       >
                         View Profile
                       </button>
@@ -303,7 +303,7 @@ export default function Stud_list() {
 
         <button
           onClick={handleAddButtonClick}
-          className={`absolute self-end bottom-8 right-8 transform transition-transform duration-300 z-50 ${
+          className={`absolute self-end bottom-6 md:bottom-8 md:right-8 transform transition-transform duration-300 z-40 ${
             isRotated ? " rotate-45" : ""
           }`}
         >
@@ -317,9 +317,9 @@ export default function Stud_list() {
         </button>
 
         {addModal && (
-          <div className="inset-0 fixed z-40">
+          <div className="inset-0 fixed">
             <div className="absolute inset-0 bg-black opacity-50"></div>
-            <div className="absolute right-10 bottom-32 flex flex-col gap-2 z-50">
+            <div className=" absolute right-10 bottom-[20%] md:bottom-32 flex flex-col gap-2 z-50">
               <button
                 onClick={() => setModal(true)}
                 className="bg-[#002147] p-4 h-16 w-16 text-white rounded-full flex flex-row justify-center items-center gap-2"

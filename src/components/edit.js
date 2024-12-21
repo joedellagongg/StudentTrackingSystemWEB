@@ -26,11 +26,11 @@ const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-6">
-      <div className="bg-white p-6 pb-10 rounded-xl shadow-lg w-[60%] max-h-[90%] flex flex-col gap-y-2 ">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4 lg:p-6">
+      <div className="bg-white p-6 lg:pb-10 rounded-xl shadow-lg w-full lg:w-[60%] max-h-[90%] flex flex-col gap-y-2 text-sm">
         <h2 className="text-xl font-semibold">Edit Student Information</h2>
         <div className="overflow-y-scroll h-[90%] w-full flex flex-col gap-y-3">
-          <div className=" grid grid-cols-3 justify-around w-full gap-6">
+          <div className=" grid md:grid-cols-3 lg:justify-around w-full gap-6">
             <div className=" flex flex-col justify-center">
               <p className="text-sm">First Name</p>
               <input
@@ -75,7 +75,7 @@ const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
             </div>
           </div>
 
-          <div className=" grid grid-cols-2 justify-around w-full gap-6">
+          <div className=" grid md:grid-cols-2 md:justify-around w-full gap-6">
             <div className=" flex flex-col justify-center">
               <p className="text-sm">Email Address</p>
               <input
@@ -119,7 +119,7 @@ const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
               className="border rounded-xl h-10 p-3 bg-[#E5F1FF]"
             />
           </div>
-          <div className=" grid grid-cols-2 w-full gap-6">
+          <div className=" grid md:grid-cols-2 w-full gap-6">
             <div className=" flex flex-col justify-center">
               <p className="text-sm">Guardian's Contact Number</p>
               <input

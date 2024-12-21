@@ -59,7 +59,7 @@ function Student_Profile() {
     <main className="w-full h-full p-4 rounded-2xl bg-[#ffffff] overflow-y-scroll">
       {students.map((item) => (
         <div className="w-full h-full flex flex-col" key={item.student_id}>
-          <div className="flex flex-row border-b pb-4 justify-between">
+          <div className="flex flex-row border-b md:pb-4 justify-between">
             <button
               onClick={() => router.push(`../student_list?section=${section}`)}
             >
@@ -68,32 +68,32 @@ function Student_Profile() {
                 height={0}
                 src="./icons/back-icon.svg"
                 alt="back"
-                className="h-[50px] w-auto"
+                className="h-[40px] md:h-[50px] w-auto"
               />
             </button>
             <div className="capitalize flex flex-row gap-6 items-center">
-              <div>
-                <h1 className="capitalize text-xl font-semibold">
+              <div className=" text-center">
+                <h1 className="capitalize text-sm md:text-2xl font-semibold">
                   {item.lname}, {item.fname} {item.mname}
                 </h1>
-                <p className="opacity-50">Student ID: {item.username}</p>
+                <p className="opacity-50 text-xs md:text-lg">Student ID: {item.username}</p>
               </div>
             </div>
             <div className="flex justify-center items-center">
               <button
                 onClick={() => handleEditClick(item)}
-                className="bg-[#002147] p-2 rounded text-white"
+                className="bg-[#002147] p-2 text-xs md:text-lg rounded text-white"
               >
                 Edit
               </button>
             </div>
           </div>
-          <div className="w-full h-[90%] overflow-y-scroll flex justify-center">
+          <div className="w-full h-[90%] overflow-y-scroll">
             <div
               key={item.student_id}
               className=" w-full mt-4 flex flex-col gap-y-4"
             >
-              <div className=" grid grid-cols-3 justify-around w-full gap-6">
+              <div className=" grid md:grid-cols-3 md:justify-around w-full gap-6">
                 <div>
                   <p className=" text-sm">Last Name</p>
                   <p className=" capitalize text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
@@ -113,7 +113,7 @@ function Student_Profile() {
                   </p>
                 </div>
               </div>
-              <div className=" grid grid-cols-2 justify-around w-full gap-6">
+              <div className=" grid md:grid-cols-2 md:justify-around w-full gap-6">
                 <div>
                   <p className=" text-sm">Email Address</p>
                   <p className=" text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
@@ -128,7 +128,7 @@ function Student_Profile() {
                 </div>
               </div>
 
-              <div className=" grid grid-cols-3 justify-around w-full gap-6">
+              <div className=" grid md:grid-cols-3 md:justify-around w-full gap-6">
                 <div>
                   <p className=" text-sm">Guardian Name</p>
                   <p className=" capitalize text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
@@ -148,7 +148,7 @@ function Student_Profile() {
                   </p>
                 </div>
               </div>
-              <div className=" w-[60%]">
+              <div className=" md:w-[60%]">
                 <p className=" text-sm">NFC ID</p>
                 <p className=" text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
                   {item.nfc_id}

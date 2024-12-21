@@ -56,7 +56,7 @@ export default function Sections() {
         ) : (
           <Section sections={sections} fetchSections={fetchSections} />
         )}
-        <button onClick={openModal} className="fixed self-end bottom-8 right-8">
+        <button onClick={openModal} className=" fixed self-end bottom-6 right-6 lg:bottom-8 lg:right-8">
           <Image
             priority={true}
             width={0}
@@ -68,8 +68,8 @@ export default function Sections() {
         </button>
       </div>
       {modal && (
-        <div className="z-50 bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 flex items-center justify-center">
-          <div className="bg-white rounded-lg p-6 relative w-[40%] flex flex-col justify-center items-center">
+        <div className="z-50 bg-black bg-opacity-50 w-full h-full inset-0 fixed left-0 flex items-center justify-center">
+          <div className="bg-white rounded-lg p-6 relative lg:w-[40%] w-[90%] flex flex-col justify-center items-center">
             <Add_section
               closeModal={closeModal}
               onSectionAdded={fetchSections}
