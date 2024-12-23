@@ -262,14 +262,14 @@ export default function Stud_list() {
               ) : (
                 students.map((list) => (
                   <tr key={list.student_id} className="border-b ">
-                    <td>
+                    <td className=" pr-2">
                       <input
                         type="checkbox"
                         checked={selectedStudents.has(list.student_id)}
                         onChange={() => handleSelectStudent(list.student_id)}
                       />
                     </td>
-                    <td className="md:p-4 p-1">
+                    <td className="md:p-4 p-1 hidden lg:flex">
                       <Image
                         width={0}
                         height={0}
@@ -278,7 +278,9 @@ export default function Stud_list() {
                         className="rounded-full h-[60px] md:h-[50px] w-auto"
                       />
                     </td>
-                    <td className="md:p-4 text-xs md:text-sm">{list.username}</td>
+                    <td className=" md:p-4 text-xs md:text-sm">
+                      {list.username}
+                    </td>
                     <td className="capitalize text-xs md:text-sm md:p-4 text-center">
                       {list.lname}, {list.fname} {list.mname}
                     </td>
@@ -289,7 +291,7 @@ export default function Stud_list() {
                             `../student_profile?id=${list.student_id}&section=${urlID}`
                           )
                         }
-                        className="bg-[#002147] text-white p-1 md:p-3 text-xs md:text-sm rounded-lg"
+                        className="bg-[#002147] text-white p-2 md:p-3 text-xs md:text-sm rounded-lg"
                       >
                         View Profile
                       </button>

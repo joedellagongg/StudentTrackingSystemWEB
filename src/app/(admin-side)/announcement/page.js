@@ -168,13 +168,13 @@ export default function Announcement() {
 
         {deleteModal && selectedAnnouncement && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="w-[50%] h-[50%] bg-white rounded-xl flex flex-col justify-center items-center p-6">
+            <div className=" w-[80%] md:w-[60%] lg:w-[50%] lg:h-[50%] bg-white rounded-xl flex flex-col justify-center items-center p-6">
               <div className="w-full h-[10%]" />
               <div className="w-full h-[70%] flex flex-col justify-center items-center text-center gap-y-4">
-                <p className="text-xl font-semi-bold">
+                <p className=" text-sm md:text-xl font-semi-bold">
                   Are you sure you want to delete this announcement?
                 </p>
-                <p className="text-xl">
+                <p className=" text-lg md:text-xl">
                   <strong className="font-bold uppercase">
                     {selectedAnnouncement.title}
                   </strong>
@@ -190,7 +190,7 @@ export default function Announcement() {
                 </button>
                 <button
                   onClick={() => deleteEvent(selectedAnnouncement.event_id)}
-                  className="bg-red-500 rounded-xl p-4 text-white"
+                  className="bg-red-500 rounded-xl p-2 md:p-4 text-white"
                 >
                   Delete
                 </button>
@@ -201,9 +201,9 @@ export default function Announcement() {
 
         {modal && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <form className="h-[90%] w-[80%] bg-white rounded-xl">
+            <form className=" lg:h-[90%] w-[80%] bg-white rounded-xl">
               <div className="h-[10%] p-4 w-full flex flex-row justify-between items-center">
-                <p className="text-[#002147] text-xl font-semibold">
+                <p className="text-[#002147] text-lg md:text-xl font-semibold">
                   Create Announcement
                 </p>
                 <button
@@ -215,10 +215,10 @@ export default function Announcement() {
                 </button>
               </div>
 
-              <div className="h-[80%] w-full overflow-x-scroll p-4 flex flex-col gap-y-4">
-                <div className="w-full h-[20%] flex flex-row justify-between gap-x-4">
-                  <div className="flex flex-col w-[50%]">
-                    <label htmlFor="title" className="text-xl font-semibold">
+              <div className="h-[80%] w-full overflow-y-scroll p-4 flex flex-col gap-y-4">
+                <div className="w-full h-[20%] flex flex-col md:flex-row justify-between gap-y-2 md:gap-x-4">
+                  <div className="flex flex-col w-full md:w-[50%]">
+                    <label htmlFor="title" className=" text-sm md:text-xl font-semibold">
                       Title:
                     </label>
                     <input
@@ -227,15 +227,15 @@ export default function Announcement() {
                       id="title"
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
-                      className="text-lg h-full rounded-lg p-2 border border-black outline-none"
+                      className=" text-sm md:text-lg h-12 lg:h-full rounded-lg p-2 border border-black outline-none"
                     />
                     {titleError && (
                       <p className="text-red-500 text-sm mt-1">{titleError}</p>
                     )}
                   </div>
 
-                  <div className="flex flex-col w-[50%]">
-                    <label htmlFor="date" className="text-xl font-semibold">
+                  <div className="flex flex-col w-full md:w-[50%]">
+                    <label htmlFor="date" className=" text-sm md:text-xl font-semibold">
                       Date:
                     </label>
                     <input
@@ -243,7 +243,7 @@ export default function Announcement() {
                       type="date"
                       value={date}
                       onChange={(e) => setDate(e.target.value)}
-                      className="text-lg h-full rounded-lg p-2 border border-black outline-none"
+                      className=" w-full text-sm md:text-lg h-12 lg:h-full rounded-lg p-2 border border-black outline-none"
                     />
                     {dateError && (
                       <p className="text-red-500 text-sm mt-1">{dateError}</p>
@@ -254,17 +254,17 @@ export default function Announcement() {
                 <div className="w-full h-[80%] flex flex-col">
                   <label
                     htmlFor="description"
-                    className="text-xl font-semibold"
+                    className=" text-sm md:text-xl font-semibold"
                   >
                     Description:
                   </label>
-                  <input
+                  <textarea
                     type="text"
                     placeholder="Announcement's Description"
                     id="description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    className="h-full rounded-lg p-2 border border-black outline-none text-center"
+                    className=" text-sm lg:text-lg h-44 lg:h-full rounded-lg p-2 border border-black outline-none text-center"
                   />
                   {descriptionError && (
                     <p className="text-red-500 text-sm mt-1">
@@ -284,7 +284,7 @@ export default function Announcement() {
                 </button>
                 <button
                   onClick={handleSubmit}
-                  className="bg-[#002147] text-white h-full w-[10%] rounded-xl"
+                  className="bg-[#002147] text-white h-10 lg:h-full w-[20%] lg:w-[10%] rounded-xl"
                 >
                   Save
                 </button>
