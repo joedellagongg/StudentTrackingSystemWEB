@@ -15,6 +15,8 @@ export default function TopUp_Form({ onClose, amount }) {
       setLoading(true);
       const response = await axiosInstance.get(`/students/nfc/${id}`);
       setStudents(response.data);
+      console.log(response.data);
+
       setError(null);
     } catch (err) {
       console.error(err);
@@ -42,17 +44,19 @@ export default function TopUp_Form({ onClose, amount }) {
 
   const handleSubmit = async () => {
     const description = `You just Top-up your Account Amount: ₱${amount}`;
-    const admin_id = 11; // to follow, basta pag nag log ang user dapat naka aassign na sa admin to.
-    const { student_id } = students[0];
+    const admin_id = 3; // to follow, basta pag nag log ang user dapat naka aassign na sa admin to.
+    const role = "admin";
+    const { user_id } = students[0];
+
     try {
       const res = await axiosInstance.post(`/paymentIntent`, {
-        student_id,
+        user_id,
         admin_id,
+        role,
         amount,
         description,
       });
       onClose();
-      console.log("ID", res.data.student_id);
     } catch (error) {
       console.log(error);
     }
@@ -86,7 +90,10 @@ export default function TopUp_Form({ onClose, amount }) {
 
           {studentID && students.length > 0
             ? students.map((item) => (
-                <div key={item.student_id} className=" w-[80%] mt-4 text-sm md:text-xl">
+                <div
+                  key={item.student_id}
+                  className=" w-[80%] mt-4 text-sm md:text-xl"
+                >
                   <p className="">
                     Student ID:{" "}
                     <span className=" font-bold">{item.username}</span>
