@@ -50,7 +50,7 @@ export default function Stud_list() {
             return new Date(b.createdAt) - new Date(a.createdAt);
           }
           return 0;
-        });
+        });  
 
         setStudents(sortedStudents);
         setSection(resSection.data);
@@ -288,7 +288,7 @@ export default function Stud_list() {
                       <button
                         onClick={() =>
                           navigate(
-                            `../student_profile?id=${list.student_id}&section=${urlID}`
+                            `../student_profile?id=${list.user_id}&section=${urlID}`
                           )
                         }
                         className="bg-[#002147] text-white p-2 md:p-3 text-xs md:text-sm rounded-lg"
