@@ -50,7 +50,7 @@ export default function Stud_list() {
             return new Date(b.createdAt) - new Date(a.createdAt);
           }
           return 0;
-        });  
+        });
 
         setStudents(sortedStudents);
         setSection(resSection.data);
@@ -66,7 +66,7 @@ export default function Stud_list() {
 
   const handleSelectAll = (e) => {
     if (e.target.checked) {
-      const allStudentIds = students.map((student) => student.student_id);
+      const allStudentIds = students.map((student) => student.user_id);
       setSelectedStudents(new Set(allStudentIds));
     } else {
       setSelectedStudents(new Set());
@@ -109,7 +109,7 @@ export default function Stud_list() {
       return;
     }
     const names = students
-      .filter((student) => selectedStudents.has(student.student_id))
+      .filter((student) => selectedStudents.has(student.user_id))
       .map((student) => `${student.lname}, ${student.fname}`);
     setStudentNames(names);
     setConfirmModalOpen(true);
@@ -261,12 +261,12 @@ export default function Stud_list() {
                 </tr>
               ) : (
                 students.map((list) => (
-                  <tr key={list.student_id} className="border-b ">
+                  <tr key={list.user_id} className="border-b ">
                     <td className=" pr-2">
                       <input
                         type="checkbox"
-                        checked={selectedStudents.has(list.student_id)}
-                        onChange={() => handleSelectStudent(list.student_id)}
+                        checked={selectedStudents.has(list.user_id)}
+                        onChange={() => handleSelectStudent(list.user_id)}
                       />
                     </td>
                     <td className="md:p-4 p-1 hidden lg:flex">

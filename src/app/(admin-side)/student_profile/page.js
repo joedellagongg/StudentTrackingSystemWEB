@@ -24,7 +24,17 @@ function Student_Profile() {
     const fetchStudents = async () => {
       try {
         const response = await axiosInstance.get(`/students/${urlID}`);
-        setStudents(response.data);
+        // console.log(
+        //   Array.isArray(response.data.students)
+        //     ? response.data.students
+        //     : [response.data.students]
+        // );
+
+        setStudents(
+          Array.isArray(response.data.students)
+            ? response.data.students
+            : [response.data.students]
+        );
         setLoading(false);
       } catch (err) {
         console.error(err);
@@ -58,7 +68,7 @@ function Student_Profile() {
   return (
     <main className="w-full h-full p-4 rounded-2xl bg-[#ffffff] overflow-y-scroll">
       {students.map((item) => (
-        <div className="w-full h-full flex flex-col" key={item.student_id}>
+        <div className="w-full h-full flex flex-col" key={item.user_id}>
           <div className="flex flex-row border-b md:pb-4 justify-between">
             <button
               onClick={() => router.push(`../student_list?section=${section}`)}
@@ -76,7 +86,9 @@ function Student_Profile() {
                 <h1 className="capitalize text-sm md:text-2xl font-semibold">
                   {item.lname}, {item.fname} {item.mname}
                 </h1>
-                <p className="opacity-50 text-xs md:text-lg">Student ID: {item.username}</p>
+                <p className="opacity-50 text-xs md:text-lg">
+                  Student ID: {item.username}
+                </p>
               </div>
             </div>
             <div className="flex justify-center items-center">
@@ -90,7 +102,7 @@ function Student_Profile() {
           </div>
           <div className="w-full h-[90%] overflow-y-scroll">
             <div
-              key={item.student_id}
+              key={item.user_id}
               className=" w-full mt-4 flex flex-col gap-y-4"
             >
               <div className=" grid md:grid-cols-3 md:justify-around w-full gap-6">
