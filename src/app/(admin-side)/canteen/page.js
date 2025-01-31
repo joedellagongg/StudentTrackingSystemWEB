@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import AddCanteenComponent from "../../../components/add_canteen";
 
 export default function Canteen() {
   const router = useRouter();
@@ -91,26 +92,7 @@ export default function Canteen() {
           </div>
         )}
 
-        {addModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white p-6 w-[90%] md:w-[60%] lg:w-[40%] rounded-xl flex flex-col text-left justify-center items-center">
-              <div className="w-full">
-                <p className="font-bold">Canteen Name:</p>
-                <input
-                  type="text"
-                  placeholder="Input Canteen Name"
-                  className="border h-12 rounded-xl outline-0 p-4 w-full"
-                />
-              </div>
-              <div className=" w-full flex flex-row justify-end items-center gap-x-4 mt-4">
-                <button onClick={() => setAddModal(false)}>Cancel</button>
-                <button className=" rounded-xl bg-[#002147] p-4 text-white">
-                  Save
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+        {addModal && <AddCanteenComponent setAddModal={setAddModal} />}
       </div>
     </main>
   );
