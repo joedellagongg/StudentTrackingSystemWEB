@@ -27,6 +27,7 @@ function AnnouncementInfo() {
     };
 
     const fetchEvents = async () => {
+        if (!urlID) return;
         setLoading(true);
         try {
             const response = await axiosInstance.get(
@@ -42,7 +43,7 @@ function AnnouncementInfo() {
 
     useEffect(() => {
         fetchEvents();
-    }, []);
+    }, [urlID, fetchEvents]);
 
     return (
         <main className="w-full h-full rounded-2xl overflow-x-scroll bg-white p-6">
