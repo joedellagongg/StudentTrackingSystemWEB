@@ -3,15 +3,15 @@ import React from "react";
 export default function AddCanteenComponent({ setAddModal }) {
   return (
     <div className="z-50 bg-black bg-opacity-50 w-full h-full fixed inset-0 flex items-center justify-center">
-      <div className="bg-white flex justify-center items-center w-[90%] lg:w-[60%] p-4 rounded-xl text-sm max-h-[90vh] overflow-auto">
+      <div className="bg-white flex justify-center items-center lg:w-[50%] w-[80%] p-4 rounded-xl text-sm max-h-[50vh] overflow-auto">
         <form
           //   onSubmit={handleSubmit}
-          className="flex flex-col w-full space-y-4"
+          className="flex flex-col w-full "
         >
           <div className="">
-            <div className="grid md:grid-cols-3 gap-4">
-              <div className="flex flex-col">
-                <label htmlFor="lname">Store Name</label>
+            <div className=" w-full">
+              <div className="flex flex-col mt-4">
+                <label htmlFor="lname" className=" text-base">Store Name</label>
                 <input
                   id="sname"
                   type="text"
@@ -21,46 +21,11 @@ export default function AddCanteenComponent({ setAddModal }) {
                   className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl capitalize"
                 />
               </div>
-              <div className="flex flex-col">
-                <label htmlFor="lname">Last Name</label>
-                <input
-                  id="lname"
-                  type="text"
-                  placeholder="Last Name"
-                  //   value={lastName}
-                  //   onChange={(e) => setLastName(e.target.value)}
-                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl capitalize"
-                />
-              </div>
-
-              <div className="flex flex-col">
-                <label htmlFor="fname">First Name</label>
-                <input
-                  id="fname"
-                  type="text"
-                  placeholder="First Name"
-                  //   value={firstName}
-                  //   onChange={(e) => setFirstName(e.target.value)}
-                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
-                />
-              </div>
-
-              <div className="flex flex-col">
-                <label htmlFor="mname">Middle Name</label>
-                <input
-                  id="mname"
-                  type="text"
-                  placeholder="Middle Name"
-                  //   value={middleName}
-                  //   onChange={(e) => setMiddleName(e.target.value)}
-                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
-                />
-              </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-4 mt-4">
               <div className="flex flex-col">
-                <label htmlFor="num">Contact Number</label>
+                <label htmlFor="num" className=" text-base">Contact Number</label>
                 <input
                   id="num"
                   type="number"
@@ -72,7 +37,7 @@ export default function AddCanteenComponent({ setAddModal }) {
               </div>
 
               <div className="flex flex-col">
-                <label htmlFor="email">Email Address</label>
+                <label htmlFor="email" className=" text-base">Email Address</label>
                 <input
                   id="email"
                   type="email"
@@ -84,46 +49,8 @@ export default function AddCanteenComponent({ setAddModal }) {
               </div>
             </div>
 
-            <div className="flex flex-col">
-              <label htmlFor="guardian">Guardian Name</label>
-              <input
-                id="guardian"
-                type="text"
-                placeholder="Guardian Name"
-                // value={guardianName}
-                // onChange={(e) => setGuardianName(e.target.value)}
-                className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
-              />
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="flex flex-col">
-                <label htmlFor="guardiannum">Guardian's Contact Number</label>
-                <input
-                  id="guardiannum"
-                  type="number"
-                  placeholder="Guardian's Contact Number"
-                  //   value={guardianContact}
-                  //   onChange={(e) => setGuardianContact(e.target.value)}
-                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
-                />
-              </div>
-
-              <div className="flex flex-col">
-                <label htmlFor="guardianEmail">Guardian's Email</label>
-                <input
-                  id="guardianEmail"
-                  type="email"
-                  placeholder="Guardian's Email"
-                  //   value={guardianEmailAddress}
-                  //   onChange={(e) => setGuardianEmailAddress(e.target.value)}
-                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col">
-              <label htmlFor="nfc">NFC ID Number</label>
+            <div className="flex flex-col mt-4">
+              <label htmlFor="nfc" className=" text-base">NFC ID Number</label>
               <input
                 id="nfc"
                 type="number"
@@ -135,7 +62,7 @@ export default function AddCanteenComponent({ setAddModal }) {
             </div>
           </div>
 
-          <div className="flex justify-end gap-4 py-2">
+          <div className="flex justify-end gap-4 py-2 mt-4">
             <button
               onClick={() => setAddModal(false)}
               type="button"
