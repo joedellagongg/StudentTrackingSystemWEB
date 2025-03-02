@@ -46,15 +46,14 @@ export default function TopUp_Form({ onClose, amount }) {
     const description = `You just Top-up your Account Amount: ₱${amount}`;
     const admin_id = 3; // to follow, basta pag nag log ang user dapat naka aassign na sa admin to.
     const role = "admin";
-    const { user_id } = students[0];
+    const { username } = students[0];
 
     try {
       const res = await axiosInstance.post(`/paymentIntent`, {
-        user_id,
+        username,
         admin_id,
         role,
         amount,
-        description,
       });
       onClose();
     } catch (error) {
