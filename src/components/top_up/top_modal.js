@@ -1,22 +1,21 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import axiosInstance from "@/library/axios";
+import Success from "@/components/success";
 
 export default function TopUp_Form({ onClose, amount }) {
-  const [studentID, setstudentID] = useState("");
+  const [studentID, setStudentID] = useState("");
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [modal, setModal] = useState(false);
   const [error, setError] = useState(null);
-
   const nfcInputRef = useRef(null);
 
-  const fetchStudents = async () => {
+  const fetchStudents = async (id) => {
     try {
       setLoading(true);
       const response = await axiosInstance.get(`/students/nfc/${id}`);
       setStudents(response.data);
-      console.log(response.data);
-
       setError(null);
     } catch (err) {
       console.error(err);
@@ -43,22 +42,26 @@ export default function TopUp_Form({ onClose, amount }) {
   }, []);
 
   const handleSubmit = async () => {
-    const description = `You just Top-up your Account Amount: ₱${amount}`;
-    const admin_id = 3; // to follow, basta pag nag log ang user dapat naka aassign na sa admin to.
+    const admin_id = 3;
     const role = "admin";
     const { username } = students[0];
-    console.log(students[0]);
 
     try {
-      console.log(username, admin_id, role, amount);
-
       const res = await axiosInstance.post(`/paymentIntent`, {
         username,
         admin_id,
         role,
         amount,
       });
-      onClose();
+
+      if (res.status === 200) {
+        setModal(true);
+
+        setTimeout(() => {
+          setModal(false);
+          onClose();
+        }, 2000);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -66,27 +69,27 @@ export default function TopUp_Form({ onClose, amount }) {
 
   return (
     <main className="fixed inset-0 flex p-4 items-center justify-center bg-black bg-opacity-50">
-      <div className=" h-[60%] md:h-[70%] lg:h-[80%] w-full lg:w-[70%] bg-white p-4 rounded-xl">
-        <div className=" flex flex-row justify-between items-center">
+      <div className="h-[60%] md:h-[70%] lg:h-[80%] w-full lg:w-[70%] bg-white p-4 rounded-xl">
+        <div className="flex flex-row justify-between items-center">
           <h1 className="text-xl font-bold">Top Up to:</h1>
           <button
             onClick={onClose}
-            className=" font-bold text-2xl text-[#002147]"
+            className="font-bold text-2xl text-[#002147]"
           >
             X
           </button>
         </div>
         <div className="w-full h-[95%] flex flex-col justify-center items-center">
-          <div className=" w-full md:w-[80%] lg:w-[70%] flex flex-col gap-2">
+          <div className="w-full md:w-[80%] lg:w-[70%] flex flex-col gap-2">
             <label htmlFor="nfc">NFC ID:</label>
             <input
               id="nfc"
               ref={nfcInputRef}
               type="password"
               value={studentID}
-              onChange={(e) => setstudentID(e.target.value)}
+              onChange={(e) => setStudentID(e.target.value)}
               placeholder=" Tap NFC ID"
-              className=" text-center outline-none pl-4 pr-4 border border-[#002147] w-full h-16 md:h-24 lg:h-28 rounded-lg"
+              className="text-center outline-none pl-4 pr-4 border border-[#002147] w-full h-16 md:h-24 lg:h-28 rounded-lg"
             />
           </div>
 
@@ -94,29 +97,28 @@ export default function TopUp_Form({ onClose, amount }) {
             ? students.map((item) => (
                 <div
                   key={item.user_id}
-                  className=" w-[80%] mt-4 text-sm md:text-xl"
+                  className="w-[80%] mt-4 text-sm md:text-xl"
                 >
-                  <p className="">
+                  <p>
                     Student ID:{" "}
-                    <span className=" font-bold">{item.username}</span>
+                    <span className="font-bold">{item.username}</span>
                   </p>
-                  <p className="">
+                  <p>
                     Name:{" "}
-                    <span className=" font-bold">
-                      {item.lname}, {item.fname} {item.mname}{" "}
+                    <span className="font-bold">
+                      {item.lname}, {item.fname} {item.mname}
                     </span>
                   </p>
-                  <p className="">
-                    Grade & Section:{" "}
-                    <span className=" font-bold">
-                      <span className=" uppercase">
+                  <p>
+                    Grade & Section:
+                    <span className="font-bold">
+                      <span className="uppercase">
                         {item.strand} {item.grade_level} - {item.section_name}
                       </span>
-                      <span className=" capitalize">{item.section}</span>{" "}
                     </span>
                   </p>
-                  <p className=" text-lg md:text-3xl">
-                    Total Amount: <span className=" font-bold">₱ {amount}</span>
+                  <p className="text-lg md:text-3xl">
+                    Total Amount: <span className="font-bold">₱ {amount}</span>
                   </p>
                   <br />
                 </div>
@@ -145,6 +147,8 @@ export default function TopUp_Form({ onClose, amount }) {
           )}
         </div>
       </div>
+
+      {modal && <Success onClose={() => setModal(false)} />}
     </main>
   );
 }
