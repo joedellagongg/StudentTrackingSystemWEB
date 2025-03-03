@@ -3,102 +3,45 @@ import React, { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import axiosInstance from "@/library/axios";
 
-interface Errors {
-  NFCid?: string;
-  lastName?: string;
-  firstName?: string;
-  middleName?: string;
-  Age?: string;
-  Birthday?: string;
-  Gender?: string;
-  Address?: string;
-  emailAddress?: string;
-  fatherName?: string;
-  motherName?: string;
-  guardianName?: string;
-  studentContact?: string;
-  fatherContact?: string;
-  motherContact?: string;
-  guardianContact?: string;
-  guardianEmail?: string;
-}
-
 export default function AddStudent({ closeModal }) {
-  // joedellagongg - removed the    ^^ { closeModal}
-  const [NFCid, setNFCid] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [middleName, setMiddleName] = useState("");
-  const [emailAddress, setEmailAddress] = useState("");
-  const [guardianEmailAddress, setGuardianEmailAddress] = useState("");
-  const [guardianName, setGuardianName] = useState("");
-  const [studentContact, setStudentContact] = useState("");
-  const [guardianContact, setGuardianContact] = useState("");
-
-  const [errors, setErrors] = useState<Errors>({});
-
-  const crypto = require("crypto");
-
-  function generateRandomNumberString(length) {
-    let result = "";
-    while (result.length < length) {
-      const randomDigit = crypto.randomBytes(1)[0] % 10;
-      result += randomDigit;
-    }
-    return result;
-  }
-
-  const currentYear = new Date().getFullYear().toString().slice(-2);
-  const uname = currentYear + generateRandomNumberString(4);
-  const upass = currentYear + generateRandomNumberString(4);
-
   const searchParams = useSearchParams();
-  let urlID = searchParams.get("section");
-  // console.log(urlID);
+  let id = searchParams.get("section");
+
+  const [studentData, setStudentData] = useState({
+    nfc_id: "",
+    section_id: id,
+    lastName: "",
+    firstName: "",
+    middleName: "",
+    emailAddress: "",
+    guardianEmail: "",
+    guardianName: "",
+    studentContact: "",
+    guardianContact: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setStudentData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newErrors: Errors = {};
-
-    if (!NFCid) newErrors.NFCid = "NFC ID Number is required.";
-    if (!lastName) newErrors.lastName = "Last Name is required.";
-    if (!firstName) newErrors.firstName = "First Name is required.";
-    if (!middleName) newErrors.middleName = "Middle Name is required.";
-    if (!emailAddress) newErrors.emailAddress = "Email Address is required.";
-    if (!guardianEmailAddress)
-      newErrors.guardianEmail = "Guardian Email Address is required.";
-    if (!guardianName) newErrors.guardianName = "Guardian's Name is required.";
-    if (!studentContact)
-      newErrors.studentContact = "Contact Number is required.";
-    if (!guardianContact)
-      newErrors.guardianContact = "Guardian's Contact Number is required.";
-
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length > 0) return;
+    console.log("show student data: ", studentData);
 
     try {
-      const res = await axiosInstance.post("/students", {
-        NFCid,
-        uname,
-        upass,
-        urlID,
-        lastName,
-        firstName,
-        middleName,
-        emailAddress,
-        guardianName,
-        guardianEmailAddress,
-        studentContact,
-        guardianContact,
-      });
+      const res = await axiosInstance.post("/students", studentData);
 
-      if (res.data.result.authenticated == true) {
+      // console.log("hello", res.data.success);
+
+      if (res.data.success == true) {
         console.log(res.data);
+
         window.location.reload();
-      } else {
-        console.log("[ add_student: ERROR ]");
-        console.log("DATAAAAAAAAA", res.data);
       }
     } catch (err) {
       console.error(err);
@@ -119,45 +62,39 @@ export default function AddStudent({ closeModal }) {
                 <label htmlFor="lname">Last Name</label>
                 <input
                   id="lname"
+                  name="lastName"
                   type="text"
                   placeholder="Last Name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  value={studentData.lastName}
+                  onChange={handleChange}
                   className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl capitalize"
                 />
-                {errors.lastName && (
-                  <p className="text-red-500 text-sm">{errors.lastName}</p>
-                )}
               </div>
 
               <div className="flex flex-col">
                 <label htmlFor="fname">First Name</label>
                 <input
                   id="fname"
+                  name="firstName"
                   type="text"
                   placeholder="First Name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  value={studentData.firstName}
+                  onChange={handleChange}
                   className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
                 />
-                {errors.firstName && (
-                  <p className="text-red-500 text-sm">{errors.firstName}</p>
-                )}
               </div>
 
               <div className="flex flex-col">
                 <label htmlFor="mname">Middle Name</label>
                 <input
                   id="mname"
+                  name="middleName"
                   type="text"
                   placeholder="Middle Name"
-                  value={middleName}
-                  onChange={(e) => setMiddleName(e.target.value)}
+                  value={studentData.middleName}
+                  onChange={handleChange}
                   className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
                 />
-                {errors.middleName && (
-                  <p className="text-red-500 text-sm">{errors.middleName}</p>
-                )}
               </div>
             </div>
 
@@ -166,32 +103,26 @@ export default function AddStudent({ closeModal }) {
                 <label htmlFor="num">Contact Number</label>
                 <input
                   id="num"
+                  name="studentContact"
                   type="number"
                   placeholder="Contact Number"
-                  value={studentContact}
-                  onChange={(e) => setStudentContact(e.target.value)}
+                  value={studentData.studentContact}
+                  onChange={handleChange}
                   className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
                 />
-                {errors.studentContact && (
-                  <p className="text-red-500 text-sm">
-                    {errors.studentContact}
-                  </p>
-                )}
               </div>
 
               <div className="flex flex-col">
                 <label htmlFor="email">Email Address</label>
                 <input
                   id="email"
+                  name="emailAddress"
                   type="email"
                   placeholder="Email Address"
-                  value={emailAddress}
-                  onChange={(e) => setEmailAddress(e.target.value)}
+                  value={studentData.emailAddress}
+                  onChange={handleChange}
                   className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
                 />
-                {errors.emailAddress && (
-                  <p className="text-red-500 text-sm">{errors.emailAddress}</p>
-                )}
               </div>
             </div>
 
@@ -199,15 +130,13 @@ export default function AddStudent({ closeModal }) {
               <label htmlFor="guardian">Guardian Name</label>
               <input
                 id="guardian"
+                name="guardianName"
                 type="text"
                 placeholder="Guardian Name"
-                value={guardianName}
-                onChange={(e) => setGuardianName(e.target.value)}
+                value={studentData.guardianName}
+                onChange={handleChange}
                 className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
               />
-              {errors.guardianName && (
-                <p className="text-red-500 text-sm">{errors.guardianName}</p>
-              )}
             </div>
 
             <div className="grid md:grid-cols-2 gap-4">
@@ -215,32 +144,26 @@ export default function AddStudent({ closeModal }) {
                 <label htmlFor="guardiannum">Guardian's Contact Number</label>
                 <input
                   id="guardiannum"
+                  name="guardianContact"
                   type="number"
                   placeholder="Guardian's Contact Number"
-                  value={guardianContact}
-                  onChange={(e) => setGuardianContact(e.target.value)}
+                  value={studentData.guardianContact}
+                  onChange={handleChange}
                   className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
                 />
-                {errors.guardianContact && (
-                  <p className="text-red-500 text-sm">
-                    {errors.guardianContact}
-                  </p>
-                )}
               </div>
 
               <div className="flex flex-col">
                 <label htmlFor="guardianEmail">Guardian's Email</label>
                 <input
                   id="guardianEmail"
+                  name="guardianEmail"
                   type="email"
                   placeholder="Guardian's Email"
-                  value={guardianEmailAddress}
-                  onChange={(e) => setGuardianEmailAddress(e.target.value)}
+                  value={studentData.guardianEmail}
+                  onChange={handleChange}
                   className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
                 />
-                {errors.guardianEmail && (
-                  <p className="text-red-500 text-sm">{errors.guardianEmail}</p>
-                )}
               </div>
             </div>
 
@@ -248,21 +171,20 @@ export default function AddStudent({ closeModal }) {
               <label htmlFor="nfc">NFC ID Number</label>
               <input
                 id="nfc"
+                name="nfc_id"
                 type="number"
                 placeholder="NFC ID Number"
-                value={NFCid}
-                onChange={(e) => setNFCid(e.target.value)}
+                value={studentData.nfc_id}
+                onChange={handleChange}
                 className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
               />
-              {errors.NFCid && (
-                <p className="text-red-500 text-sm">{errors.NFCid}</p>
-              )}
             </div>
           </div>
 
           <div className="flex justify-end gap-4 py-2">
             <button
               onClick={closeModal}
+              name=""
               type="button"
               className="bg-white border h-10 w-20 rounded-xl"
             >
