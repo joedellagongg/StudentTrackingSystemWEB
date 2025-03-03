@@ -10,7 +10,7 @@ export default function TopUp_Form({ onClose, amount }) {
 
   const nfcInputRef = useRef(null);
 
-  const fetchStudents = async (id) => {
+  const fetchStudents = async () => {
     try {
       setLoading(true);
       const response = await axiosInstance.get(`/students/nfc/${id}`);
@@ -47,8 +47,11 @@ export default function TopUp_Form({ onClose, amount }) {
     const admin_id = 3; // to follow, basta pag nag log ang user dapat naka aassign na sa admin to.
     const role = "admin";
     const { username } = students[0];
+    console.log(students[0]);
 
     try {
+      console.log(username, admin_id, role, amount);
+
       const res = await axiosInstance.post(`/paymentIntent`, {
         username,
         admin_id,
