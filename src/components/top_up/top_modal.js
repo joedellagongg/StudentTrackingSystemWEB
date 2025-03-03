@@ -2,6 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import axiosInstance from "@/library/axios";
 import Success from "@/components/success";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function TopUp_Form({ onClose, amount }) {
   const [studentID, setStudentID] = useState("");
@@ -55,11 +57,16 @@ export default function TopUp_Form({ onClose, amount }) {
       });
 
       if (res.status === 200) {
+        toast.success("Top-up was successful!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+
         setModal(true);
 
         setTimeout(() => {
-          setModal(false);
           onClose();
+          setModal(false);
         }, 2000);
       }
     } catch (error) {
@@ -81,74 +88,78 @@ export default function TopUp_Form({ onClose, amount }) {
         </div>
         <div className="w-full h-[95%] flex flex-col justify-center items-center">
           <div className="w-full md:w-[80%] lg:w-[70%] flex flex-col gap-2">
-            <label htmlFor="nfc">NFC ID:</label>
-            <input
-              id="nfc"
-              ref={nfcInputRef}
-              type="password"
-              value={studentID}
-              onChange={(e) => setStudentID(e.target.value)}
-              placeholder=" Tap NFC ID"
-              className="text-center outline-none pl-4 pr-4 border border-[#002147] w-full h-16 md:h-24 lg:h-28 rounded-lg"
-            />
-          </div>
+            {!students.length && (
+              <>
+                <label htmlFor="nfc">NFC ID:</label>
+                <input
+                  id="nfc"
+                  ref={nfcInputRef}
+                  type="password"
+                  value={studentID}
+                  onChange={(e) => setStudentID(e.target.value)}
+                  placeholder=" Tap NFC ID"
+                  className="text-center outline-none pl-4 pr-4 border border-[#002147] w-full h-16 md:h-24 lg:h-28 rounded-lg"
+                />
+              </>
+            )}
 
-          {studentID && students.length > 0
-            ? students.map((item) => (
-                <div
-                  key={item.user_id}
-                  className="w-[80%] mt-4 text-sm md:text-xl"
-                >
-                  <p>
-                    Student ID:{" "}
-                    <span className="font-bold">{item.username}</span>
-                  </p>
-                  <p>
-                    Name:{" "}
-                    <span className="font-bold">
-                      {item.lname}, {item.fname} {item.mname}
-                    </span>
-                  </p>
-                  <p>
-                    Grade & Section:
-                    <span className="font-bold">
-                      <span className="uppercase">
-                        {item.strand} {item.grade_level} - {item.section_name}
+            {studentID && students.length > 0
+              ? students.map((item) => (
+                  <div
+                    key={item.user_id}
+                    className="w-full mt-4 text-[2vw]"
+                  >
+                    <p>
+                      Student ID:{" "}
+                      <span className="font-bold">{item.username}</span>
+                    </p>
+                    <p>
+                      Name:{" "}
+                      <span className="font-bold">
+                        {item.lname}, {item.fname} {item.mname}
                       </span>
-                    </span>
+                    </p>
+                    <p>
+                      Grade & Section:{" "}
+                      <span className="font-bold">
+                        <span className="uppercase">
+                          {item.strand} {item.grade_level} - {item.section_name}
+                        </span>
+                      </span>
+                    </p>
+                    <p className="text-lg md:text-3xl">
+                      Total Amount:{" "}
+                      <span className="font-bold">₱ {amount}</span>
+                    </p>
+                    <br />
+                  </div>
+                ))
+              : studentID && (
+                  <p className="w-full text-sm text-center text-red-400 mt-2">
+                    No user found with this NFC ID.
                   </p>
-                  <p className="text-lg md:text-3xl">
-                    Total Amount: <span className="font-bold">₱ {amount}</span>
-                  </p>
-                  <br />
-                </div>
-              ))
-            : studentID && (
-                <p className="w-[70%] text-sm text-center text-red-400 mt-2">
-                  No user found with this NFC ID.
-                </p>
-              )}
+                )}
+            {modal && <Success />}
 
-          {students.length > 0 && (
-            <div className="w-[70%] flex flex-row gap-4 justify-center mt-4">
-              <button
-                onClick={onClose}
-                className="w-[45%] bg-gray-400 rounded-xl p-2 text-xl"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleSubmit}
-                className="w-[45%] bg-[#002147] rounded-xl p-2 text-xl text-white"
-              >
-                Confirm
-              </button>
-            </div>
-          )}
+            {students.length > 0 && (
+              <div className="w-full flex flex-row gap-4 justify-center mt-4">
+                <button
+                  onClick={onClose}
+                  className="w-[50%] bg-gray-400 rounded-xl p-2 text-xl"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleSubmit}
+                  className="w-[50%] bg-[#002147] rounded-xl p-2 text-xl text-white"
+                >
+                  Confirm
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-
-      {modal && <Success onClose={() => setModal(false)} />}
     </main>
   );
 }
