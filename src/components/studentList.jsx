@@ -1,5 +1,4 @@
 "use client";
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
@@ -10,12 +9,10 @@ import Image from "next/image";
 import AddStudent from "./addStudent";
 
 export default function Stud_list() {
-  // console.log("COMPONENTS  HHHHHHHHHHHHHHHHHHHHHH", urlID);
   const router = useRouter();
 
   const searchParams = useSearchParams();
   const urlID = searchParams.get("section");
-  // console.log("student list component jsx", urlID);
 
   const navigate = (path) => {
     router.push(path);
@@ -38,6 +35,8 @@ export default function Stud_list() {
         const response = await axiosInstance.get(`/students/section/${urlID}`);
         const resSection = await axiosInstance.get(`/section/${urlID}`);
 
+        // console.log(resSection);
+
         const sortedStudents = response.data.sort((a, b) => {
           const lastNameA = a.lname.toLowerCase();
           const lastNameB = b.lname.toLowerCase();
@@ -53,6 +52,8 @@ export default function Stud_list() {
         });
 
         setStudents(sortedStudents);
+        // console.log("fetched from api", sortedStudents);
+
         setSection(resSection.data);
         setLoading(false);
       } catch (err) {
@@ -66,7 +67,9 @@ export default function Stud_list() {
 
   const handleSelectAll = (e) => {
     if (e.target.checked) {
-      const allStudentIds = students.map((student) => student.user_id);
+      const allStudentIds = students.map((student) => student.username);
+      console.log(allStudentIds);
+
       setSelectedStudents(new Set(allStudentIds));
     } else {
       setSelectedStudents(new Set());
@@ -79,6 +82,8 @@ export default function Stud_list() {
 
   const handleSelectStudent = (studentId) => {
     const newSelectedStudents = new Set(selectedStudents);
+    console.log("handleSelectStudent:", studentId);
+
     if (newSelectedStudents.has(studentId)) {
       newSelectedStudents.delete(studentId);
     } else {
@@ -91,10 +96,20 @@ export default function Stud_list() {
   const [studentNames, setStudentNames] = useState([]);
 
   const handleDelete = async () => {
+    console.log("user_id: ", selectedStudents);
+
     const destructuredID = Array.from(selectedStudents);
+    console.log("refactor: ", destructuredID);
+
     try {
       await axiosInstance.delete(`/students/${destructuredID}`);
-      window.location.reload();
+
+      setStudents((prevStudents) =>
+        prevStudents.filter(
+          (student) => !selectedStudents.has(student.username)
+        )
+      );
+      // window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -261,12 +276,12 @@ export default function Stud_list() {
                 </tr>
               ) : (
                 students.map((list) => (
-                  <tr key={list.user_id} className="border-b ">
+                  <tr key={list.username} className="border-b ">
                     <td className=" pr-2">
                       <input
                         type="checkbox"
-                        checked={selectedStudents.has(list.user_id)}
-                        onChange={() => handleSelectStudent(list.user_id)}
+                        checked={selectedStudents.has(list.username)}
+                        onChange={() => handleSelectStudent(list.username)}
                       />
                     </td>
                     <td className="md:p-4 p-1 hidden lg:flex">
