@@ -8,55 +8,11 @@ export default function CanteenDasboard() {
   const navigate = (path) => {
     router.push(path);
   };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [withdrawAmount, setWithdrawAmount] = useState("");
+
   const transactions = [
-    {
-      name: "paula marie mendoza",
-      description: "purchase",
-      date: "Jan, 21, 2025",
-      transaction: "10",
-    },
-    {
-      name: "paula mendoza",
-      description: "purchase",
-      date: "Jan, 21, 2025",
-      transaction: "500",
-    },
-    {
-      name: "paula",
-      description: "purchase",
-      date: "Jan, 21, 2025",
-      transaction: "500",
-    },
-    {
-      name: "paulaaaaaaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaa",
-      description: "purchase",
-      date: "Jan, 21, 2025",
-      transaction: "500",
-    },
-    {
-      name: "paula marie mendoza",
-      description: "purchase",
-      date: "Jan, 21, 2025",
-      transaction: "10",
-    },
-    {
-      name: "paula mendoza",
-      description: "purchase",
-      date: "Jan, 21, 2025",
-      transaction: "500",
-    },
-    {
-      name: "paula",
-      description: "purchase",
-      date: "Jan, 21, 2025",
-      transaction: "500",
-    },
-    {
-      name: "paulaaaaaaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaa",
-      description: "purchase",
-      date: "Jan, 21, 2025",
-      transaction: "500",
-    },
     {
       name: "paula marie mendoza",
       description: "purchase",
@@ -107,10 +63,26 @@ export default function CanteenDasboard() {
     },
   ];
 
+  const handleModalToggle = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const handleWithdrawInputChange = (e) => {
+    setWithdrawAmount(e.target.value);
+  };
+
+  const handleWithdrawSubmit = (e) => {
+    e.preventDefault();
+    setIsModalOpen(false);
+  };
+
   return (
     <main className="w-full h-full rounded-2xl overflow-x-scroll bg-[#ffffff] p-6 flex flex-col gap-y-6">
       <div className="w-full h-[30%] flex flex-row justify-between">
-        <button onClick={() => navigate("../canteen")} className=" flex items-start">
+        <button
+          onClick={() => navigate("../canteen")}
+          className=" flex items-start"
+        >
           <Image
             width={0}
             height={0}
@@ -119,16 +91,60 @@ export default function CanteenDasboard() {
             className="h-[50px] w-auto"
           />
         </button>
+
         <div className="h-full w-[50%] bg-gradient-to-br from-[#002147] to-[#168FCC] rounded-2xl text-white p-4">
           <div className=" w-full h-[20%]">
             <text className=" font-bold text-2xl">Kenneth's Canteen</text>
           </div>
-          <div className=" h-[80%] flex justify-end flex-col gap-x-2">
-            <text className=" text-xl">Balance:</text>
-            <text className=" text-4xl font-bold">10,000</text>
+          <div className=" flex flex-row h-[80%]">
+            <div className=" flex justify-end flex-col gap-x-2">
+              <text className=" text-xl">Balance:</text>
+              <text className=" text-4xl font-bold">10,000</text>
+            </div>
+            <div className=" flex justify-end items-end flex-row w-full">
+              <button
+                onClick={handleModalToggle}
+                className=" w-[10vw] h-[5vw] p-4 bg-[#002147] text-white rounded-xl font-bold"
+              >
+                Withdraw
+              </button>
+            </div>
           </div>
         </div>
       </div>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-xl w-[300px]">
+            <h2 className="text-xl font-bold mb-4">Withdraw Amount</h2>
+            <form onSubmit={handleWithdrawSubmit}>
+              <input
+                type="number"
+                value={withdrawAmount}
+                onChange={handleWithdrawInputChange}
+                className="w-full p-2 mb-4 border rounded-lg"
+                placeholder="Enter amount"
+              />
+              <div className="flex justify-between">
+                <button
+                  type="button"
+                  onClick={handleModalToggle}
+                  className="px-4 py-2 bg-gray-300 text-black rounded-lg"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-[#002147] text-white rounded-lg"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       <div className="border border-gray-400 w-full h-[70%] rounded-xl p-4">
         <h1 className="font-bold text-[#002147] text-xl">Transactions</h1>
         <table className="w-full mt-4 table-auto">
