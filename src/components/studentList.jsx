@@ -195,6 +195,19 @@ export default function Stud_list() {
 
               <div className=" flex flex-row gap-x-2">
                 <button
+                  onClick={() => navigate("../nfc", "admin")}
+                  className="p-2 bg-[#002147] rounded-lg text-white text-sm flex flex-row items-center gap-1"
+                >
+                  <Image
+                    height={0}
+                    width={0}
+                    src="./icons/nfc.svg"
+                    alt="nfc"
+                    className=" h-4 md:h-6 w-auto"
+                  />
+                  Insert NFC
+                </button>
+                <button
                   onClick={toggleDropdown}
                   className="p-2 bg-[#002147] rounded-lg text-white text-sm flex flex-row items-center gap-1"
                 >
@@ -243,6 +256,7 @@ export default function Stud_list() {
                   />
                   Delete
                 </button>
+
                 <ConfirmationModal
                   isOpen={isConfirmModalOpen}
                   onClose={() => setConfirmModalOpen(false)}
