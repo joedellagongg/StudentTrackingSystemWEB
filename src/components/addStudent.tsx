@@ -45,7 +45,7 @@ export default function AddStudent({ closeModal }) {
       }
     } catch (err) {
       console.error(err);
-      console.log("[ add_student: ERROR  why]", err);
+      console.log("[ add_student: ERROR  why]", err);   
     }
   };
 

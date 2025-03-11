@@ -195,7 +195,8 @@ export default function Stud_list() {
 
               <div className=" flex flex-row gap-x-2">
                 <button
-                  onClick={() => navigate("../nfc", "admin")}
+                  // onClick={() => navigate("../nfc", "admin")}
+                  onClick={() => navigate(`../nfc?section=${urlID}`)}
                   className="p-2 bg-[#002147] rounded-lg text-white text-sm flex flex-row items-center gap-1"
                 >
                   <Image

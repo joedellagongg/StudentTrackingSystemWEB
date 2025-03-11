@@ -1,42 +1,49 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axiosInstance from "@/library/axios";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 
 export default function NFC() {
   const [studentsWithoutNfc, setStudentsWithoutNfc] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const searchParams = useSearchParams();
+  const section = searchParams.get("section");
+
   useEffect(() => {
+    if (!section) return; // Prevent API call if section is null
+
     const fetchStudents = async () => {
       try {
-        const response = await axiosInstance.get("/students"); // Adjust this endpoint as needed
-        const students = response.data;
+        const response = await axiosInstance.get(
+          `/students/nfc_lookup/${section}`
+        );
+        console.log("API Response:", response.data);
 
-        const studentsNoNfc = students.filter((student) => !student.nfc_id);
-        setStudentsWithoutNfc(studentsNoNfc);
-        setLoading(false);
+        setStudentsWithoutNfc(response.data.data); // Correctly accessing the data array
       } catch (err) {
         console.error("Error fetching students:", err);
+      } finally {
         setLoading(false);
       }
     };
 
     fetchStudents();
-  }, []);
+  }, [section]); // Added section as a dependency
 
   if (loading) {
     return <p>Loading...</p>;
   }
 
   return (
-    <main className="w-full h-full rounded-2xl overflow-x-scroll bg-[#ffffff] p-4">
+    <main className="w-full h-full rounded-2xl overflow-x-scroll bg-white p-4">
       <div className="w-full">
         <button>
           <Image
             width={0}
             height={0}
-            src="./icons/back-icon.svg"
+            src="/icons/back-icon.svg" // Fixed path issue
             alt="back"
             className="h-[50px] w-auto"
           />
@@ -44,25 +51,26 @@ export default function NFC() {
       </div>
 
       <h2 className="font-bold text-xl mt-4">Students Without NFC</h2>
-      <table className="w-full mt-2">
+      <table className="w-full mt-2 border-collapse border border-gray-200">
         <thead>
-          <tr>
-            <th>Name</th>
-            <th>Student ID</th>
+          <tr className="border-b border-gray-300">
+            <th className="p-2">Name</th>
+            <th className="p-2">Student ID</th>
           </tr>
         </thead>
         <tbody>
           {studentsWithoutNfc.length === 0 ? (
             <tr>
-              <td colSpan="2">No students without NFC</td>
+              <td colSpan="2" className="text-center p-2">
+                No students without NFC
+              </td>
             </tr>
           ) : (
             studentsWithoutNfc.map((student) => (
-              <tr key={student.username}>
-                <td>
-                  {student.lname}, {student.fname}
-                </td>
-                <td>{student.username}</td>
+              <tr key={student.username} className="border-b border-gray-200">
+                <td className="p-2">{student.full_name}</td>{" "}
+                {/* Fixed property name */}
+                <td className="p-2">{student.username}</td>
               </tr>
             ))
           )}
