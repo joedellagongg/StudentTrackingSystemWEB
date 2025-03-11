@@ -1,10 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import axiosInstance from "@/library/axios";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 
-export default function NFC() {
+function NFCComponent() {
   const [studentsWithoutNfc, setStudentsWithoutNfc] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -12,7 +12,7 @@ export default function NFC() {
   const section = searchParams.get("section");
 
   useEffect(() => {
-    if (!section) return; // Prevent API call if section is null
+    if (!section) return;
 
     const fetchStudents = async () => {
       try {
@@ -21,7 +21,7 @@ export default function NFC() {
         );
         console.log("API Response:", response.data);
 
-        setStudentsWithoutNfc(response.data.data); // Correctly accessing the data array
+        setStudentsWithoutNfc(response.data.data);
       } catch (err) {
         console.error("Error fetching students:", err);
       } finally {
@@ -30,7 +30,7 @@ export default function NFC() {
     };
 
     fetchStudents();
-  }, [section]); // Added section as a dependency
+  }, [section]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -43,7 +43,7 @@ export default function NFC() {
           <Image
             width={0}
             height={0}
-            src="/icons/back-icon.svg" // Fixed path issue
+            src="/icons/back-icon.svg"
             alt="back"
             className="h-[50px] w-auto"
           />
@@ -77,5 +77,13 @@ export default function NFC() {
         </tbody>
       </table>
     </main>
+  );
+}
+
+export default function NFC() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <NFCComponent />
+    </Suspense>
   );
 }
