@@ -78,19 +78,41 @@ function NFCComponent() {
   const handleInputChange = (event) => {
     setNfcInput(event.target.value);
   };
-
   const handleNfcSubmit = async () => {
     console.log(typeof currentStudent.username);
-    console.log(typeof nfcInput)
+    console.log(typeof nfcInput);
+
     try {
       const response = await axiosInstance.post(`/students/nfc_provider`, {
-        studentId: currentStudent.username,
-        nfc: nfcInput,
+        username: currentStudent.username,
+        nfc_id: nfcInput,
       });
-      setApiResponse(response.data); // Store the API response
+
+      setApiResponse(response.data); // Store response in state
+      console.log(response.data);
+
+      if (response.data.success) {
+        console.log("✅ NFC set successfully!");
+      }
     } catch (error) {
-      console.error("Error setting NFC:", error);
-      setApiResponse({ message: "Error setting NFC" }); // In case of error
+      if (error.response) {
+        if (error.response.status === 409) {
+          console.warn("⚠ NFC UID already exists!");
+          setApiResponse({
+            success: false,
+            message: error.response.data.message,
+          });
+        } else {
+          console.error("🚨 Unexpected error:", error.response.data.message);
+          setApiResponse({ success: false, message: "Something went wrong!" });
+        }
+      } else {
+        console.error("❌ Network error or no response from server");
+        setApiResponse({
+          success: false,
+          message: "Server unreachable. Try again later.",
+        });
+      }
     }
   };
 
