@@ -168,7 +168,7 @@ export default function Stud_list() {
               </h1>
             </div>
           ))}
-          <a href="/template/add_student.csv" download="Add_student.csv">
+          <a href="/template/student_data.xlsx" download="students.xlsx">
             <button className=" bg-[#002147] text-sm text-white p-2 rounded-xl flex flex-row gap-x-1 lg:gap-x-2 justify-center items-center">
               <Image
                 width={0}
@@ -381,7 +381,7 @@ export default function Stud_list() {
                 <input
                   id="file-upload"
                   type="file"
-                  accept=".csv"
+                  accept=".xlsx"
                   className="absolute opacity-0 w-full h-full"
                 />
               </div>

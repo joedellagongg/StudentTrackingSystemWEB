@@ -112,6 +112,12 @@ function NFCComponent() {
             success: false,
             message: error.response.data.message,
           });
+        } else if (error.response.status === 400) {
+          // console.warn("⚠ Username and NFC ID cannot be empty!");
+          setApiResponse({
+            success: false,
+            message: error.response.data.message,
+          });
         } else {
           console.error("Unexpected error:", error.response.data.message);
           setApiResponse({ success: false, message: "Something went wrong!" });
