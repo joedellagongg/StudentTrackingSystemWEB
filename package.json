@@ -22,6 +22,7 @@
         "mysql": "^2.18.1",
         "next": "^14.2.11",
         "react": "^18.3.1",
+        "react-calendar": "^5.1.0",
         "react-dom": "^18.3.1",
         "react-live-clock": "^6.1.23-beta",
         "react-moment": "^1.1.3",
