@@ -12,7 +12,7 @@ function NFCComponent() {
   const [currentStudentIndex, setCurrentStudentIndex] = useState(0);
   const [nfcInput, setNfcInput] = useState("");
   const [isInitialRender, setIsInitialRender] = useState(false);
-  const [apiResponse, setApiResponse] = useState(null); // Store the API response here
+  const [apiResponse, setApiResponse] = useState(null);
   const router = useRouter();
   const searchParams = useSearchParams();
   const section = searchParams.get("section");
@@ -61,6 +61,7 @@ function NFCComponent() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    window.location.reload();
   };
 
   const handlePrevStudent = () => {
@@ -78,9 +79,11 @@ function NFCComponent() {
   const handleInputChange = (event) => {
     setNfcInput(event.target.value);
   };
-  const handleNfcSubmit = async () => {
-    console.log(typeof currentStudent.username);
-    console.log(typeof nfcInput);
+
+  const handleNfcSubmit = async (e) => {
+    e.preventDefault();
+    const currentStudent = studentsWithoutNfc[currentStudentIndex];
+    if (!currentStudent) return;
 
     try {
       const response = await axiosInstance.post(`/students/nfc_provider`, {
@@ -88,26 +91,33 @@ function NFCComponent() {
         nfc_id: nfcInput,
       });
 
-      setApiResponse(response.data); // Store response in state
+      setApiResponse(response.data);
       console.log(response.data);
 
       if (response.data.success) {
-        console.log("✅ NFC set successfully!");
+        console.log("NFC set successfully!");
+
+        setNfcInput("");
+
+        setTimeout(() => {
+          handleNextStudent();
+        }, 1000);
       }
     } catch (error) {
+      setNfcInput("");
       if (error.response) {
         if (error.response.status === 409) {
-          console.warn("⚠ NFC UID already exists!");
+          console.warn("NFC UID already exists!");
           setApiResponse({
             success: false,
             message: error.response.data.message,
           });
         } else {
-          console.error("🚨 Unexpected error:", error.response.data.message);
+          console.error("Unexpected error:", error.response.data.message);
           setApiResponse({ success: false, message: "Something went wrong!" });
         }
       } else {
-        console.error("❌ Network error or no response from server");
+        console.error("Network error or no response from server");
         setApiResponse({
           success: false,
           message: "Server unreachable. Try again later.",
@@ -195,10 +205,10 @@ function NFCComponent() {
                   height={0}
                   src="/icons/next.svg"
                   alt="next"
-                  className=" h-[5vw] w-auto rotate-180"
+                  className=" h-[3vw] w-auto rotate-180"
                 />
               </button>
-              <div className=" flex flex-col text-[3vw]">
+              <div className=" flex flex-col text-[2vw]">
                 <p>
                   <span className=" font-bold">Name:</span>{" "}
                   {currentStudent.full_name}
@@ -207,13 +217,15 @@ function NFCComponent() {
                   <span className=" font-bold">Student ID:</span>{" "}
                   {currentStudent.username}
                 </p>
-                <input
-                  ref={nfcInputRef}
-                  placeholder="Add NFC"
-                  value={nfcInput}
-                  onChange={handleInputChange}
-                  className=" border border-[#002147] rounded-xl mt-4 h-[5vw] text-[2vw] text-center w-full"
-                />
+                <form onSubmit={handleNfcSubmit}>
+                  <input
+                    ref={nfcInputRef}
+                    placeholder="Add NFC"
+                    value={nfcInput}
+                    onChange={handleInputChange}
+                    className=" border border-[#002147] rounded-xl mt-4 h-[5vw] text-[2vw] text-center w-full"
+                  />
+                </form>
               </div>
 
               <button
@@ -226,17 +238,8 @@ function NFCComponent() {
                   height={0}
                   src="/icons/next.svg"
                   alt="next"
-                  className=" h-[5vw] w-auto"
+                  className=" h-[3vw] w-auto"
                 />
-              </button>
-            </div>
-
-            <div className="flex justify-end mt-4">
-              <button
-                onClick={handleNfcSubmit} // Trigger the NFC submission
-                className="bg-[#002147] text-white px-4 py-2 rounded-lg"
-              >
-                Set NFC
               </button>
             </div>
 
@@ -250,8 +253,14 @@ function NFCComponent() {
 
             <div className="flex justify-end mt-4">
               <button
-                onClick={closeModal}
+                onClick={handleNfcSubmit}
                 className="bg-[#002147] text-white px-4 py-2 rounded-lg"
+              >
+                set NFC
+              </button>
+              <button
+                onClick={closeModal}
+                className="text-[#002147] px-4 py-2 rounded-lg ml-2"
               >
                 Done
               </button>
