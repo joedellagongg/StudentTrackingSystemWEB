@@ -58,7 +58,11 @@ export default function Admin() {
       <div className=" h-full w-[60%]">
         <div className=" h-full w-full ">
           <h1 className=" text-[4vw]">Hello, Admin ! 👋</h1>
-          <div className=" h-[40%] shadow-xl border rounded-xl p-4 overflow-y-scroll">
+
+          <div className="  h-[45%] shadow-xl border rounded-xl p-4 overflow-y-scroll">
+            <h1 className=" text-[2vw]">Transaction History</h1>
+          </div>
+          <div className=" mt-6 h-[40%] shadow-xl border rounded-xl p-4 overflow-y-scroll">
             <h1 className=" text-[2vw]">Daily Logs</h1>
             {logs.map((item, index) => (
               <div key={index} className=" w-full ">
@@ -83,12 +87,12 @@ export default function Admin() {
               </div>
             ))}
           </div>
-          <div className=" mt-6 h-[45%] shadow-xl border rounded-xl p-4 overflow-y-scroll">
-          <h1 className=" text-[2vw]">Transaction History</h1>
-          </div>
         </div>
       </div>
-      <div className=" w-[40%] items-end flex flex-col">
+      <div className=" w-[40%] h-full items-center flex flex-col justify-between">
+        <div className=" h-full w-full rounded-xl border shadow-xl mb-4">
+
+        </div>
         <Calendar />
       </div>
     </main>

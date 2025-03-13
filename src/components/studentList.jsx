@@ -374,7 +374,7 @@ export default function Stud_list() {
                 <Image
                   width={0}
                   height={0}
-                  src="/icons/add_student.svg"
+                  src="/icons/upload.svg"
                   alt="add student"
                   className="h-full w-full"
                 />
@@ -406,7 +406,7 @@ export default function Stud_list() {
 
         {modal && <AddStudent closeModal={() => setModal(false)} />}
         {excelUpload && (
-          <AddStudentByExcel closeModal={() => setModal(false)} />
+          <AddStudentByExcel closeModal={() => setExcelUpload(false)} />
         )}
       </div>
     </main>

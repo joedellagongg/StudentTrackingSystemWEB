@@ -17,6 +17,7 @@ export default function AddStudent({ closeModal }) {
   };
 
   const handleSubmit = async (e) => {
+    closeModal();
     e.preventDefault();
 
     if (!file) {
@@ -76,7 +77,7 @@ export default function AddStudent({ closeModal }) {
               <p>Cancel</p>
             </button>
             <button type="submit" className="bg-[#002147] h-10 w-20 rounded-xl">
-              <p className="text-white">Submit</p>
+              <p className="text-white">Upload</p>
             </button>
           </div>
         </form>
