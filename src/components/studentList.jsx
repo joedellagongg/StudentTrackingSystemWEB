@@ -7,6 +7,7 @@ import ConfirmationModal from "@/components/ConfirmationModal";
 import axiosInstance from "@/library/axios";
 import Image from "next/image";
 import AddStudent from "./addStudent";
+import AddStudentByExcel from "./addStudentByExcel";
 
 export default function Stud_list() {
   const router = useRouter();
@@ -19,6 +20,7 @@ export default function Stud_list() {
   };
 
   const [modal, setModal] = useState(false);
+  const [excelUpload, setExcelUpload] = useState(false);
   const [students, setStudents] = useState([]);
   const [section, setSection] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -365,7 +367,20 @@ export default function Stud_list() {
                 />
               </button>
 
-              <div className="relative">
+              <button
+                onClick={() => setExcelUpload(true)}
+                className="bg-[#002147] p-4 h-16 w-16 text-white rounded-full flex flex-row justify-center items-center gap-2"
+              >
+                <Image
+                  width={0}
+                  height={0}
+                  src="/icons/add_student.svg"
+                  alt="add student"
+                  className="h-full w-full"
+                />
+              </button>
+
+              {/* <div className="relative">
                 <label
                   htmlFor="file-upload"
                   className="bg-[#002147] h-16 w-16 p-4 text-white rounded-full flex justify-center items-center gap-2 cursor-pointer"
@@ -384,12 +399,15 @@ export default function Stud_list() {
                   accept=".xlsx"
                   className="absolute opacity-0 w-full h-full"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         )}
 
         {modal && <AddStudent closeModal={() => setModal(false)} />}
+        {excelUpload && (
+          <AddStudentByExcel closeModal={() => setModal(false)} />
+        )}
       </div>
     </main>
   );
