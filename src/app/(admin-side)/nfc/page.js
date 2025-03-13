@@ -66,12 +66,14 @@ function NFCComponent() {
 
   const handlePrevStudent = () => {
     if (currentStudentIndex > 0) {
+      setApiResponse(null);
       setCurrentStudentIndex(currentStudentIndex - 1);
     }
   };
 
   const handleNextStudent = () => {
     if (currentStudentIndex < studentsWithoutNfc.length - 1) {
+      setApiResponse(null);
       setCurrentStudentIndex(currentStudentIndex + 1);
     }
   };
@@ -91,7 +93,7 @@ function NFCComponent() {
         nfc_id: nfcInput,
       });
 
-      setApiResponse(response.data);
+      setApiResponse("NFC set successfully!");
       console.log(response.data);
 
       if (response.data.success) {
@@ -107,13 +109,12 @@ function NFCComponent() {
       setNfcInput("");
       if (error.response) {
         if (error.response.status === 409) {
-          console.warn("NFC UID already exists!");
+          console.warn("error.response.data.message");
           setApiResponse({
             success: false,
-            message: error.response.data.message,
+            message: "NFC Already exists.",
           });
         } else if (error.response.status === 400) {
-          // console.warn("⚠ Username and NFC ID cannot be empty!");
           setApiResponse({
             success: false,
             message: error.response.data.message,
@@ -251,7 +252,13 @@ function NFCComponent() {
 
             {apiResponse && (
               <div className="mt-4 text-center">
-                <p className="text-sm text-green-500">
+                <p
+                  className={`text-sm ${
+                    apiResponse === "NFC set successfully!"
+                      ? "text-green-500"
+                      : "text-red-500"
+                  }`}
+                >
                   {apiResponse.message || "NFC set successfully!"}
                 </p>
               </div>
@@ -262,7 +269,7 @@ function NFCComponent() {
                 onClick={handleNfcSubmit}
                 className="bg-[#002147] text-white px-4 py-2 rounded-lg"
               >
-                set NFC
+                Set NFC
               </button>
               <button
                 onClick={closeModal}
