@@ -11,6 +11,7 @@ export default function TopUp_Form({ onClose, amount }) {
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
   const [error, setError] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const nfcInputRef = useRef(null);
 
   const fetchStudents = async (id) => {
@@ -48,6 +49,8 @@ export default function TopUp_Form({ onClose, amount }) {
     const role = "admin";
     const { username } = students[0];
 
+    setIsSubmitting(true); 
+
     try {
       const res = await axiosInstance.post(`/paymentIntent`, {
         username,
@@ -59,18 +62,20 @@ export default function TopUp_Form({ onClose, amount }) {
       if (res.status === 200) {
         toast.success("Top-up was successful!", {
           position: "top-right",
-          autoClose: 3000,
+          autoClose: 1000,
         });
 
         setModal(true);
 
         setTimeout(() => {
-          onClose();
           setModal(false);
-        }, 2000);
+          onClose();
+        }, 1000);
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -105,10 +110,7 @@ export default function TopUp_Form({ onClose, amount }) {
 
             {studentID && students.length > 0
               ? students.map((item) => (
-                  <div
-                    key={item.user_id}
-                    className="w-full mt-4 text-[2vw]"
-                  >
+                  <div key={item.user_id} className="w-full mt-4 text-[2vw]">
                     <p>
                       Student ID:{" "}
                       <span className="font-bold">{item.username}</span>
@@ -139,7 +141,6 @@ export default function TopUp_Form({ onClose, amount }) {
                     No user found with this NFC ID.
                   </p>
                 )}
-            {modal && <Success />}
 
             {students.length > 0 && (
               <div className="w-full flex flex-row gap-4 justify-center mt-4">
@@ -152,14 +153,17 @@ export default function TopUp_Form({ onClose, amount }) {
                 <button
                   onClick={handleSubmit}
                   className="w-[50%] bg-[#002147] rounded-xl p-2 text-xl text-white"
+                  disabled={isSubmitting || modal}
                 >
-                  Confirm
+                  {isSubmitting ? "Processing..." : "Confirm"}
                 </button>
               </div>
             )}
           </div>
         </div>
       </div>
+
+      {modal && <Success />}
     </main>
   );
 }
