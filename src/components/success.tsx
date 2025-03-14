@@ -9,13 +9,11 @@ export default function Success() {
   };
 
   return (
-    <div className=" w-full flex justify-center items-center">
       <button
         onClick={notifySuccess}
-        className=" bg-white shadow shadow-black text-[#002147] rounded-xl p-3"
+        className=" absolute bottom-4 right-6 bg-white shadow shadow-black text-[#002147] rounded-xl p-3"
       >
         Top up Successfully!
       </button>
-    </div>
   );
 }
