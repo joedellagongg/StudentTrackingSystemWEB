@@ -8,6 +8,7 @@ import axiosInstance from "@/library/axios";
 import Image from "next/image";
 import AddStudent from "./addStudent";
 import AddStudentByExcel from "./addStudentByExcel";
+import SendAccountModal from "@/components/sendAccountModal"; // Import the new modal
 
 export default function Stud_list() {
   const router = useRouter();
@@ -30,14 +31,13 @@ export default function Stud_list() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [addModal, setAddModal] = useState(false);
   const [isRotated, setIsRotated] = useState(false);
+  const [sendAccountModal, setSendAccountModal] = useState(false); // New state for send account modal
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
         const response = await axiosInstance.get(`/students/section/${urlID}`);
         const resSection = await axiosInstance.get(`/section/${urlID}`);
-
-        // console.log(resSection);
 
         const sortedStudents = response.data.sort((a, b) => {
           const lastNameA = a.lname.toLowerCase();
@@ -54,8 +54,6 @@ export default function Stud_list() {
         });
 
         setStudents(sortedStudents);
-        // console.log("fetched from api", sortedStudents);
-
         setSection(resSection.data);
         setLoading(false);
       } catch (err) {
@@ -70,8 +68,6 @@ export default function Stud_list() {
   const handleSelectAll = (e) => {
     if (e.target.checked) {
       const allStudentIds = students.map((student) => student.username);
-      console.log(allStudentIds);
-
       setSelectedStudents(new Set(allStudentIds));
     } else {
       setSelectedStudents(new Set());
@@ -84,8 +80,6 @@ export default function Stud_list() {
 
   const handleSelectStudent = (studentId) => {
     const newSelectedStudents = new Set(selectedStudents);
-    console.log("handleSelectStudent:", studentId);
-
     if (newSelectedStudents.has(studentId)) {
       newSelectedStudents.delete(studentId);
     } else {
@@ -98,20 +92,14 @@ export default function Stud_list() {
   const [studentNames, setStudentNames] = useState([]);
 
   const handleDelete = async () => {
-    console.log("user_id: ", selectedStudents);
-
     const destructuredID = Array.from(selectedStudents);
-    console.log("refactor: ", destructuredID);
-
     try {
       await axiosInstance.delete(`/students/${destructuredID}`);
-
       setStudents((prevStudents) =>
         prevStudents.filter(
           (student) => !selectedStudents.has(student.username)
         )
       );
-      // window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -139,6 +127,14 @@ export default function Stud_list() {
 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
+  };
+
+  const handleSendAccount = () => {
+    if (selectedStudents.size === 0) {
+      alert("No students selected to send accounts.");
+      return;
+    }
+    setSendAccountModal(true);
   };
 
   if (loading) {
@@ -197,6 +193,19 @@ export default function Stud_list() {
 
               <div className=" flex flex-row gap-x-2">
                 <button
+                  onClick={handleSendAccount}
+                  className="p-2 bg-[#002147] rounded-lg text-white text-sm flex flex-row items-center gap-1"
+                >
+                  <Image
+                    height={0}
+                    width={0}
+                    src="./icons/accounts.svg"
+                    alt="accounts"
+                    className=" h-4 md:h-6 w-auto"
+                  />
+                  Send Account
+                </button>
+                <button
                   // onClick={() => navigate("../nfc", "admin")}
                   onClick={() => navigate(`../nfc?section=${urlID}`)}
                   className="p-2 bg-[#002147] rounded-lg text-white text-sm flex flex-row items-center gap-1"
@@ -224,7 +233,7 @@ export default function Stud_list() {
                   Filter
                 </button>
                 {isDropdownOpen && (
-                  <div className=" w-40 absolute bg-white border border-gray-300 rounded shadow-2xl mt-1 z-10">
+                  <div className=" w-40 absolute right-24 bg-white border border-gray-300 rounded shadow-2xl mt-1 z-10">
                     <button
                       onClick={() => handleSortChange("A-Z")}
                       className="block p-2 w-full text-center text-sm hover:bg-gray-100"
@@ -379,27 +388,6 @@ export default function Stud_list() {
                   className="h-full w-full"
                 />
               </button>
-
-              {/* <div className="relative">
-                <label
-                  htmlFor="file-upload"
-                  className="bg-[#002147] h-16 w-16 p-4 text-white rounded-full flex justify-center items-center gap-2 cursor-pointer"
-                >
-                  <Image
-                    width={0}
-                    height={0}
-                    src="/icons/upload.svg"
-                    alt="upload file"
-                    className="h-full w-full"
-                  />
-                </label>
-                <input
-                  id="file-upload"
-                  type="file"
-                  accept=".xlsx"
-                  className="absolute opacity-0 w-full h-full"
-                />
-              </div> */}
             </div>
           </div>
         )}
@@ -407,6 +395,14 @@ export default function Stud_list() {
         {modal && <AddStudent closeModal={() => setModal(false)} />}
         {excelUpload && (
           <AddStudentByExcel closeModal={() => setExcelUpload(false)} />
+        )}
+        {sendAccountModal && (
+          <SendAccountModal
+            isOpen={sendAccountModal}
+            onClose={() => setSendAccountModal(false)}
+            selectedStudents={selectedStudents}
+            students={students}
+          />
         )}
       </div>
     </main>

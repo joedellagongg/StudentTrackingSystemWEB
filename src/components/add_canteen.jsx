@@ -3,7 +3,7 @@ import React from "react";
 export default function AddCanteenComponent({ setAddModal }) {
   return (
     <div className="z-50 bg-black bg-opacity-50 w-full h-full fixed inset-0 flex items-center justify-center">
-      <div className="bg-white flex justify-center items-center lg:w-[50%] w-[80%] p-4 rounded-xl text-sm max-h-[50vh] overflow-auto">
+      <div className="bg-white flex justify-center items-center lg:w-[70%] w-[80%] p-4 rounded-xl text-sm max-h-[60vh] overflow-auto">
         <form
           //   onSubmit={handleSubmit}
           className="flex flex-col w-full "
@@ -11,7 +11,9 @@ export default function AddCanteenComponent({ setAddModal }) {
           <div className="">
             <div className=" w-full">
               <div className="flex flex-col mt-4">
-                <label htmlFor="lname" className=" text-base">Store Name</label>
+                <label htmlFor="lname" className=" text-base">
+                  Store Name
+                </label>
                 <input
                   id="sname"
                   type="text"
@@ -23,9 +25,53 @@ export default function AddCanteenComponent({ setAddModal }) {
               </div>
             </div>
 
+            <div className=" w-full flex flex-row gap-x-4 justify-between">
+              <div className="flex flex-col mt-4 w-full">
+                <label htmlFor="lname" className=" text-base">
+                  Last name
+                </label>
+                <input
+                  id="lname"
+                  type="text"
+                  placeholder="Last Name"
+                  //   value={lastName}
+                  //   onChange={(e) => setLastName(e.target.value)}
+                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl capitalize"
+                />
+              </div>
+              <div className="flex flex-col mt-4 w-full">
+                <label htmlFor="fname" className=" text-base">
+                  First name
+                </label>
+                <input
+                  id="fname"
+                  type="text"
+                  placeholder="First Name"
+                  //   value={lastName}
+                  //   onChange={(e) => setLastName(e.target.value)}
+                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl capitalize"
+                />
+              </div>
+              <div className="flex flex-col mt-4 w-full">
+                <label htmlFor="lname" className=" text-base">
+                  Middle name
+                </label>
+                <input
+                  id="sname"
+                  type="text"
+                  placeholder="Middle Name"
+                  //   value={lastName}
+                  //   onChange={(e) => setLastName(e.target.value)}
+                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl capitalize"
+                />
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-4 mt-4">
               <div className="flex flex-col">
-                <label htmlFor="num" className=" text-base">Contact Number</label>
+                <label htmlFor="num" className=" text-base">
+                  Contact Number
+                </label>
                 <input
                   id="num"
                   type="number"
@@ -37,7 +83,9 @@ export default function AddCanteenComponent({ setAddModal }) {
               </div>
 
               <div className="flex flex-col">
-                <label htmlFor="email" className=" text-base">Email Address</label>
+                <label htmlFor="email" className=" text-base">
+                  Email Address
+                </label>
                 <input
                   id="email"
                   type="email"
@@ -50,7 +98,9 @@ export default function AddCanteenComponent({ setAddModal }) {
             </div>
 
             <div className="flex flex-col mt-4">
-              <label htmlFor="nfc" className=" text-base">NFC ID Number</label>
+              <label htmlFor="nfc" className=" text-base">
+                NFC ID Number
+              </label>
               <input
                 id="nfc"
                 type="number"
