@@ -58,7 +58,7 @@ export default function Sidenav() {
           width={0}
           height={0}
           onClick={() => navigate("../dashboard", "dashboard")}
-          src="./logo/logo.svg"
+          src="../logo/logo.svg"
           alt="logo"
           className={`h-20 w-auto ${isHovered ? "h-20 w-auto" : "mx-auto"}`}
         />
@@ -78,7 +78,7 @@ export default function Sidenav() {
           <Image
             width={0}
             height={0}
-            src="./icons/dashboard-icon.svg"
+            src="../icons/dashboard-icon.svg"
             alt="dashboard"
             className={` h-14 w-auto ${isHovered ? "h-14 w-auto" : "mx-auto"}`}
           />
@@ -95,7 +95,7 @@ export default function Sidenav() {
           <Image
             width={0}
             height={0}
-            src="./icons/section.svg"
+            src="../icons/section.svg"
             alt="section"
             className={` h-14 w-auto ${isHovered ? "h-14 w-auto" : "mx-auto"}`}
           />
@@ -112,7 +112,7 @@ export default function Sidenav() {
           <Image
             width={0}
             height={0}
-            src="./icons/canteen.svg"
+            src="../icons/canteen.svg"
             alt="canteen"
             className={` h-14 w-auto ${isHovered ? "h-14 w-auto" : "mx-auto"}`}
           />
@@ -130,7 +130,7 @@ export default function Sidenav() {
           <Image
             width={0}
             height={0}
-            src="./icons/top-up-icon.svg"
+            src="../icons/top-up-icon.svg"
             alt="top up"
             className={`h-14 w-auto ${isHovered ? "h-14 w-auto" : "mx-auto"}`}
           />
@@ -148,7 +148,7 @@ export default function Sidenav() {
           <Image
             height={0}
             width={0}
-            src="./icons/announcement_icon.svg"
+            src="../icons/announcement_icon.svg"
             alt="announcement"
             className={`h-14 w-auto ${isHovered ? "h-14 w-auto" : "mx-auto"}`}
           />
@@ -168,7 +168,7 @@ export default function Sidenav() {
           <Image
             height={0}
             width={0}
-            src="./icons/settings.svg"
+            src="../icons/settings.svg"
             alt="settings"
             className={`h-14 w-auto ${isHovered ? "h-14 w-auto" : "mx-auto"}`}
           />
@@ -185,7 +185,7 @@ export default function Sidenav() {
           <Image
             width={0}
             height={0}
-            src="./icons/logout-icon.svg"
+            src="../icons/logout-icon.svg"
             alt="logout"
             className={`h-14 w-auto ${isHovered ? "h-14 w-auto" : "mx-auto"}`}
           />
