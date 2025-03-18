@@ -5,7 +5,7 @@ export default function AdminProfile({ isHovered, setIsHovered }) {
   const profile = [
     {
       id: 1,
-      profilePic: "./images/profile.svg",
+      profilePic: "../images/profile.svg",
       adminName: "Admin",
     },
   ];
