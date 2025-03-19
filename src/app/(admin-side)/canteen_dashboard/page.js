@@ -59,11 +59,8 @@ export default function CanteenDashboard() {
 
   return (
     <main className="w-full h-full rounded-2xl overflow-x-scroll bg-[#ffffff] p-6 flex flex-col gap-y-6">
-      {moneyEndpoint.setOverallBalance.map((item, index) => (
-        <div
-          key={index}
-          className="w-full h-[30%] flex flex-row justify-between"
-        >
+      {moneyEndpoint.overallBalance.map((item, index) => (
+        <div key={index} className="w-full h-[30%] flex flex-row justify-between">
           <button
             onClick={() => navigate("../canteen")}
             className=" flex items-start"
