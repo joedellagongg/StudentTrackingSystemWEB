@@ -1,18 +1,18 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import axiosInstance from "@/library/axios";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 
-export default function CanteenDasboard() {
+export default function CanteenDashboard() {
   const router = useRouter();
   const id = useSearchParams().get("canteen_id");
 
   const navigate = (path) => {
     router.push(path);
   };
-  
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [moneyEndpoint, setMoneyEndpoint] = useState({
@@ -20,7 +20,7 @@ export default function CanteenDasboard() {
     setTransactions: [],
   });
 
-  const fetchUserTransactions = async () => {
+  const fetchUserTransactions = useCallback(async () => {
     try {
       const getBalance = await axiosInstance.get(
         `/paymentIntent/getBalance/${id}`
@@ -29,23 +29,20 @@ export default function CanteenDasboard() {
         `/paymentIntent/transactions/${id}`
       );
 
-      // console.log("GET BALANCE:", getBalance.data.data[0]);
-      // console.log("GET TRANSACTIONS", getTransactions.data);
-
       setMoneyEndpoint((prevState) => ({
         ...prevState,
-        setOverallBalance: getBalance.data.data,
-        setTransactions: getTransactions.data.data,
+        overallBalance: getBalance.data.data,
+        transactions: getTransactions.data.data,
         loadingState: false,
       }));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
-  };
+  }, [id]); // ✅ Memoized function
 
   useEffect(() => {
     fetchUserTransactions();
-  }, []);
+  }, [fetchUserTransactions]); // ✅ No infinite loop
 
   const handleModalToggle = () => {
     setIsModalOpen(!isModalOpen);
@@ -62,8 +59,11 @@ export default function CanteenDasboard() {
 
   return (
     <main className="w-full h-full rounded-2xl overflow-x-scroll bg-[#ffffff] p-6 flex flex-col gap-y-6">
-      {moneyEndpoint.setOverallBalance.map((item) => (
-        <div className="w-full h-[30%] flex flex-row justify-between">
+      {moneyEndpoint.setOverallBalance.map((item, index) => (
+        <div
+          key={index}
+          className="w-full h-[30%] flex flex-row justify-between"
+        >
           <button
             onClick={() => navigate("../canteen")}
             className=" flex items-start"

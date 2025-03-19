@@ -34,8 +34,12 @@ export default function Stud_list() {
   const [sendAccountModal, setSendAccountModal] = useState(false); // New state for send account modal
 
   useEffect(() => {
+    let isMounted = true; // ✅ Prevents state updates if component unmounts
+
     const fetchStudents = async () => {
       try {
+        setLoading(true);
+
         const response = await axiosInstance.get(`/students/section/${urlID}`);
         const resSection = await axiosInstance.get(`/section/${urlID}`);
 
@@ -53,17 +57,25 @@ export default function Stud_list() {
           return 0;
         });
 
-        setStudents(sortedStudents);
-        setSection(resSection.data);
-        setLoading(false);
+        if (isMounted) {
+          setStudents(sortedStudents);
+          setSection(resSection.data);
+          setLoading(false);
+        }
       } catch (err) {
-        setError("Failed to fetch students. Check Servers");
-        setLoading(false);
+        if (isMounted) {
+          setError("Failed to fetch students. Check Servers");
+          setLoading(false);
+        }
       }
     };
 
     fetchStudents();
-  }, [sortOrder]);
+
+    return () => {
+      isMounted = false; 
+    };
+  }, [sortOrder, urlID]);
 
   const handleSelectAll = (e) => {
     if (e.target.checked) {
