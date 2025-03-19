@@ -1,67 +1,108 @@
-import React from "react";
+import React, { useState } from "react";
+import axiosInstance from "@/library/axios";
 
-export default function AddCanteenComponent({ setAddModal }) {
+export default function AddCanteenComponent({ setAddModal, dataTransmit }) {
+  const [canteenInfo, setCanteenInfo] = useState({
+    nfc_id: "",
+    lastName: "",
+    firstName: "",
+    middleName: "",
+    emailAddress: "",
+    studentContact: "",
+    store_name: "",
+  });
+
+  const handleChange = (e) => {
+    setCanteenInfo({
+      ...canteenInfo,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(canteenInfo);
+
+    try {
+      const response = await axiosInstance.post(
+        "/users/add_cashier",
+        canteenInfo
+      );
+
+      console.log(response.data.data);
+      if (response.data.statusCode === 201) {
+        // window.location.reload();
+        console.log("Hey i'm working: ", response.data.data);
+        dataTransmit(response.data.data);
+      }
+
+      // dataTransmit(canteenInfo.store_name);
+      // // console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="z-50 bg-black bg-opacity-50 w-full h-full fixed inset-0 flex items-center justify-center">
       <div className="bg-white flex justify-center items-center lg:w-[70%] w-[80%] p-4 rounded-xl text-sm max-h-[60vh] overflow-auto">
-        <form
-          //   onSubmit={handleSubmit}
-          className="flex flex-col w-full "
-        >
-          <div className="">
-            <div className=" w-full">
-              <div className="flex flex-col mt-4">
-                <label htmlFor="lname" className=" text-base">
-                  Store Name
-                </label>
-                <input
-                  id="sname"
-                  type="text"
-                  placeholder="Store Name"
-                  //   value={lastName}
-                  //   onChange={(e) => setLastName(e.target.value)}
-                  className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl capitalize"
-                />
-              </div>
+        <form onSubmit={handleSubmit} className="flex flex-col w-full ">
+          <div className=" w-full">
+            <div className="flex flex-col mt-4">
+              <label htmlFor="storeName" className=" text-base">
+                Store Name
+              </label>
+              <input
+                id="storeName"
+                name="store_name"
+                type="text"
+                placeholder="Store Name"
+                value={canteenInfo.store_name}
+                onChange={handleChange}
+                className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl capitalize"
+              />
             </div>
 
             <div className=" w-full flex flex-row gap-x-4 justify-between">
               <div className="flex flex-col mt-4 w-full">
-                <label htmlFor="lname" className=" text-base">
-                  Last name
+                <label htmlFor="lastName" className=" text-base">
+                  Last Name
                 </label>
                 <input
-                  id="lname"
+                  id="lastName"
+                  name="lastName"
                   type="text"
                   placeholder="Last Name"
-                  //   value={lastName}
-                  //   onChange={(e) => setLastName(e.target.value)}
+                  value={canteenInfo.lastName}
+                  onChange={handleChange}
                   className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl capitalize"
                 />
               </div>
               <div className="flex flex-col mt-4 w-full">
-                <label htmlFor="fname" className=" text-base">
-                  First name
+                <label htmlFor="firstName" className=" text-base">
+                  First Name
                 </label>
                 <input
-                  id="fname"
+                  id="firstName"
+                  name="firstName"
                   type="text"
                   placeholder="First Name"
-                  //   value={lastName}
-                  //   onChange={(e) => setLastName(e.target.value)}
+                  value={canteenInfo.firstName}
+                  onChange={handleChange}
                   className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl capitalize"
                 />
               </div>
               <div className="flex flex-col mt-4 w-full">
-                <label htmlFor="lname" className=" text-base">
-                  Middle name
+                <label htmlFor="middleName" className=" text-base">
+                  Middle Name
                 </label>
                 <input
-                  id="sname"
+                  id="middleName"
+                  name="middleName"
                   type="text"
                   placeholder="Middle Name"
-                  //   value={lastName}
-                  //   onChange={(e) => setLastName(e.target.value)}
+                  value={canteenInfo.middleName}
+                  onChange={handleChange}
                   className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl capitalize"
                 />
               </div>
@@ -69,44 +110,47 @@ export default function AddCanteenComponent({ setAddModal }) {
 
             <div className="grid md:grid-cols-2 gap-4 mt-4">
               <div className="flex flex-col">
-                <label htmlFor="num" className=" text-base">
+                <label htmlFor="contactNumber" className=" text-base">
                   Contact Number
                 </label>
                 <input
-                  id="num"
+                  id="contactNumber"
+                  name="studentContact"
                   type="number"
                   placeholder="Contact Number"
-                  //   value={studentContact}
-                  //   onChange={(e) => setStudentContact(e.target.value)}
+                  value={canteenInfo.studentContact}
+                  onChange={handleChange}
                   className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
                 />
               </div>
 
               <div className="flex flex-col">
-                <label htmlFor="email" className=" text-base">
+                <label htmlFor="emailAddress" className=" text-base">
                   Email Address
                 </label>
                 <input
-                  id="email"
+                  id="emailAddress"
+                  name="emailAddress"
                   type="email"
                   placeholder="Email Address"
-                  //   value={emailAddress}
-                  //   onChange={(e) => setEmailAddress(e.target.value)}
+                  value={canteenInfo.emailAddress}
+                  onChange={handleChange}
                   className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
                 />
               </div>
             </div>
 
             <div className="flex flex-col mt-4">
-              <label htmlFor="nfc" className=" text-base">
+              <label htmlFor="NFCid" className=" text-base">
                 NFC ID Number
               </label>
               <input
-                id="nfc"
+                id="NFCid"
+                name="nfc_id"
                 type="number"
                 placeholder="NFC ID Number"
-                // value={NFCid}
-                // onChange={(e) => setNFCid(e.target.value)}
+                value={canteenInfo.nfc_id}
+                onChange={handleChange}
                 className="h-10 w-full outline-0 border pl-2 lg:pl-6 rounded-xl"
               />
             </div>
@@ -118,7 +162,7 @@ export default function AddCanteenComponent({ setAddModal }) {
               type="button"
               className="bg-white border h-10 w-20 rounded-xl"
             >
-              <p>Cancel</p>
+              Cancel
             </button>
             <button type="submit" className="bg-[#002147] h-10 w-20 rounded-xl">
               <p className="text-white">Submit</p>
@@ -127,23 +171,5 @@ export default function AddCanteenComponent({ setAddModal }) {
         </form>
       </div>
     </div>
-    // <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-    //   <div className="bg-white p-6 w-[90%] md:w-[60%] lg:w-[40%] rounded-xl flex flex-col text-left justify-center items-center">
-    //     <div className="w-full">
-    //       <p className="font-bold">Canteen Name:</p>
-    //       <input
-    //         type="text"
-    //         placeholder="Input Canteen Name"
-    //         className="border h-12 rounded-xl outline-0 p-4 w-full"
-    //       />
-    //     </div>
-    //     <div className=" w-full flex flex-row justify-end items-center gap-x-4 mt-4">
-    //       <button onClick={() => setAddModal(false)}>Cancel</button>
-    //       <button className=" rounded-xl bg-[#002147] p-4 text-white">
-    //         Save
-    //       </button>
-    //     </div>
-    //   </div>
-    // </div>
   );
 }
