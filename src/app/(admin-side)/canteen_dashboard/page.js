@@ -1,11 +1,11 @@
 "use client";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, Suspense } from "react";
 import Image from "next/image";
 import axiosInstance from "@/library/axios";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 
-export default function CanteenDashboard() {
+function Canteen() {
   const router = useRouter();
   const id = useSearchParams().get("canteen_id");
 
@@ -16,8 +16,8 @@ export default function CanteenDashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [moneyEndpoint, setMoneyEndpoint] = useState({
-    setOverallBalance: [],
-    setTransactions: [],
+    overallBalance: [],
+    transactions: [],
   });
 
   const fetchUserTransactions = useCallback(async () => {
@@ -28,6 +28,9 @@ export default function CanteenDashboard() {
       const getTransactions = await axiosInstance.get(
         `/paymentIntent/transactions/${id}`
       );
+
+      // console.log("balance:", getBalance.data.data[0]);
+      // console.log("transactions", getTransactions.data.data);
 
       setMoneyEndpoint((prevState) => ({
         ...prevState,
@@ -43,6 +46,9 @@ export default function CanteenDashboard() {
   useEffect(() => {
     fetchUserTransactions();
   }, [fetchUserTransactions]); // ✅ No infinite loop
+
+  // console.log("useStateBalance:", moneyEndpoint.overallBalance);
+  // console.log("useStateTransaction:", moneyEndpoint.transactions);
 
   const handleModalToggle = () => {
     setIsModalOpen(!isModalOpen);
@@ -60,10 +66,14 @@ export default function CanteenDashboard() {
   return (
     <main className="w-full h-full rounded-2xl overflow-x-scroll bg-[#ffffff] p-6 flex flex-col gap-y-6">
       {moneyEndpoint.overallBalance.map((item, index) => (
-        <div key={index} className="w-full h-[30%] flex flex-row justify-between">
+        <div
+          key={index}
+          className="w-full h-[30%] flex flex-row justify-between"
+        >
           <button
             onClick={() => navigate("../canteen")}
-            className=" flex items-start"
+            className="flex items-start"
+            aria-label="Go back"
           >
             <Image
               width={0}
@@ -76,14 +86,14 @@ export default function CanteenDashboard() {
 
           <div className="h-full w-[50%] bg-gradient-to-br from-[#002147] to-[#168FCC] rounded-2xl text-white p-4">
             <div className=" w-full h-[20%]">
-              <text className=" font-bold text-2xl">{item.full_name}</text>
+              <span className=" font-bold text-2xl">{item.full_name}</span>
             </div>
             <div className=" flex flex-row h-[80%]">
               <div className=" flex justify-end flex-col gap-x-2">
-                <text className=" text-xl">Balance:</text>
-                <text className=" text-4xl font-bold">
+                <span className=" text-xl">Balance:</span>
+                <span className=" text-4xl font-bold">
                   {item.total_balance}
-                </text>
+                </span>
               </div>
               <div className=" flex justify-end items-end flex-row w-full">
                 <button
@@ -146,7 +156,7 @@ export default function CanteenDashboard() {
         <div className="overflow-y-scroll h-[300px] w-full  no-scrollbar">
           <table className="w-full mt-4 table-auto">
             <tbody>
-              {moneyEndpoint.setTransactions.map((item, index) => (
+              {moneyEndpoint.transactions.map((item, index) => (
                 <tr key={index} className=" border-b ">
                   <td className="w-[40%] capitalize">
                     <p className="max-w-full">{item.receiver_id}</p>
@@ -166,5 +176,13 @@ export default function CanteenDashboard() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function CanteenDashboard() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Canteen />
+    </Suspense>
   );
 }
