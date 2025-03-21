@@ -20,6 +20,8 @@ function Canteen() {
     transactions: [],
   });
 
+  const [isNfcModalOpen, setIsNfcModalOpen] = useState(false);
+
   const fetchUserTransactions = useCallback(async () => {
     try {
       const getBalance = await axiosInstance.get(
@@ -28,9 +30,6 @@ function Canteen() {
       const getTransactions = await axiosInstance.get(
         `/paymentIntent/transactions/${id}`
       );
-
-      // console.log("balance:", getBalance.data.data[0]);
-      // console.log("transactions", getTransactions.data.data);
 
       setMoneyEndpoint((prevState) => ({
         ...prevState,
@@ -41,16 +40,14 @@ function Canteen() {
     } catch (error) {
       console.error(error);
     }
-  }, [id]); // ✅ Memoized function
+  }, [id]);
 
   useEffect(() => {
     fetchUserTransactions();
-  }, [fetchUserTransactions]); // ✅ No infinite loop
-
-  // console.log("useStateBalance:", moneyEndpoint.overallBalance);
-  // console.log("useStateTransaction:", moneyEndpoint.transactions);
+  }, [fetchUserTransactions]);
 
   const handleModalToggle = () => {
+    setWithdrawAmount("");
     setIsModalOpen(!isModalOpen);
   };
 
@@ -61,6 +58,14 @@ function Canteen() {
   const handleWithdrawSubmit = (e) => {
     e.preventDefault();
     setIsModalOpen(false);
+
+    setIsNfcModalOpen(true);
+  };
+
+  const handleNfcSubmit = (e) => {
+    e.preventDefault();
+
+    setIsNfcModalOpen(false);
   };
 
   return (
@@ -140,6 +145,36 @@ function Canteen() {
         </div>
       )}
 
+      {isNfcModalOpen && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-xl w-[300px]">
+            <h2 className="text-xl font-bold mb-4">Scan NFC Card</h2>
+            <form onSubmit={handleNfcSubmit}>
+              <input
+                type="password"
+                className="w-full p-2 mb-4 border rounded-lg"
+                placeholder="Scan your NFC card"
+              />
+              <div className="flex justify-between">
+                <button
+                  type="button"
+                  onClick={() => setIsNfcModalOpen(false)}
+                  className="px-4 py-2 bg-gray-300 text-black rounded-lg"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-[#002147] text-white rounded-lg"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       <div className="border border-gray-400 w-full h-[70%] rounded-xl p-4">
         <h1 className="font-bold text-[#002147] text-xl">Transactions</h1>
         <table className="w-full mt-4 table-auto">
@@ -153,7 +188,7 @@ function Canteen() {
           </thead>
         </table>
 
-        <div className="overflow-y-scroll h-[300px] w-full  no-scrollbar">
+        <div className="overflow-y-scroll h-[300px] w-full no-scrollbar">
           <table className="w-full mt-4 table-auto">
             <tbody>
               {moneyEndpoint.transactions.map((item, index) => (
@@ -161,12 +196,21 @@ function Canteen() {
                   <td className="w-[40%] capitalize">
                     <p className="max-w-full">{item.receiver_id}</p>
                   </td>
-
                   <td className="max-w-[20%] capitalize text-center">
                     {item.description}
                   </td>
                   <td className="w-[20%] capitalize text-center">
-                    {item.timestamp}
+                    {new Date(
+                      new Date(item.timestamp).getTime() - 8 * 60 * 60 * 1000
+                    ).toLocaleString("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                    })}
                   </td>
                   <td className="w-[20%] text-center">{item.amount}</td>
                 </tr>
