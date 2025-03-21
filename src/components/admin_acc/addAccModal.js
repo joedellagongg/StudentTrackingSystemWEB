@@ -3,7 +3,9 @@ import React, { useState } from "react";
 
 const AddAccountModal = ({ isOpen, onClose, onAddAccount }) => {
   const [newAccount, setNewAccount] = useState({
-    adminName: "",
+    firstName: "",
+    middleName: "",
+    lastName: "",
     adminEmail: "",
     nfcId: "",
   });
@@ -11,10 +13,22 @@ const AddAccountModal = ({ isOpen, onClose, onAddAccount }) => {
   const handleAddAccount = (e) => {
     e.preventDefault();
     onAddAccount(newAccount);
-    setNewAccount({ adminName: "", adminEmail: "", nfcId: "" });
+    setNewAccount({
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      adminEmail: "",
+      nfcId: "",
+    });
   };
   const handleClose = () => {
-    setNewAccount({ adminName: "", adminEmail: "", nfcId: "" });
+    setNewAccount({
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      adminEmail: "",
+      nfcId: "",
+    });
     onClose();
   };
 
@@ -22,26 +36,70 @@ const AddAccountModal = ({ isOpen, onClose, onAddAccount }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-10">
-      <div className="bg-white p-6 rounded-xl w-[90%] md:w-[40vw]">
+      <div className="bg-white p-6 rounded-xl w-[90%] md:w-[60vw]">
         <h2 className="text-xl font-bold text-[#002147] mb-4">
-          Add New Account
+          Add Admin Account
         </h2>
         <form onSubmit={handleAddAccount}>
-          <div className="mb-4">
-            <label className="block text-sm text-[#002147]" htmlFor="adminName">
-              Name
-            </label>
-            <input
-              placeholder="Enter Admin Name"
-              type="text"
-              id="adminName"
-              className="w-full p-2 border rounded-xl"
-              value={newAccount.adminName}
-              onChange={(e) =>
-                setNewAccount({ ...newAccount, adminName: e.target.value })
-              }
-              required
-            />
+          <div className="mb-4 flex gap-4">
+            <div className="flex-1">
+              <label
+                className="block text-sm text-[#002147]"
+                htmlFor="lastName"
+              >
+                Last Name
+              </label>
+              <input
+                placeholder="Enter Last Name"
+                type="text"
+                id="lastName"
+                className="w-full p-2 border rounded-xl"
+                value={newAccount.lastName}
+                onChange={(e) =>
+                  setNewAccount({ ...newAccount, lastName: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div className="flex-1">
+              <label
+                className="block text-sm text-[#002147]"
+                htmlFor="middleName"
+              >
+                Middle Name
+              </label>
+              <input
+                placeholder="Enter Middle Name"
+                type="text"
+                id="middleName"
+                className="w-full p-2 border rounded-xl"
+                value={newAccount.middleName}
+                onChange={(e) =>
+                  setNewAccount({ ...newAccount, middleName: e.target.value })
+                }
+                required
+              />
+            </div>
+
+            <div className="flex-1">
+              <label
+                className="block text-sm text-[#002147]"
+                htmlFor="firstName"
+              >
+                First Name
+              </label>
+              <input
+                placeholder="Enter First Name"
+                type="text"
+                id="firstName"
+                className="w-full p-2 border rounded-xl"
+                value={newAccount.firstName}
+                onChange={(e) =>
+                  setNewAccount({ ...newAccount, firstName: e.target.value })
+                }
+                required
+              />
+            </div>
           </div>
           <div className="mb-4">
             <label
