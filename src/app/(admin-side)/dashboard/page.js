@@ -30,7 +30,7 @@ export default function Admin() {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      setBalances(balanceRes.data.data); // Ensure it is set as an array
+      setBalances(balanceRes.data.data); 
       setTransactions(transactionsRes.data.data);
     } catch (err) {
       console.error("Fetch Error:", err);

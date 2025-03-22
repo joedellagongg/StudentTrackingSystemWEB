@@ -51,7 +51,9 @@ export default function TopUp_Form({ onClose, amount }) {
 
   const handleSubmit = async () => {
     const adminUsername = jwtDecode(token);
-    console.log("Hello from top up modals.", adminUsername.username);
+    console.log("single admin", adminUsername.sub);
+
+    console.log("Hello from top up modals.", adminUsername.sub);
     const { username } = students[0];
 
     setIsSubmitting(true);
@@ -61,7 +63,7 @@ export default function TopUp_Form({ onClose, amount }) {
         `/paymentIntent`,
         {
           username,
-          admin_id: adminUsername.username,
+          admin_id: adminUsername.sub,
           amount,
         },
         {
