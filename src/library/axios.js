@@ -2,9 +2,9 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5500",
+  // baseURL: "http://localhost:5500",
 
-  // baseURL: "https://attendance-backend-app.up.railway.app",
+  baseURL: "https://attendance-backend-app.up.railway.app",
   headers: { "Content-Type": "application/json" },
 });
 
