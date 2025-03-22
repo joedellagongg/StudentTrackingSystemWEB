@@ -146,16 +146,16 @@ export default function Admin() {
       </div>
 
       <div className="w-[40%] h-full items-center flex flex-col justify-between">
-        <div className="h-full w-full rounded-xl border shadow-xl mb-4 bg-gradient-to-br from-[#002147] to-[#168FCC] text-white p-6">
+        <div className=" h-full w-full rounded-xl border shadow-xl mb-4 bg-gradient-to-br from-[#002147] to-[#168FCC] text-white p-6 flex items-center justify-around">
           {balances.length > 0 ? (
             balances.map((user) => (
-              <div key={user.user_id} className="w-full h-[20%]">
-                <h1 className="font-bold text-2xl">{user.full_name}</h1>
-                <h1>User ID: {user.username}</h1>
+              <div key={user.user_id} className="w-full h-[80%]  ">
+                <h1 className="font-bold text-[2vw]">{user.full_name}</h1>
+                <h1 className=" text-[1.5vw]">User ID: {user.username}</h1>
                 <div className="flex flex-row h-[80%]">
                   <div className="flex justify-end flex-col gap-x-2">
-                    <span className="text-xl">Current Balance:</span>
-                    <span className="text-4xl font-bold">
+                    <span className="text-[2vw]">Current Balance:</span>
+                    <span className="text-[3vw] font-bold">
                       ₱ {user.total_balance}
                     </span>
                   </div>
