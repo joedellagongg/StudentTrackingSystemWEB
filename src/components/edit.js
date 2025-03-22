@@ -157,7 +157,7 @@ const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
           <div className=" w-full">
             <p className="text-sm">NFC ID</p>
             <input
-              type="number"
+              type="password"
               value={studentData.nfc_id}
               onChange={(e) =>
                 setStudentData({

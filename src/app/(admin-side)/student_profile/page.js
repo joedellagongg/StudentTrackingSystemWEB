@@ -161,7 +161,7 @@ function Student_Profile() {
               <div className=" md:w-[60%]">
                 <p className=" text-sm">NFC ID</p>
                 <p className=" text-gray-400 h-10 flex items-center bg-[#E5F1FF] rounded-xl p-3">
-                  {item.nfc_id}
+                  {item.nfc_id ? "•".repeat(item.nfc_id.length) : "No NFC ID"}
                 </p>
               </div>
             </div>

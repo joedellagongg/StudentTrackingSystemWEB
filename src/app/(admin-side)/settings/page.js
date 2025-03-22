@@ -20,6 +20,19 @@ export default function Settings() {
         />
         Admin Accounts
       </button>
+      <button
+        onClick={() => router.push("/settings/custom-fees")}
+        className="bg-[rgb(0,33,71)] flex flex-col justify-center items-center rounded-xl text-white text-center text-xl h-[150px] hover:bg-white border hover:text-[rgb(0,33,71)]"
+      >
+        <Image
+          width={100}
+          height={0}
+          src="/icons/fees.svg"
+          alt="User"
+          className=" h-20 w-auto bg-[rgb(0,33,71)] rounded-xl p-2"
+        />
+        Custom Fees
+      </button>
       <button className="bg-[rgb(0,33,71)] flex flex-col justify-center items-center rounded-xl text-white text-center text-xl h-[150px] hover:bg-white border hover:text-[rgb(0,33,71)]">
         <Image
           width={100}
