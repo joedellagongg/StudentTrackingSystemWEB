@@ -18,7 +18,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    // setLoading(true);
 
     try {
       const res = await axiosInstance.post(
@@ -35,7 +35,7 @@ export default function Login() {
         const token = res.data.token;
 
         Cookies.set("token", token, {
-          expires: 1 / 720,
+          expires: 1 / 24,
           secure: true,
           sameSite: "Strict",
         });
