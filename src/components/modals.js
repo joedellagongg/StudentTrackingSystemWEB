@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import axios from "axios";
+import Cookies from "js-cookie";
 import axiosInstance from "@/library/axios";
 
 export default function Add_section({ closeModal, onSectionAdded }) {
@@ -8,6 +8,7 @@ export default function Add_section({ closeModal, onSectionAdded }) {
   const [level, setLevel] = useState("");
   const [section, setSection] = useState("");
   const [error, setError] = useState({ strand: "", level: "", section: "" });
+  const token = Cookies.get("token");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,11 +36,17 @@ export default function Add_section({ closeModal, onSectionAdded }) {
     }
 
     try {
-      await axiosInstance.post("/section", {
-        strand,
-        level,
-        section,
-      });
+      await axiosInstance.post(
+        "/section",
+        {
+          strand,
+          level,
+          section,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       onSectionAdded();
       closeModal();

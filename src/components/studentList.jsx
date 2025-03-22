@@ -9,6 +9,7 @@ import Image from "next/image";
 import AddStudent from "./addStudent";
 import AddStudentByExcel from "./addStudentByExcel";
 import SendAccountModal from "@/components/sendAccountModal"; // Import the new modal
+import Cookies from "js-cookie";
 
 export default function Stud_list() {
   const router = useRouter();
@@ -33,6 +34,8 @@ export default function Stud_list() {
   const [isRotated, setIsRotated] = useState(false);
   const [sendAccountModal, setSendAccountModal] = useState(false); // New state for send account modal
 
+  const token = Cookies.get("token");
+
   useEffect(() => {
     let isMounted = true; // ✅ Prevents state updates if component unmounts
 
@@ -40,8 +43,12 @@ export default function Stud_list() {
       try {
         setLoading(true);
 
-        const response = await axiosInstance.get(`/students/section/${urlID}`);
-        const resSection = await axiosInstance.get(`/section/${urlID}`);
+        const response = await axiosInstance.get(`/students/section/${urlID}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const resSection = await axiosInstance.get(`/section/${urlID}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
         const sortedStudents = response.data.sort((a, b) => {
           const lastNameA = a.lname.toLowerCase();
@@ -73,7 +80,7 @@ export default function Stud_list() {
     fetchStudents();
 
     return () => {
-      isMounted = false; 
+      isMounted = false;
     };
   }, [sortOrder, urlID]);
 
@@ -106,7 +113,9 @@ export default function Stud_list() {
   const handleDelete = async () => {
     const destructuredID = Array.from(selectedStudents);
     try {
-      await axiosInstance.delete(`/students/${destructuredID}`);
+      await axiosInstance.delete(`/students/${destructuredID}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setStudents((prevStudents) =>
         prevStudents.filter(
           (student) => !selectedStudents.has(student.username)

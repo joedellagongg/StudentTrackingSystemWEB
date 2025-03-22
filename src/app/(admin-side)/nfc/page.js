@@ -4,6 +4,7 @@ import axiosInstance from "@/library/axios";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 function NFCComponent() {
   const [studentsWithoutNfc, setStudentsWithoutNfc] = useState([]);
@@ -17,6 +18,7 @@ function NFCComponent() {
   const searchParams = useSearchParams();
   const section = searchParams.get("section");
   const nfcInputRef = useRef(null);
+  const token = Cookies.get("token");
 
   const navigate = (path) => {
     router.push(path);
@@ -28,7 +30,10 @@ function NFCComponent() {
     const fetchStudents = async () => {
       try {
         const response = await axiosInstance.get(
-          `/students/nfc_lookup/${section}`
+          `/students/nfc_lookup/${section}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
         );
         console.log("API Response:", response.data);
         setStudentsWithoutNfc(response.data.data);
@@ -88,10 +93,16 @@ function NFCComponent() {
     if (!currentStudent) return;
 
     try {
-      const response = await axiosInstance.post(`/students/nfc_provider`, {
-        username: currentStudent.username,
-        nfc_id: nfcInput,
-      });
+      const response = await axiosInstance.post(
+        `/students/nfc_provider`,
+        {
+          username: currentStudent.username,
+          nfc_id: nfcInput,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       setApiResponse("NFC set successfully!");
       console.log(response.data);

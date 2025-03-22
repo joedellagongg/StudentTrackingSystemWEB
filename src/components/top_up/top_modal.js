@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import axiosInstance from "@/library/axios";
 import Success from "@/components/success";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function TopUp_Form({ onClose, amount }) {
@@ -13,11 +15,14 @@ export default function TopUp_Form({ onClose, amount }) {
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const nfcInputRef = useRef(null);
+  const token = Cookies.get("token");
 
   const fetchStudents = async (id) => {
     try {
       setLoading(true);
-      const response = await axiosInstance.get(`/students/nfc/${id}`);
+      const response = await axiosInstance.get(`/students/nfc/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setStudents(response.data);
       setError(null);
     } catch (err) {
@@ -45,19 +50,24 @@ export default function TopUp_Form({ onClose, amount }) {
   }, []);
 
   const handleSubmit = async () => {
-    const admin_id = 257461;
-    const role = "admin";
+    const adminUsername = jwtDecode(token);
+    console.log("Hello from top up modals.", adminUsername.username);
     const { username } = students[0];
 
-    setIsSubmitting(true); 
+    setIsSubmitting(true);
 
     try {
-      const res = await axiosInstance.post(`/paymentIntent`, {
-        username,
-        admin_id,
-        role,
-        amount,
-      });
+      const res = await axiosInstance.post(
+        `/paymentIntent`,
+        {
+          username,
+          admin_id: adminUsername.username,
+          amount,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       if (res.status === 200) {
         toast.success("Top-up was successful!", {

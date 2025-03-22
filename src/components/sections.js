@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import axios from "axios";
+import Cookies from "js-cookie";
 import Loader from "@/components/loader";
 import axiosInstance from "@/library/axios";
 
@@ -14,6 +14,7 @@ export default function Section({ sections, fetchSections }) {
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
   const [selectedSection, setSelectedSection] = useState(null);
+  const token = Cookies.get("token");
 
   const openModal = (section) => {
     setSelectedSection(section);
@@ -33,7 +34,9 @@ export default function Section({ sections, fetchSections }) {
 
     setLoading(true);
     try {
-      await axiosInstance.delete(`/section/${id}`);
+      await axiosInstance.delete(`/section/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       window.location.reload();
       closeModal();
     } catch (error) {

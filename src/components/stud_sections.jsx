@@ -2,25 +2,27 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import axios from "axios";
 import Section from "@/components/sections";
 import Loader from "@/components/loader";
 import Add_section from "@/components/modals";
 import axiosInstance from "@/library/axios";
+import Cookies from "js-cookie";
 
 export default function Sections() {
   const [modal, setModal] = useState(false);
   const [sections, setSections] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const token = Cookies.get("token");
   const openModal = () => setModal(true);
   const closeModal = () => setModal(false);
 
   const fetchSections = async () => {
     setLoading(true);
     try {
-      const response = await axiosInstance.get("/section");
+      const response = await axiosInstance.get("/section", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setSections(response.data);
     } catch (err) {
       console.error(err);
@@ -56,7 +58,10 @@ export default function Sections() {
         ) : (
           <Section sections={sections} fetchSections={fetchSections} />
         )}
-        <button onClick={openModal} className=" fixed self-end bottom-6 right-6 lg:bottom-8 lg:right-8">
+        <button
+          onClick={openModal}
+          className=" fixed self-end bottom-6 right-6 lg:bottom-8 lg:right-8"
+        >
           <Image
             priority={true}
             width={0}

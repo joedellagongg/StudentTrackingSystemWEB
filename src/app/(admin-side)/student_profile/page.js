@@ -7,29 +7,27 @@ import Loader from "@/components/loader";
 import Modal from "@/components/edit";
 import axiosInstance from "@/library/axios";
 import Image from "next/image";
+import Cookies from "js-cookie"
 
 function Student_Profile() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const urlID = searchParams.get("id");
   const section = searchParams.get("section");
-
+  const token = Cookies.get("token");
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [currentStudent, setCurrentStudent] = useState(null);
+  
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axiosInstance.get(`/students/${urlID}`);
-        // console.log(
-        //   Array.isArray(response.data.students)
-        //     ? response.data.students
-        //     : [response.data.students]
-        // );
-
+        const response = await axiosInstance.get(`/students/${urlID}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setStudents(
           Array.isArray(response.data.students)
             ? response.data.students

@@ -5,12 +5,16 @@ import Image from "next/image";
 import Loader from "@/components/loader";
 import { Astloch } from "next/font/google";
 import axiosInstance from "@/library/axios";
+import Cookies from "js-cookie";
 
 export default function Announcement() {
   const router = useRouter();
   const navigate = (path) => {
     router.push(path);
   };
+
+  const token = Cookies.get("token");
+  // console.log("Stored Token:", token);
 
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
@@ -44,7 +48,9 @@ export default function Announcement() {
 
   const deleteEvent = async (id) => {
     try {
-      const delResponse = await axiosInstance.delete(`/announcements/${id}`);
+      const delResponse = await axiosInstance.delete(`/announcements/${id}`,{
+        headers: { Authorization: `Bearer ${token}` },
+      });
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -54,7 +60,9 @@ export default function Announcement() {
   const fetchEvents = async () => {
     setLoading(true);
     try {
-      const response = await axiosInstance.get("/announcements");
+      const response = await axiosInstance.get("/announcements", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       console.log(response);
 
       setEvents(response.data);
@@ -100,6 +108,8 @@ export default function Announcement() {
         title,
         date,
         description,
+      },{
+        headers: { Authorization: `Bearer ${token}` },
       });
       closeModal();
       window.location.reload();
@@ -218,7 +228,10 @@ export default function Announcement() {
               <div className="h-[80%] w-full overflow-y-scroll p-4 flex flex-col gap-y-4">
                 <div className="w-full h-[20%] flex flex-col md:flex-row justify-between gap-y-2 md:gap-x-4">
                   <div className="flex flex-col w-full md:w-[50%]">
-                    <label htmlFor="title" className=" text-sm md:text-xl font-semibold">
+                    <label
+                      htmlFor="title"
+                      className=" text-sm md:text-xl font-semibold"
+                    >
                       Title:
                     </label>
                     <input
@@ -235,7 +248,10 @@ export default function Announcement() {
                   </div>
 
                   <div className="flex flex-col w-full md:w-[50%]">
-                    <label htmlFor="date" className=" text-sm md:text-xl font-semibold">
+                    <label
+                      htmlFor="date"
+                      className=" text-sm md:text-xl font-semibold"
+                    >
                       Date:
                     </label>
                     <input

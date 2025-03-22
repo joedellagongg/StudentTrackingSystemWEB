@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import axiosInstance from "@/library/axios";
 const axios = require("axios");
+import Cookies from "js-cookie";
 
 const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
+  const token = Cookies.get("token");
+
   const searchParams = useSearchParams();
   const urlID = searchParams.get("id");
   if (!isOpen) return null;
@@ -15,7 +18,9 @@ const Modal = ({ isOpen, onClose, studentData, setStudentData }) => {
 
   const handleUpdate = async () => {
     try {
-      const res = await axiosInstance.patch(`/students/${urlID}`, studentData);
+      const res = await axiosInstance.patch(`/students/${urlID}`, studentData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       onClose();
       window.location.reload();
       return res;

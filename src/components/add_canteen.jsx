@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axiosInstance from "@/library/axios";
+import Cookies from "js-cookie";
 
 export default function AddCanteenComponent({ setAddModal, dataTransmit }) {
   const [canteenInfo, setCanteenInfo] = useState({
@@ -11,6 +12,8 @@ export default function AddCanteenComponent({ setAddModal, dataTransmit }) {
     studentContact: "",
     store_name: "",
   });
+
+  const token = Cookies.get("token");
 
   const handleChange = (e) => {
     setCanteenInfo({
@@ -26,7 +29,10 @@ export default function AddCanteenComponent({ setAddModal, dataTransmit }) {
     try {
       const response = await axiosInstance.post(
         "/users/add_cashier",
-        canteenInfo
+        canteenInfo,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
       );
 
       console.log(response.data.data);

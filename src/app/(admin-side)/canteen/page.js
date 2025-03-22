@@ -5,9 +5,13 @@ import { useRouter } from "next/navigation";
 import AddCanteenComponent from "../../../components/add_canteen";
 import axiosInstance from "@/library/axios";
 import { useSearchParams } from "next/navigation";
+import Cookies from "js-cookie";
 
 export default function Canteen() {
   const router = useRouter();
+
+  const token = Cookies.get("token");
+  // console.log("Stored Token:", token);
 
   const [canteenPage, setCanteenPage] = useState({
     setCanteenList: [],
@@ -24,7 +28,9 @@ export default function Canteen() {
       loadingState: true,
     }));
     try {
-      const response = await axiosInstance.get("/stores");
+      const response = await axiosInstance.get("/stores", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       console.log(response.data.data);
 
       setCanteenPage((prevState) => ({

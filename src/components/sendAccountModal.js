@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axiosInstance from "@/library/axios";
+import Cookies from "js-cookie";
 
 const SendAccountModal = ({ isOpen, onClose, selectedStudents, students }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const token = Cookies.get("token");
 
   if (!isOpen) return null;
 
@@ -19,10 +21,16 @@ const SendAccountModal = ({ isOpen, onClose, selectedStudents, students }) => {
     );
 
     try {
-      const response = await axiosInstance.post("/students/send-accounts", {
-        studentIds: destructuredID,
-        students: studentData,
-      });
+      const response = await axiosInstance.post(
+        "/students/send-accounts",
+        {
+          studentIds: destructuredID,
+          students: studentData,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       if (response.status === 200) {
         setSuccess(true);
@@ -52,15 +60,11 @@ const SendAccountModal = ({ isOpen, onClose, selectedStudents, students }) => {
         )}
 
         <p className="mb-4">
-          Are you sure you want to send account to the selected
-          student(s)?
+          Are you sure you want to send account to the selected student(s)?
         </p>
 
         <div className="flex justify-end gap-4">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 rounded"
-          >
+          <button onClick={onClose} className="px-4 py-2 rounded">
             Cancel
           </button>
           <button

@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import AddStudent from "@/app/(devs)/add_student/page";
 import Loader from "@/components/loader";
 import axiosInstance from "@/library/axios";
+import Cookies from "js-cookie";
 
 export default function Stud_list() {
   const router = useRouter();
@@ -28,11 +29,14 @@ export default function Stud_list() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedStudents, setSelectedStudents] = useState([]);
+  const token = Cookies.get("token");
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axiosInstance.get("/student_list");
+        const response = await axiosInstance.get("/student_list", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setStudents(response.data);
         // console.log(response.data);
         setLoading(false);

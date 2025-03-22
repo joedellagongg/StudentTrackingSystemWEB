@@ -2,10 +2,14 @@
 import React, { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import axiosInstance from "@/library/axios";
+import Cookies from "js-cookie";
 
 export default function AddStudent({ closeModal }) {
   const searchParams = useSearchParams();
   let id = searchParams.get("section");
+
+  const token = Cookies.get("token");
+  // console.log("Stored Token:", token);
 
   const [studentData, setStudentData] = useState({
     nfc_id: "",
@@ -34,9 +38,9 @@ export default function AddStudent({ closeModal }) {
     console.log("show student data: ", studentData);
 
     try {
-      const res = await axiosInstance.post("/students", studentData);
-
-      // console.log("hello", res.data.success);
+      const res = await axiosInstance.post("/students", studentData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
       if (res.data.success == true) {
         console.log(res.data);
@@ -45,7 +49,7 @@ export default function AddStudent({ closeModal }) {
       }
     } catch (err) {
       console.error(err);
-      console.log("[ add_student: ERROR  why]", err);   
+      console.log("[ add_student: ERROR  why]", err);
     }
   };
 

@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import axiosInstance from "@/library/axios";
 import { Suspense } from "react";
+import Cookies from "js-cookie";
 
 function AnnouncementInfo() {
   const [loading, setLoading] = useState(false);
@@ -13,7 +14,10 @@ function AnnouncementInfo() {
 
   const searchParams = useSearchParams();
   const urlID = searchParams.get("event");
-  console.log("Announcement ID:", urlID);
+  // console.log("Announcement ID:", urlID);
+
+  const token = Cookies.get("token");
+  // console.log("Stored Token:", token);
 
   const router = useRouter();
   const navigate = (path) => {
@@ -29,7 +33,12 @@ function AnnouncementInfo() {
     if (!urlID) return;
     setLoading(true);
     try {
-      const response = await axiosInstance.get(`/announcements/fetch/${urlID}`);
+      const response = await axiosInstance.get(
+        `/announcements/fetch/${urlID}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setEvents(response.data);
     } catch (err) {
       console.error(err);

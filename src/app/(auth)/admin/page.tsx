@@ -6,36 +6,52 @@ import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axiosInstance from "@/library/axios";
+import Cookies from "js-cookie";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const token = Cookies.get("token");
+
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     try {
-      const res = await axiosInstance.post("/login", {
-        username,
-        password,
-      });
-      console.log("THIS IS THE RESPONSE", res.data.message);
-      const decodedToken = jwtDecode(res.data.response.token);
-      console.log(decodedToken);
-      if (res.data) {
+      const res = await axiosInstance.post(
+        "/login",
+        { username, password },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      console.log(res.data.token);
+
+      if (res.data && res.data.token) {
+        const token = res.data.token;
+
+        Cookies.set("token", token, {
+          expires: 1 / 720,
+          secure: true,
+          sameSite: "Strict",
+        });
+
+        const decodedToken = jwtDecode(token);
+        console.log("Decoded Token:", decodedToken);
+
         router.push("/dashboard");
-        console.log("😊😊😊 HAHAHAHAHAHA");
-        // console.clear();
       } else {
-        console.log("Error on Try-If-Else Block!");
+        alert("Login failed. Please try again.");
       }
     } catch (err) {
-      console.error(err);
-      setLoading(false);
-      console.log("😒😒😒");
+      console.error("Login Error:", err);
       alert("Login failed. Please check your credentials.");
+    } finally {
+      setLoading(false);
     }
   };
 

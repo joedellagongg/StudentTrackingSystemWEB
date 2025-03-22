@@ -4,10 +4,13 @@ import Image from "next/image";
 import axiosInstance from "@/library/axios";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import Cookies from "js-cookie";
 
 function Canteen() {
   const router = useRouter();
   const id = useSearchParams().get("canteen_id");
+
+  const token = Cookies.get("token");
 
   const navigate = (path) => {
     router.push(path);
@@ -23,10 +26,16 @@ function Canteen() {
   const fetchUserTransactions = useCallback(async () => {
     try {
       const getBalance = await axiosInstance.get(
-        `/paymentIntent/getBalance/${id}`
+        `/paymentIntent/getBalance/${id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
       );
       const getTransactions = await axiosInstance.get(
-        `/paymentIntent/transactions/${id}`
+        `/paymentIntent/transactions/${id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
       );
 
       // console.log("balance:", getBalance.data.data[0]);
