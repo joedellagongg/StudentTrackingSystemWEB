@@ -29,7 +29,7 @@ export default function Login() {
         }
       );
 
-      console.log(res.data.token);
+      // console.log(res.data.token);
 
       if (res.data && res.data.token) {
         const token = res.data.token;

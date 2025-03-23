@@ -50,15 +50,16 @@ export default function TopUp_Form({ onClose, amount }) {
   }, []);
 
   const handleSubmit = async () => {
-    const adminUsername = jwtDecode(token);
-    console.log("single admin", adminUsername.sub);
-
-    console.log("Hello from top up modals.", adminUsername.sub);
+    // console.log("Hello from top up modals.", adminUsername.sub);
     const { username } = students[0];
 
     setIsSubmitting(true);
 
     try {
+      const adminUsername = jwtDecode(token);
+      // console.log("single admin", adminUsername.sub);
+      // console.log("Hello from top up modals.", adminUsername.sub);
+      const { username } = students[0];
       const res = await axiosInstance.post(
         `/paymentIntent`,
         {

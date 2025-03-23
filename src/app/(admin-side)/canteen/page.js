@@ -31,7 +31,7 @@ export default function Canteen() {
       const response = await axiosInstance.get("/stores", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(response.data.data);
+      // console.log(response.data.data);
 
       setCanteenPage((prevState) => ({
         ...prevState,

@@ -18,7 +18,7 @@ export default function Admin() {
       }
 
       const decoded = jwtDecode(token);
-      console.log("Decoded Token:", decoded);
+      // console.log("Decoded Token:", decoded);
 
       const balanceRes = await axiosInstance.get(
         `/paymentIntent/getBalance/${decoded.sub}`,
