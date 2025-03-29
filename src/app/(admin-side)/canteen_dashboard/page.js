@@ -5,19 +5,23 @@ import axiosInstance from "@/library/axios";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 function Canteen() {
   const router = useRouter();
   const id = useSearchParams().get("canteen_id");
 
   const token = Cookies.get("token");
+  // console.log(jwtDecode(token));
 
   const navigate = (path) => {
     router.push(path);
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [withdrawAmount, setWithdrawAmount] = useState("");
+  const [nfcWithdraw, setNFCWithdraw] = useState("");
   const [moneyEndpoint, setMoneyEndpoint] = useState({
     overallBalance: [],
     transactions: [],
@@ -27,6 +31,7 @@ function Canteen() {
 
   const fetchUserTransactions = useCallback(async () => {
     try {
+      setLoading(true);
       const getBalance = await axiosInstance.get(
         `/paymentIntent/getBalance/${id}`,
         {
@@ -40,6 +45,8 @@ function Canteen() {
         }
       );
 
+      console.log("getch", getBalance.data.data);
+
       setMoneyEndpoint((prevState) => ({
         ...prevState,
         overallBalance: getBalance.data.data,
@@ -48,6 +55,8 @@ function Canteen() {
       }));
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   }, [id]);
 
@@ -60,67 +69,99 @@ function Canteen() {
     setIsModalOpen(!isModalOpen);
   };
 
-  const handleWithdrawInputChange = (e) => {
+  const handleWithdrawChange = (e) => {
     setWithdrawAmount(e.target.value);
+  };
+
+  const handleNfcChange = (e) => {
+    setNFCWithdraw(e.target.value);
   };
 
   const handleWithdrawSubmit = (e) => {
     e.preventDefault();
-    setIsModalOpen(false);
+    // console.log("Money Withdraw:", withdrawAmount);
 
+    setIsModalOpen(false);
     setIsNfcModalOpen(true);
   };
 
-  const handleNfcSubmit = (e) => {
+  const handleNfcSubmit = async (e) => {
     e.preventDefault();
+    console.log("Withdraw Results:", nfcWithdraw, withdrawAmount);
+    try {
+      const response = await axiosInstance.post("/paymentIntent/withdraw", {
+        sender_id: id,
+        receiver_id: nfcWithdraw,
+        amount: withdrawAmount,
+      });
 
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
     setIsNfcModalOpen(false);
   };
 
   return (
     <main className="w-full h-full rounded-2xl overflow-x-scroll bg-[#ffffff] p-6 flex flex-col gap-y-6">
-      {moneyEndpoint.overallBalance.map((item, index) => (
-        <div
-          key={index}
-          className="w-full h-[30%] flex flex-row justify-between"
+      <div className="w-full h-[30%] flex flex-row justify-between">
+        <button
+          onClick={() => navigate("../canteen")}
+          className="flex items-start"
+          aria-label="Go back"
         >
-          <button
-            onClick={() => navigate("../canteen")}
-            className="flex items-start"
-            aria-label="Go back"
-          >
-            <Image
-              width={0}
-              height={0}
-              src="./icons/back-icon.svg"
-              alt="back"
-              className="h-[50px] w-auto"
-            />
-          </button>
+          <Image
+            width={0}
+            height={0}
+            src="./icons/back-icon.svg"
+            alt="back"
+            className="h-[50px] w-auto"
+          />
+        </button>
 
+        {loading ? (
           <div className="h-full w-[50%] bg-gradient-to-br from-[#002147] to-[#168FCC] rounded-2xl text-white p-4">
             <div className=" w-full h-[20%]">
-              <span className=" font-bold text-2xl">{item.full_name}</span>
+              <span className=" font-bold text-2xl">Loading...</span>
             </div>
             <div className=" flex flex-row h-[80%]">
               <div className=" flex justify-end flex-col gap-x-2">
                 <span className=" text-xl">Balance:</span>
-                <span className=" text-4xl font-bold">
-                  {item.total_balance}
-                </span>
+                <span className=" text-4xl font-bold">Loading...</span>
               </div>
               <div className=" flex justify-end items-end flex-row w-full">
-                <button
-                  onClick={handleModalToggle}
-                  className=" w-[10vw] h-[5vw] p-4 bg-[#002147] text-white rounded-xl font-bold"
-                >
+                <button className=" w-[10vw] h-[5vw] p-4 bg-[#002147] text-white rounded-xl font-bold">
                   Withdraw
                 </button>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        ) : (
+          moneyEndpoint.overallBalance.map((item, index) => (
+            <div className="h-full w-[50%] bg-gradient-to-br from-[#002147] to-[#168FCC] rounded-2xl text-white p-4">
+              <div className=" w-full h-[20%]">
+                <span className=" font-bold text-2xl">{item.full_name}</span>
+              </div>
+              <div className=" flex flex-row h-[80%]">
+                <div className=" flex justify-end flex-col gap-x-2">
+                  <span className=" text-xl">Balance:</span>
+                  <span className=" text-4xl font-bold">
+                    {item.total_balance}
+                  </span>
+                </div>
+                <div className=" flex justify-end items-end flex-row w-full">
+                  <button
+                    onClick={handleModalToggle}
+                    className=" w-[10vw] h-[5vw] p-4 bg-[#002147] text-white rounded-xl font-bold"
+                  >
+                    Withdraw
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
@@ -129,9 +170,10 @@ function Canteen() {
             <form onSubmit={handleWithdrawSubmit}>
               <input
                 type="number"
-                value={withdrawAmount}
-                onChange={handleWithdrawInputChange}
+                value={withdrawAmount || ""}
+                onChange={handleWithdrawChange}
                 className="w-full p-2 mb-4 border rounded-lg"
+                min={1}
                 placeholder="Enter amount"
               />
               <div className="flex justify-between">
@@ -161,6 +203,8 @@ function Canteen() {
             <form onSubmit={handleNfcSubmit}>
               <input
                 type="password"
+                value={nfcWithdraw || ""}
+                onChange={handleNfcChange}
                 className="w-full p-2 mb-4 border rounded-lg"
                 placeholder="Scan your NFC card"
               />
