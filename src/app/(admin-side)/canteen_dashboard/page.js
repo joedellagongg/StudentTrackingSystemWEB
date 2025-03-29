@@ -12,8 +12,12 @@ function Canteen() {
   const id = useSearchParams().get("canteen_id");
 
   const token = Cookies.get("token");
-  // console.log(jwtDecode(token));
-
+  if (typeof token === "string") {
+    const decodedToken = jwtDecode(token);
+    console.log("decodedToken", decodedToken.sub);
+  } else {
+    console.error("Invalid token:", token);
+  }
   const navigate = (path) => {
     router.push(path);
   };
@@ -87,16 +91,21 @@ function Canteen() {
 
   const handleNfcSubmit = async (e) => {
     e.preventDefault();
+    const decodedToken = jwtDecode(token);
+    const sub = decodedToken.sub;
     console.log("Withdraw Results:", nfcWithdraw, withdrawAmount);
     try {
       const response = await axiosInstance.post("/paymentIntent/withdraw", {
-        sender_id: id,
+        sender_id: sub,
         receiver_id: nfcWithdraw,
         amount: withdrawAmount,
       });
 
       console.log(response);
+      window.location.reload();
     } catch (error) {
+      setWithdrawAmount("");
+      setNFCWithdraw("");
       console.log(error);
     }
     setIsNfcModalOpen(false);
