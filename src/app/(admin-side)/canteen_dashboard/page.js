@@ -242,8 +242,8 @@ function Canteen() {
         <table className="w-full mt-4 table-auto">
           <thead className="w-full">
             <tr>
-              <th className="w-[40%] text-left">User Identity</th>
-              <th className="w-[20%] text-center">Description</th>
+              <th className="w-[20%] text-center">User ID</th>
+              <th className="w-[40%] text-center">Description</th>
               <th className="w-[20%] text-center">Date</th>
               <th className="w-[20%] text-center">Amount</th>
             </tr>
@@ -255,10 +255,10 @@ function Canteen() {
             <tbody>
               {moneyEndpoint.transactions.map((item, index) => (
                 <tr key={index} className=" border-b ">
-                  <td className="w-[40%] capitalize">
+                  <td className="w-[20%] capitalize text-center">
                     <p className="max-w-full">{item.receiver_id}</p>
                   </td>
-                  <td className="max-w-[20%] capitalize text-center">
+                  <td className="max-w-[40%] capitalize text-center">
                     {item.description}
                   </td>
                   <td className="w-[20%] capitalize text-center">
